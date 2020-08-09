@@ -204,32 +204,43 @@ export default class CRMDashboard2 extends Component {
       <Fragment>
         <CSSTransitionGroup component="div" transitionName="TabsAnimation"
           transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
+  
+  
+           <Row>
+           <Col  md="auto" >
+              <Card className="opacity-9" fluid >  
+              <a href="#/dashboards/services">  <Route path="#/dashboards/services" />
+              <CardHeader className="card-header-tab">
+               <div className="card text-center card-shadow-focus opacity-9">
+                 Services
+                </div>
+              </CardHeader>
+              <CardBody>
+                <div>
+                  <img width={165} className="rounded-circle text-center" src={servicespic} alt="" />
+               </div><center>Skills for hire or consult.</center>
+             </CardBody>
+             </a>
+             </Card> <br></br>
+<a href="#/dashboards/home/gallery">
+  <Card className=" mb-3 opacity-9" style={{ width: '13rem' }}>
+    <CardHeader className="card-header-tab">
+      <div className="card text-center card-shadow-focus opacity-9">
+        Visual Art Gallery
+      </div> <div> </div>
+    </CardHeader>
+    <CardBody>
+      <div>
+        <img width={165} className=" text-center" src={visualpic} alt="" />
+      </div><center>Visual Gallery.</center>
+    </CardBody>
+  </Card></a>
+             </Col> <Col md="auto">
 
-          <Row>
-            <Col>
-             <Row>
-
-             <Col>
 
 
-
-              <Card className="md-3 opacity-9">   <a href="#/dashboards/services">  <Route path="#/dashboards/services" />
-                <CardHeader className="card-header-tab">
-                  <div className="card text-center card-shadow-focus opacity-9">
-                    Services
-                    </div>
-                </CardHeader>
-                <CardBody>
-                  <div>
-                    <img width={165} className="rounded-circle text-center" src={servicespic} alt="" />
-                  </div><center>Skills for hire or consult.</center>
-                </CardBody>
-              </a>  </Card>&nbsp;
-
-              </Col>
-              <Col>
               <a href="#" path="/services" component={Services}>
-                <Card className="main-card mb-3 opacity-9">
+                <Card md="auto" className=" opacity-9" style={{ width: '13rem' }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Shoppe
@@ -240,10 +251,27 @@ export default class CRMDashboard2 extends Component {
                       <img width={165} className=" text-center" src={shoppic} alt="" />
                     </div><center>PrettyCoolProducts.</center>
                   </CardBody>
-                </Card></a>&nbsp;
-                </Col><Col>
+                </Card></a><br></br>
+
+<a href="#/dashboards/home/writing">
+  <Card md="auto" className="main-card mb-3 opacity-9"  style={{ width: '13rem' }}>
+    <CardHeader className="card-header-tab">
+      <div className="card text-center card-shadow-focus opacity-9">
+        Written Publishing
+   </div> <div> </div>
+    </CardHeader>
+    <CardBody>
+      <div>
+        <img width={165} className=" text-center" src={publishingpic} alt="" />
+      </div><center>Non Fiction</center>
+    </CardBody>
+  </Card></a>
+
+
+                </Col> <Col md="auto">
+            
                <a href="#/dashboards/home/about" to="#/dashboards/home/about" activeLinkFromLocation>
-                <Card className="main-card mb-3 opacity-9">
+                <Card className="opacity-9" style={{ width: '13rem' }} > 
                   <CardHeader className="card-header-tab" >
                     <div className="card text-center card-shadow-focus opacity-9">
                       About
@@ -255,68 +283,32 @@ export default class CRMDashboard2 extends Component {
                       <img width={165} className=" text-center" src={aboutpic} alt="" />
                     </div><center> Learn More</center>
                   </CardBody>
-                </Card></a>&nbsp;
-                </Col>
-               </Row><br></br>
-               <Row>
-              
-               <Col>
+                </Card></a><br></br>
+<a href="#/dashboards/home/audio">
+  <Card md="auto" className="main-card mb-3 opacity-9"  style={{ width: '13rem' }}>
+     <CardHeader className="card-header-tab">
+      <div className="card text-center card-shadow-focus opacity-9">
+        Audio Art Gallery
+          </div> <div> </div>
+     </CardHeader>
+     <CardBody >
+      <div >
+        <img width={165} className=" text-center" src={audiopic} alt="" /><br></br>
+      </div><center>Music Production.</center>
+     </CardBody>
+  </Card></a>
+                </Col> 
 
-                <a href="#/dashboards/home/gallery">
-                  <Card className="main-card mb-3 opacity-9">
-                    <CardHeader className="card-header-tab">
-                      <div className="card text-center card-shadow-focus opacity-9">
-                        Visual Art Gallery
-                      </div> <div> </div>
-                    </CardHeader>
-                    <CardBody>
-                      <div>
-                        <img width={165} className=" text-center" src={visualpic} alt="" />
-                      </div><center>Visual Gallery.</center>
-                    </CardBody>
-                  </Card></a>&nbsp;
-</Col> <Col>
 
-                <a href="#/dashboards/home/writing">
-                  <Card className="main-card mb-3 opacity-9">
-                    <CardHeader className="card-header-tab">
-                      <div className="card text-center card-shadow-focus opacity-9">
-                        Written Publishing
-                   </div> <div> </div>
-                    </CardHeader>
-                    <CardBody>
-                      <div>
-                        <img width={165} className=" text-center" src={publishingpic} alt="" />
-                      </div><center>Non Fiction</center>
-                    </CardBody>
-                  </Card></a>&nbsp;
-                  </Col>
-
-                <a href="#/dashboards/home/audio">
-                  <Card className="main-card mb-3 opacity-9">
-                     <CardHeader className="card-header-tab">
-                      <div className="card text-center card-shadow-focus opacity-9">
-                        Audio Art Gallery
-                          </div> <div> </div>
-                     </CardHeader>
-                     <CardBody >
-                      <div >
-                        <img width={165} className=" text-center" src={audiopic} alt="" /><br></br>
-                      </div><center>Music Production.</center>
-                     </CardBody>
-                  </Card></a>&nbsp;
-              </Row>
-            </Col>
-
-            <Col lg="12" xl="6">
-              <Card color="light" className="mb-3"> 
-                <CardHeader className="card-header-tab">
+                <Col lg="12" xl="6">
+              <Card className="mb-3 main-card opacity-9" > 
+                <CardHeader className="main-card dark card-header-tab">
                   <div className="card-header-title">
-                    <i className="header-icon lnr-rocket icon-gradient bg-tempting-azure  opacity-9"> {" "} </i>
+                    <i className=" lnr-rocket icon-gradient opacity-9"> {" "} </i>
                       PrettyCoolBulletin
                     </div>
 
-                </CardHeader>  <CardBody> <div className="">
+                </CardHeader>  <CardBody> <div>
 
                   <small> 8/6/20 </small> <br></br> <br></br>
 
@@ -331,7 +323,13 @@ export default class CRMDashboard2 extends Component {
                 </div></CardBody>
               </Card>
             </Col>
-          </Row>
+
+              </Row>
+               <Row>
+              
+      
+              
+            </Row>
          <Row> <Col>
           <Card className="main-card mb-3 opacity-9">
             <CardHeader className="card-header-tab" color="light">
@@ -360,8 +358,6 @@ export default class CRMDashboard2 extends Component {
 
             </CardBody>
           </Card></Col></Row>
-
-
 
 
           <Card className="main-card mb-3 opacity-9">
