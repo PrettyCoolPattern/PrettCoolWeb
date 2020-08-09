@@ -1,11 +1,11 @@
 
-====
 PrettyCoolPattern React Web App Public Development Project
 ====
 
-## Before anything
+## Before anything, Setup Step 1.
 
-Rename example.env to .env (This file is set to be auto excluded in sharing and will be your passwords and keys file)
+Find example.env in your project root directory and rename it to .env 
+This file is set to be auto excluded in sharing and will be your passwords and keys file
 
 
 ## Installation Instructions & Notes
