@@ -1,0 +1,26 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 03 Aug 2020 22:53:43 at https://www.chanellemoreau.com/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.chanellemoreau.com/ -O1 "C:\chanellemoreau\https___www.chanellemoreau.com_" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/423030442?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/423030442?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/414217858?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/414217858?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/381544643?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/381544643?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/227157676?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/227157676?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/381545696?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/381545696?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/287518652?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/287518652?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Bad Request" (400) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/287518834?app_id=122963&amp;wmode=opaque\%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/"https://player.vimeo.com/video/287518834?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/film)
+23:01:35	Error: 	"Not Found" (404) at link https://www.chanellemoreau.com/recent-work/"https://player.vimeo.com/video/423030442?app_id=122963&wmode=opaque%22 (from https://www.chanellemoreau.com/recent-work/diansa)
+
+HTTrack Website Copier/3.49-2 mirror complete in 7 minutes 52 seconds : 277 links scanned, 261 files written (67648765 bytes overall) [22574436 bytes received at 47827 bytes/sec], 52955480 bytes transferred using HTTP compression in 175 files, ratio 12%, 1.4 requests per connection
+(15 errors, 0 warnings, 0 messages)

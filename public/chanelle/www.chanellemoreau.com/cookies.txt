@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.chanellemoreau.com	TRUE	/	FALSE	1999999999	crumb	Bc6EviaaodP8ZDEyY2QyY2M2OTAxY2E0ZTdiZTUxNDdiMDg2MjMy
+chanellemoreau.com	TRUE	/	FALSE	1999999999	crumb	BbgJMeyCrFfuZGNiNzNjYWU4NTM2NzY4NTY5OGU2MDcyMGNhYThk
+
