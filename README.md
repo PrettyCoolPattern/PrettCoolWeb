@@ -3,9 +3,12 @@
 PrettyCoolPattern React Web App Public Development Project
 ====
 
+## Before anything
+
+Rename example.env to .env (This file is set to be auto excluded in sharing and will be your passwords and keys file)
+
+
 ## Installation Instructions & Notes
-
-
 
 This project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
