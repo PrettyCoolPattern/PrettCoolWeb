@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 #Personal Ignores
-.StartDevServer.sh
+./StartDevServer.sh
 
 
 #Custom PCP Ignores (in development)

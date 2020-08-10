@@ -2,7 +2,10 @@
 PrettyCoolPattern React Web App Public Development Project
 ====
 
-# Relevant Uncommon Vocabulary (WIP)
+
+
+Relevant Uncommon Vocabulary (WIP)
+==
 
 VM
 NodeJS
