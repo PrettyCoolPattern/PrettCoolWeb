@@ -2,6 +2,19 @@
 PrettyCoolPattern React Web App Public Development Project
 ====
 
+# Relevant Uncommon Vocabulary (WIP)
+
+VM
+NodeJS
+NPM
+REACT
+Elements
+Cards
+Import
+Col
+Row 
+Root
+
 ## Before anything, Setup Step 1.
 
 Find example.env in your project root directory and rename it to .env 

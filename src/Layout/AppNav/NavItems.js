@@ -22,7 +22,7 @@ export const MainNav = [
   },{
     icon: "pe-7s-shopbag",
     label: "Shop",
-    to: "#/dashboards/home/Shop",
+    to: "./#/dashboards/shop",
   },
   
 ]

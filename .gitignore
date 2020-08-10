@@ -1,9 +1,12 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+#Personal Ignores
+.StartDevServer.sh
 
-#Custom Ignores
+
+#Custom PCP Ignores (in development)
+
 .env
-
 
 
 # Raw below this line

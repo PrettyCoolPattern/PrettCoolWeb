@@ -3,7 +3,6 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import classnames from "classnames";
 import ReactTable from "react-table";
 import { Route } from 'react-router-dom';
-import Services from "../services/";
 
 
 import {
@@ -21,6 +20,8 @@ import {
   Card,
   CardBody,
   CardHeader,
+  CardLink,
+  CardImg,
   NavLink,
   TabContent,
   TabPane,
@@ -50,24 +51,22 @@ import {
 
 import { Sparklines, SparklinesCurve } from "react-sparklines";
 
-import { makeData } from "../../../Tables/DataTables/Examples/utils";
+import { makeData } from "../../Tables/DataTables/Examples/utils";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CountUp from "react-countup";
 
-import avatar1 from "../../../../assets/utils/images/avatars/1.jpg";
-import avatar2 from "../../../../assets/utils/images/avatars/2.jpg";
-import avatar3 from "../../../../assets/utils/images/avatars/3.jpg";
-import servicespic from "../../../../assets/images/thumbs/services.png";
-import aboutpic from "../../../../assets/images/thumbs/about.png";
-import publishingpic from "../../../../assets/images/thumbs/publishing.png";
-import shoppic from "../../../../assets/images/thumbs/shop.png";
-import audiopic from "../../../../assets/images/thumbs/audio.png";
-import visualpic from "../../../../assets/images/thumbs/visual.jpg";
-import logo from "../../../../assets/images/logoani.gif";
-import Main from "../../../Main";
-
-
+import avatar1 from "../../../assets/utils/images/avatars/1.jpg";
+import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
+import avatar3 from "../../../assets/utils/images/avatars/3.jpg";
+import aboutpic from "../../../assets/images/thumbs/about.png";
+import publishingpic from "../../../assets/images/thumbs/publishing.png";
+import shoppic from "../../../assets/images/thumbs/shop.png";
+import audiopic from "../../../assets/images/thumbs/audio.png";
+import visualpic from "../../../assets/images/thumbs/visual.jpg";
+import logo from "../../../assets/images/logoani.gif";
+import maui from "../../../assets/images/maui.png";
+import illumexample from "../../../assets/images/thumbs/illumexample.png";
 const data55 = [
   { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
   { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
@@ -165,7 +164,7 @@ console.info({
   sampleData4,
 });
 
-export default class CRMDashboard2 extends Component {
+export default class ShopElements extends Component {
   constructor(props) {
     super(props);
 
@@ -205,187 +204,154 @@ export default class CRMDashboard2 extends Component {
         <CSSTransitionGroup component="div" transitionName="TabsAnimation"
           transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
   
-  
-           <Row>
-           <Col  md="auto" >
-              <Card className="opacity-9" fluid >  
-              <a href="#/dashboards/services">  <Route path="#/dashboards/services" />
-              <CardHeader className="card-header-tab">
-               <div className="card text-center card-shadow-focus opacity-9">
+  <Row>
+         <Col>
+
+
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
                  Services
-                </div>
-              </CardHeader>
-              <CardBody>
-                <div>
-                  <img width={165} className="rounded-circle text-center" src={servicespic} alt="" />
-               </div><center>Skills for hire or consult.</center>
-             </CardBody>
-             </a>
-             </Card> <br></br>
-<a href="#/dashboards/home/gallery">
-  <Card className=" mb-3 opacity-9" style={{ width: '13rem' }}>
-    <CardHeader className="card-header-tab">
-      <div className="card text-center card-shadow-focus opacity-9">
-        Visual Art Gallery
-      </div> <div> </div>
-    </CardHeader>
-    <CardBody>
-      <div>
-        <img width={165} className=" text-center" src={visualpic} alt="" />
-      </div><center>Visual Gallery.</center>
-    </CardBody>
-  </Card></a>
-             </Col> <Col md="auto">
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+    <Col>
 
 
-
-             <a href="#/dashboards/shop">  <Route path="#/dashboards/shop" />
-                <Card md="auto" className=" opacity-9" style={{ width: '13rem' }}>
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Shoppe
-              </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img width={165} className=" text-center" src={shoppic} alt="" />
-                    </div><center>PrettyCoolProducts.</center>
-                  </CardBody>
-                </Card></a><br></br>
-
-<a href="#/dashboards/home/writing">
-  <Card md="auto" className="main-card mb-3 opacity-9"  style={{ width: '13rem' }}>
-    <CardHeader className="card-header-tab">
-      <div className="card text-center card-shadow-focus opacity-9">
-        Written Publishing
-   </div> <div> </div>
-    </CardHeader>
-    <CardBody>
-      <div>
-        <img width={165} className=" text-center" src={publishingpic} alt="" />
-      </div><center>Non Fiction</center>
-    </CardBody>
-  </Card></a>
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         <Col>
 
 
-                </Col> <Col md="auto">
-            
-                <a href="#/dashboards/services">  <Route path="#/dashboards/services" />
-                <Card className="opacity-9" style={{ width: '13rem' }} > 
-                  <CardHeader className="card-header-tab" >
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      About
-                    </div> <div> </div>
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         </Row>
+<br></br>
 
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img width={165} className=" text-center" src={aboutpic} alt="" />
-                    </div><center> Learn More</center>
-                  </CardBody>
-                </Card></a><br></br>
-<a href="#/dashboards/home/audio">
-  <Card md="auto" className="main-card mb-3 opacity-9"  style={{ width: '13rem' }}>
-     <CardHeader className="card-header-tab">
-      <div className="card text-center card-shadow-focus opacity-9">
-        Audio Art Gallery
-          </div> <div> </div>
-     </CardHeader>
-     <CardBody >
-      <div >
-        <img width={165} className=" text-center" src={audiopic} alt="" /><br></br>
-      </div><center>Music Production.</center>
-     </CardBody>
-  </Card></a>
-                </Col> 
+<Row>
+         <Col>
 
 
-                <Col lg="12" xl="6">
-              <Card className="mb-3 main-card opacity-9" > 
-                <CardHeader className="main-card dark card-header-tab">
-                  <div className="card-header-title">
-                    <i className=" lnr-rocket icon-gradient opacity-9"> {" "} </i>
-                      PrettyCoolBulletin
-                    </div>
-
-                </CardHeader>  <CardBody> <div>
-
-                  <small> 8/6/20 </small> <br></br> <br></br>
-
-                       I'd like to thank everyone who'se shown support through the goals and work, wouldn't have gotten here without you.
-                    <br></br> <br></br>
-
-                    The site is being transfered to modern templature, utilizing the React frameworks as the primary language. Improvements to speed, aestetics and new features will be rolling out over the coming weeks.
-                    <br></br><br></br>   Please report any issues and commentary through the contact page and thank you for <s>trying PCP</s> stopping by.
-                    <br></br>
-                  <br></br>  <br></br> <center> <img src={logo} width="100"></img></center>
-                  <br></br><br></br>
-                </div></CardBody>
-              </Card>
-            </Col>
-
-              </Row>
-               <Row>
-              
-      
-              
-            </Row>
-         <Row> <Col>
-          <Card className="main-card mb-3 opacity-9">
-            <CardHeader className="card-header-tab" color="light">
-              <div className="card-header-title font-size-lg font-weight-normal">
-                <i className="header-icon lnr-dice mr-3 text-muted opacity-6"> {" "} </i>
-                  Recent Updates: 7/7/20</div> <div> <br></br>
-
-                <br></br>
-
-                <br></br>
-
-              </div>
-
-            </CardHeader>
-            <CardBody>
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+    <Col>
 
 
-              Site updates are live! (Improved services page, enhanced graphics, added spunk)
-                <br></br>
-              <br></br>
-              PCP 3D Web Game Demo - Pre-Alpha 0.2 now available <a href="../3D/"> here</a> for testing and education.
-                <br></br>
-
-              <br></br>
-
-
-            </CardBody>
-          </Card></Col></Row>
-
-
-          <Card className="main-card mb-3 opacity-9">
-            <CardHeader className="card-header-tab">
-              <div className="card-header-title font-size-lg font-weight-normal">
-                <i className="header-icon lnr-dice mr-3 text-muted opacity-6"> {" "} </i>
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         <Col>
 
 
-                  Recent Updates: 6/15/20
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         </Row>
+<br></br>
+
+<Row>
+         <Col>
 
 
-                  </div> <div> </div>
-            </CardHeader>
-            <CardBody>
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+    <Col>
 
-              Find out what PCP is working on, get involved and learn more, by visiting the new <u><a href="#"> Projects Page</a>.</u>
-              <br></br><br></br>
-            </CardBody>
-          </Card>
+
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         <Col>
 
 
-
-
-          <Row>
-
-
-          </Row>
-
+             <Card className="opacity-9" fluid >  
+              <CardLink href="#/dashboards/services"> 
+              <Route path="#/dashboards/services" />
+               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                 Services
+               </CardHeader>
+               <CardBody>
+                <center>Skills for hire or consult.</center>
+               </CardBody>
+              </CardLink>
+             </Card>
+         </Col>
+         </Row>
+<br></br>
+         
+          <br></br>
           <Row>
             <Col sm="12" md="6" xl="4">
               <Card className="card-shadow-primary card-border text-white mb-3" color="primary">

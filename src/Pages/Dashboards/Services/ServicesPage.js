@@ -20,6 +20,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  CardImg,
   NavLink,
   TabContent,
   TabPane,
@@ -63,8 +64,8 @@ import shoppic from "../../../assets/images/thumbs/shop.png";
 import audiopic from "../../../assets/images/thumbs/audio.png";
 import visualpic from "../../../assets/images/thumbs/visual.jpg";
 import logo from "../../../assets/images/logoani.gif";
-
-
+import maui from "../../../assets/images/maui.png";
+import illumexample from "../../../assets/images/thumbs/illumexample.png";
 const data55 = [
   { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
   { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
@@ -289,36 +290,37 @@ export default class CRMDashboard2 extends Component {
                   <Row >
 
 
-                    <Col> <br></br>
-                    <Card className="col-md-6 opacity-9 " >
-                    <a href="#" to="#/dashboards/home/ZZ" activeLinkFromLocation>
+                    <Col > <br></br>
+
+                    
+                    <Card className=" opacity-9 " >
                       <CardHeader className="card-header-tab" >
                         <div className="card text-center card-shadow-focus opacity-9">
 
+Maui, Hawaii Based
 
                         </div>
                       </CardHeader>
                       <CardBody>
-                        <div>
-                        </div><center> XX</center>
-                      </CardBody></a>
+                      <CardImg src={maui}></CardImg>
+                      </CardBody>
                   </Card>
                     </Col>
                   </Row>
                 </Col>
                 <Col>
-                  <Card className="col-md-6 opacity-9 " >
-                    <a href="#" to="#/dashboards/home/ZZ" activeLinkFromLocation>
+             
+             
+                  <Card className="opacity-9 " >
                       <CardHeader className="card-header-tab" >
                         <div className="card text-center card-shadow-focus opacity-9">
-
+E-Commerce + Design
 
                         </div>
                       </CardHeader>
                       <CardBody>
-                        <div>
-                        </div><center> YY</center>
-                      </CardBody></a>
+                      <CardImg src={illumexample}></CardImg>
+                      </CardBody>
                   </Card>
                 </Col>
 
@@ -341,14 +343,8 @@ export default class CRMDashboard2 extends Component {
               <div>  <p> Over a decade of researching and designing websites. </p><p> </p><p>  Fluent in 7+ Programming languages</p><p>
               </p><p>  E-Commerce Design</p><p>  Application Development</p><p>  Software &amp; Hardware Development</p><p>  Database Management </p><p> Team management & oversight experience for large projects
         </p><p>  Social Media Management</p><p>  API Development </p><p>
-                </p><p>
-                  <a href="contact.html">Contact Form</a> </p>
+                </p>
               </div>
-              <div>
-                <a href="#">
-                  <img src="images/thumbs/illumexample.png" alt="" /> Example Site B
-        </a>
-              </div><center> 33</center>
             </CardBody>
           </Card> <br></br>
 

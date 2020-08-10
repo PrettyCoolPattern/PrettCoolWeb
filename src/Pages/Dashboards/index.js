@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 
-// DASHBOARDS
+// Pages
 
 import HomeDashboard from "./Home/";
-
 import Services from "./Services/";
+import ShopPage from "./Shop/";
 
 // Layout
 
@@ -27,6 +27,7 @@ const Dashboards = ({ match }) => (
         <div className="app-main__inner">
           <Route path={`${match.url}/home`} component={HomeDashboard} />
           <Route path={`${match.url}/services`} component={Services} />
+          <Route path={`${match.url}/shop`} component={ShopPage} />
         </div>
         <AppFooter />
       </div>

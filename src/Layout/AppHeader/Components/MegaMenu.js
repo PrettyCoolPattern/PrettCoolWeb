@@ -64,13 +64,13 @@ class MegaMenu extends React.Component {
                     <Nav vertical>
                       <NavItem className="nav-item-header">Main Portals</NavItem>
                       <NavItem>
-                        <NavLink href="prettycoolpattern.com">
+                        <NavLink href="./#/dashboards/home/">
                           <i className="nav-link-icon lnr-home"> </i>
                           <span>Home</span>
                         </NavLink>
                       </NavItem>
                       <NavItem>
-                        <NavLink href="#">
+                        <NavLink href="./#/dashboards/services/">
                           <i className="nav-link-icon lnr-question-circle"> </i>
                           <span>About</span>
                           <div className="ml-auto">
