@@ -35,8 +35,8 @@ git clone "https://github.com/PrettyCoolPattern/PrettCoolWeb"
 
 2) After making changes, upload changes:
 git add .
+git commit -m "<your message here>"
 git push
-
 # The Passwords File
 
 Find example.env in your project root directory and rename it to .env 
@@ -44,9 +44,6 @@ This file is set to be auto excluded in sharing and will be your passwords and k
 
 # WIP Notes
 
-Linux fix:
-
-./node_modules/.bin/eslint --init
 
 
 ## Installation Instructions & Notes
