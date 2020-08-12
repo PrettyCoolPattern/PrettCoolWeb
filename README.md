@@ -3,7 +3,6 @@ PrettyCoolPattern React Web App Public Development Project
 ====
 
 
-
 Relevant Uncommon Vocabulary (WIP)
 ==
 
@@ -19,7 +18,7 @@ Row
 Root
 eslint
 
-## Setup.
+## Setup Step 1.
 
 Install Prerequisites:
 
@@ -28,7 +27,7 @@ NPM
 git
 
 
-(To Do) Script Automate Setup.
+# Download Source Files For Web App & Set Up Project Workspace.
 
 1) Get files
 git clone "https://github.com/PrettyCoolPattern/PrettCoolWeb"
