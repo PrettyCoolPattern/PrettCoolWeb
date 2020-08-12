@@ -17,11 +17,36 @@ Import
 Col
 Row 
 Root
+eslint
 
-## Before anything, Setup Step 1.
+## Setup.
+
+Install Prerequisites:
+
+NodeJS
+NPM
+git
+
+
+(To Do) Script Automate Setup.
+
+1) Get files
+git clone "https://github.com/PrettyCoolPattern/PrettCoolWeb"
+
+2) After making changes, upload changes:
+git add .
+git push
+
+# The Passwords File
 
 Find example.env in your project root directory and rename it to .env 
-This file is set to be auto excluded in sharing and will be your passwords and keys file
+This file is set to be auto excluded in sharing and will be your passwords and keys file.
+
+# WIP Notes
+
+Linux fix:
+
+./node_modules/.bin/eslint --init
 
 
 ## Installation Instructions & Notes
