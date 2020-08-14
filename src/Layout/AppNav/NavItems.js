@@ -32,19 +32,19 @@ export const AboutNav = [{
   content: [
     {
       label: "Web Development",
-      to: "#/dashboards/home/webad",
+      to: "#/dashboards/services",
     },
     {
       label: "Graphics Design",
-      to: "#/dashboards/home/designad",
+      to: "#/dashboards/services",
     },
     {
       label: "Writing",
-      to: "#/dashboards/home/writingad",
+      to: "#/dashboards/services",
     },
     {
       label: "Hardware Solutions + Repair",
-      to: "#/dashboards/home/hardwaread",
+      to: "#/dashboards/services",
     },
   ],
 },{
