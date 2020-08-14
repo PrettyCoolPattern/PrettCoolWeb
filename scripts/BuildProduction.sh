@@ -1,4 +1,2 @@
-cd ../
-npm build
-
+cd ../ & npm build
 cmd /k

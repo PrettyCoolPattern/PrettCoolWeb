@@ -1,4 +1,2 @@
-cd "C:\Users\idkra\Documents\NodeSites\ArchWeb"
-npm start
-
+cd ../ & npm start
 cmd /k
