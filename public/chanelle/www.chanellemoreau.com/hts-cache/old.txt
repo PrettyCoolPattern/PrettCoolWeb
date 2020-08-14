@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-22:52:01	0/0	---M--	301	error ('Moved%20Permanently')	text/html	date:Tue,%2004%20Aug%202020%2007:05:59%20GMT	http://chanellemoreau.com/	C:/chanellemoreau/www.chanellemoreau.com/chanellemoreau.com/index.html	(from )
-22:52:01	0/0	---MC-	301	error ('Moved%20Permanently')	text/html	date:Tue,%2004%20Aug%202020%2008:52:00%20GMT	http://chanellemoreau.com/robots.txt		(from )
