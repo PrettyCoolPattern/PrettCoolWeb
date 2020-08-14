@@ -8,17 +8,17 @@ export const MainNav = [
   {
     icon: "pe-7s-photo",
     label: "Visual Arts",
-    to: "#/dashboards/home/visualart",
+    to: "#/dashboards/gallery",
           },
   {
     icon: "pe-7s-album",
     label: "Audio Arts",
-    to: "#/dashboards/home/audioart",
+    to: "#/dashboards/music",
       
   },{
     icon: "pe-7s-pen",
     label: "Writing",
-    to: "#/dashboards/home/writing",
+    to: "#/dashboards/writing",
   },{
     icon: "pe-7s-shopbag",
     label: "Shop",
@@ -35,7 +35,7 @@ export const AboutNav = [{
       to: "#/dashboards/services",
     },
     {
-      label: "Graphics Design",
+      label: "Graphics & Design",
       to: "#/dashboards/services",
     },
     {
@@ -47,10 +47,16 @@ export const AboutNav = [{
       to: "#/dashboards/services",
     },
   ],
-},{
-    icon: "pe-7s-car",
-    label: "Contact",
-    to: "#/dashboards/home/Contact",
-  },
+},
+{
+  icon: "pe-7s-car",
+  label: "Projects",
+  to: "#/dashboards/projects",
+},
+{
+  icon: "pe-7s-car",
+  label: "Contact",
+  to: "#/dashboards/contact",
+},
 ]
 

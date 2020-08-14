@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from "react";
+import scriptLoader from 'react-async-script-loader';
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import classnames from "classnames";
 import ReactTable from "react-table";
 import { Route } from 'react-router-dom';
+import PayPalButton from './PayPalButton';
 
-
+ 
 import {
   Row,
   Col,
@@ -29,7 +31,6 @@ import {
   CardFooter,
   ButtonGroup,
 } from "reactstrap";
-
 
 import {
   ResponsiveContainer,
@@ -59,14 +60,27 @@ import CountUp from "react-countup";
 import avatar1 from "../../../assets/utils/images/avatars/1.jpg";
 import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
 import avatar3 from "../../../assets/utils/images/avatars/3.jpg";
-import aboutpic from "../../../assets/images/thumbs/about.png";
-import publishingpic from "../../../assets/images/thumbs/publishing.png";
-import shoppic from "../../../assets/images/thumbs/shop.png";
-import audiopic from "../../../assets/images/thumbs/audio.png";
-import visualpic from "../../../assets/images/thumbs/visual.jpg";
-import logo from "../../../assets/images/logoani.gif";
-import maui from "../../../assets/images/maui.png";
-import illumexample from "../../../assets/images/thumbs/illumexample.png";
+import contrastus from "../../../assets/images/contrastus.png";
+import collage from "../../../assets/images/collage.png";
+import mandalashirt from "../../../assets/images/mandalashirt.png";
+
+const CLIENT = {
+  sandbox: process.env.PAYPAL_CLIENT_ID_SANDBOX,
+  production: process.env.PAYPAL_CLIENT_ID_PRODUCTION,
+};
+
+// PayPal API WIP
+
+const onSuccess = (payment) =>
+console.log('Successful payment!', payment);
+
+const onError = (error) =>
+console.log('Erroneous payment OR failed to load script!', error);
+
+const onCancel = (data) =>
+console.log('Cancelled payment!', data);
+
+// 
 const data55 = [
   { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
   { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
@@ -126,6 +140,7 @@ const data2 = [
   { name: "Page G", uv: 3490, pv: 4300, amt: 2100 },
   { name: "Page F", uv: 1390, pv: 3800, amt: 1500 },
 ];
+
 
 function boxMullerRandom() {
   let phase = true,
@@ -203,154 +218,139 @@ export default class ShopElements extends Component {
       <Fragment>
         <CSSTransitionGroup component="div" transitionName="TabsAnimation"
           transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
-  
-  <Row>
-         <Col>
 
-
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+          <Row>
+            <Col xs="6" sm="4" md="3" xl="5">
+              <Card className=" opacity-9" fluid >
+                <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                  Official &amp; Annual Apparel
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-    <Col>
+                <CardBody>
+                  <center>  The PrettyCoolShoppe currently presents three official and one annual design:</center>
+                  <br></br>    <center> Proceeds fund PrettyCoolProjects, FOSS organizations, and local education. Find out more on the about page. </center><br></br>
+                  <center> Please scroll to your hearts desire and reach out through the <a href="./#/dashboards/contact/" src="./#/dashboards/contact/">contact page</a> if you have any questions. Sizing is listed below. <br></br> <br></br>
+                   <h3>  <i class="pe-7s-angle-down-circle"></i> <i class="pe-7s-angle-down-circle"></i> <i class="pe-7s-angle-down-circle"></i></h3> </center>
+                </CardBody>
+              </Card>
 
+            </Col>
+            <Col xs="6" sm="6" md="6" xl="5">
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+              <Card className=" opacity-9" fluid >
+                  <Route path="#/dashboards/services" />
+                  <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                    Mandalas Trichromus
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         <Col>
+                  <CardBody>
+                    <CardImg src={mandalashirt} width="80%"></CardImg>
+                    <center> MandalasTrichromus</center>
+                  </CardBody>
+              </Card>
 
+            </Col>
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+          </Row>
+          <br></br>
+
+          <Row>
+            <Col xs="6" sm="4" md="3" xl="5">
+              <Card className=" opacity-9" fluid >
+                <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                  Giveaways 
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         </Row>
-<br></br>
+                <CardBody>
+                  <center> There are four PrettyCoolGiveaways a year</center><br></br>
+                  <center> Stay tuned in by following on any social on the about page. </center><br></br>
+                </CardBody>
+              </Card>
 
-<Row>
-         <Col>
+            </Col>
+            <Col xs="6" sm="6" md="6" xl="5">
 
+              <Card className=" opacity-9" fluid >
+                  <Route path="#/dashboards/services" />
+                  <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                    Sprialus Contrastus
+                 </CardHeader>
+                  <CardBody>
+                    <CardImg src={contrastus} width="80%"></CardImg>
+                    <center>SprialusContrastus:</center>
+                  </CardBody>
+              </Card>
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+            </Col>
+
+          </Row>
+          <br></br>
+
+          <Row>
+            <Col xs="6" sm="4" md="3" xl="5">
+              <Card className=" opacity-9" fluid >
+                <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                  More PrettyCoolOffers
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-    <Col>
+                <CardBody>
+                <center> PCP builds and hosts websites for as little as $2 a month. </center><br></br>
+                <center> Take a journey over to <a src="./#/dashboards/services" href="./#/dashboards/services">about </a></center><br></br>
+                <center> Proceeds fund Pretty7 </center><br></br>
+                  </CardBody>
+              </Card>
 
+            </Col>
+            <Col xs="6" sm="6" md="6" xl="5">
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+              <Card className=" opacity-9" fluid >
+                  <Route path="#/dashboards/services" />
+                  <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                    Collage De Vivre
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         <Col>
+                  <CardBody>
+                    <CardImg src={collage} width="80%"></CardImg>
+                    <center> CollageDeVivre</center>
+
+                  </CardBody>
+              </Card>
+
+            </Col>
+
+          </Row>
+          <br></br>
 
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+          <Row>
+            <Col xs="12" sm="5" md="4" xl="5">
+              <Card className="height=210px opacity-9" fluid >
+                  <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                    Checkout
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         </Row>
-<br></br>
+                  <CardBody  height="220px">
+                  <br></br>Shipments go out through USPS Priority with tracking.
+                  <br></br>Be sure to select a design from the list above, and your desired sizing.
+          <PayPalButton />   <br></br> </CardBody>
+           
+              </Card>
 
-<Row>
-         <Col>
-
-
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
+            </Col>
+            <Col xs="6" sm="5" md="4" xl="4">
+              <Card className=" opacity-9" fluid >
+                <CardLink src="./#/dashboards/contact/" href="./#/dashboards/contact/"> 
+                  <Route path="#/dashboards/contact" />
+                  <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
+                    Make Contact
                </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-    <Col>
+               
+                  <CardBody>
+                    <p  className="pe-7s-rocket btn-icon-wrapper"> Have a question?</p><br></br>
+                    <p  className="pe-7s-light btn-icon-wrapper"> Thinking of a suggestion?</p><br></br>
+                    <p  className="pe-7s-science btn-icon-wrapper"> Interested in other services?</p><br></br>
+                    <p className="pe-7s-mail btn-icon-wrapper"> Contact PCP with ease by clicking here and gain confidence and consultation absolutely free.</p>
+                  </CardBody>
+                  </CardLink> </Card>
 
+            </Col>
 
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
-               </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         <Col>
-
-
-             <Card className="opacity-9" fluid >  
-              <CardLink href="#/dashboards/services"> 
-              <Route path="#/dashboards/services" />
-               <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                 Services
-               </CardHeader>
-               <CardBody>
-                <center>Skills for hire or consult.</center>
-               </CardBody>
-              </CardLink>
-             </Card>
-         </Col>
-         </Row>
-<br></br>
-         
+          </Row>
+          <br></br>
           <br></br>
           <Row>
             <Col sm="12" md="6" xl="4">

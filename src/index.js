@@ -13,6 +13,7 @@ import Main from "./Pages/Main";
 import configureStore from "./config/configureStore";
 import { Provider } from "react-redux";
 
+
 const store = configureStore();
 const rootElement = document.getElementById("root");
 
@@ -33,6 +34,8 @@ if (module.hot) {
   module.hot.accept("./Pages/Main", () => {
     const NextApp = require("./Pages/Main").default;
     renderApp(NextApp);
+
+    
   });
 }
 serviceWorker.unregister();

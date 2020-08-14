@@ -108,24 +108,19 @@ class UserBox extends React.Component {
                             </NavLink>
                           </NavItem>
                           <NavItem>
-                            <NavLink href="#">
-                              Contact
+                            <NavLink href="./#/dashboards/projects">
+                              Involvement
                             </NavLink>
                           </NavItem>
-                        </Nav>
-                      </PerfectScrollbar>
-                    </div>
-                    <Nav vertical>
-                      <NavItem className="nav-item-divider mb-0" />
-                    </Nav>
-                                       <Nav vertical>
-                      <NavItem className="nav-item-divider" />
+                          <Nav vertical> 
                       <NavItem className="nav-item-btn text-center">
-                        <Button size="sm" className="btn-wide" color="primary">
+                        <Button size="sm" className="btn-wide" color="primary" href="./#/dashboards/contact">
                           Contact
                         </Button>
-                      </NavItem>
-                    </Nav>
+                      </NavItem></Nav> 
+                      </Nav> 
+                        </PerfectScrollbar>
+                        </div>
                   </DropdownMenu>
                 </UncontrolledButtonDropdown>
               </div>
