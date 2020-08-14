@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Route } from 'react-router-dom';
 import scriptLoader from 'react-async-script-loader';
-import paypal from 'paypal-checkout'; 
+// WIP import paypal from 'paypal-checkout';
 
 class PayPalButton extends Component {
 
