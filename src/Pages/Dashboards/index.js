@@ -6,7 +6,11 @@ import { Route } from "react-router-dom";
 import HomeDashboard from "./Home/";
 import Services from "./Services/";
 import ShopPage from "./Shop/";
-
+import GalleryPage from "./Gallery/"; 
+import Writing from "./Writing/"; 
+import Music from "./Music/"; 
+import Contact from "./Contact/"; 
+import Projects from "./Projects/"; 
 // Layout
 
 import AppHeader from "../../Layout/AppHeader/";
@@ -28,6 +32,11 @@ const Dashboards = ({ match }) => (
           <Route path={`${match.url}/home`} component={HomeDashboard} />
           <Route path={`${match.url}/services`} component={Services} />
           <Route path={`${match.url}/shop`} component={ShopPage} />
+          <Route path={`${match.url}/gallery`} component={GalleryPage} />
+          <Route path={`${match.url}/writing`} component={Writing} />
+          <Route path={`${match.url}/music`} component={Music} />
+          <Route path={`${match.url}/contact`} component={Contact} />
+          <Route path={`${match.url}/projects`} component={Projects} />
         </div>
         <AppFooter />
       </div>

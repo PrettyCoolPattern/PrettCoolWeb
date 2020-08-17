@@ -1,4 +1,3 @@
-
 PrettyCoolPattern.com React Web App Public Development Project 
 ====
 
@@ -18,9 +17,12 @@ VM
 Col
 Row 
 Root
+sudo rebooto
 eslint
 
+
 ## Setup Step 1.
+
 
 Install Prerequisites:
 

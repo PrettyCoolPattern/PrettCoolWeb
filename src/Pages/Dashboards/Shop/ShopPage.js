@@ -236,14 +236,15 @@ export default class ShopElements extends Component {
             </Col>
             <Col xs="6" sm="6" md="6" xl="5">
 
-              <Card className=" opacity-9" fluid >
+            <Card className=" opacity-9" fluid >
                   <Route path="#/dashboards/services" />
                   <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                    Mandalas Trichromus
+                    Collage De Vivre
                </CardHeader>
                   <CardBody>
-                    <CardImg src={mandalashirt} width="80%"></CardImg>
-                    <center> MandalasTrichromus</center>
+                    <CardImg src={collage} width="80%"></CardImg>
+                    <center> CollageDeVivre</center>
+
                   </CardBody>
               </Card>
 
@@ -267,17 +268,16 @@ export default class ShopElements extends Component {
             </Col>
             <Col xs="6" sm="6" md="6" xl="5">
 
-              <Card className=" opacity-9" fluid >
+            <Card className=" opacity-9" fluid >
                   <Route path="#/dashboards/services" />
                   <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                    Sprialus Contrastus
-                 </CardHeader>
+                    Mandalas Trichromus
+               </CardHeader>
                   <CardBody>
-                    <CardImg src={contrastus} width="80%"></CardImg>
-                    <center>SprialusContrastus:</center>
+                    <CardImg src={mandalashirt} width="80%"></CardImg>
+                    <center> MandalasTrichromus</center>
                   </CardBody>
               </Card>
-
             </Col>
 
           </Row>
@@ -298,19 +298,19 @@ export default class ShopElements extends Component {
 
             </Col>
             <Col xs="6" sm="6" md="6" xl="5">
-
-              <Card className=" opacity-9" fluid >
+         
+            <Card className=" opacity-9" fluid >
                   <Route path="#/dashboards/services" />
                   <CardHeader className="card-header-tab text-center card-shadow-focus opacity-9">
-                    Collage De Vivre
-               </CardHeader>
+                    Sprialus Contrastus
+                 </CardHeader>
                   <CardBody>
-                    <CardImg src={collage} width="80%"></CardImg>
-                    <center> CollageDeVivre</center>
-
+                    <CardImg src={contrastus} width="80%"></CardImg>
+                    <center>SprialusContrastus:</center>
                   </CardBody>
               </Card>
 
+          
             </Col>
 
           </Row>
@@ -326,6 +326,7 @@ export default class ShopElements extends Component {
                   <CardBody  height="220px">
                   <br></br>Shipments go out through USPS Priority with tracking.
                   <br></br>Be sure to select a design from the list above, and your desired sizing.
+                  <br></br> For alternative payments, send an email.
           <PayPalButton />   <br></br> </CardBody>
            
               </Card>

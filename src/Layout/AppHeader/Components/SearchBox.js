@@ -14,23 +14,23 @@ class SearchBox extends React.Component {
   render() {
     return (
       <Fragment>
+
         <div className={cx("search-wrapper", {
             active: this.state.activeSearch,
           })}>
           <div className="input-holder">
+            <a target="_blank" href="https://duckduckgo.com/?q=site%3Aprettycoolpattern.com&t=hw&ia=web">
             <input type="text" className="search-input" placeholder="Type to search"/>
-            <button onClick={() =>
-                this.setState({ activeSearch: !this.state.activeSearch })
-              }
+            <button 
               className="search-icon">
               <span />
-            </button>
-          </div>
-          <button onClick={() =>
+            </button></a>
+          </div>      
+       <button onClick={() =>
               this.setState({ activeSearch: !this.state.activeSearch })
             }
             className="close"/>
-        </div>
+     </div>
       </Fragment>
     );
   }

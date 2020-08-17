@@ -107,7 +107,7 @@ class MegaMenu extends React.Component {
                       <NavLink href="./#/dashboards/writing/"> <i className="nav-link-icon lnr-pencil"> </i>Writing</NavLink>
                       </NavItem>
                       <NavItem>
-                      <NavLink href="./#/dashboards/gamedev/"> <i className="nav-link-icon lnr-code"> </i>Game Development
+                      <NavLink href="./#/dashboards/projects/"> <i className="nav-link-icon lnr-code"> </i>Game Development
                           <div className="ml-auto badge badge-success">New</div>    </NavLink>
                       </NavItem>
                     </Nav>
@@ -121,11 +121,11 @@ class MegaMenu extends React.Component {
                       <NavLink href="./#/dashboards/services/"><i className="nav-link-icon lnr-magic-wand"> </i>Professional Services </NavLink>
                       </NavItem>
                       <NavItem>
-                      <NavLink href="./#/dashboards/metrics/"> <i className="nav-link-icon lnr-database"> </i>PCP Metrics + Statistics</NavLink>
+                      <NavLink href="./#/dashboards/projects/"> <i className="nav-link-icon lnr-users"> </i>Projects</NavLink>
                       </NavItem>
                       <NavItem>
-                      <NavLink href="./#/dashboards/services/">
-                        <i className="nav-link-icon lnr-users"> </i>Meet The Team
+                      <NavLink href="https://github.com/JasonHoku">
+                        <i className="nav-link-icon lnr-database"> </i>GitHub
                         </NavLink>
                       </NavItem>
                       <NavItem>

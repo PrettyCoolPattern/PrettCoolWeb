@@ -103,13 +103,13 @@ class UserBox extends React.Component {
                           </NavItem>
                        
                           <NavItem>
-                            <NavLink href="./#/dashboards/services">
+                            <NavLink href="#/dashboards/services">
                               About
                             </NavLink>
                           </NavItem>
                           <NavItem>
-                            <NavLink href="./#/dashboards/projects">
-                              Involvement
+                            <NavLink href="#/dashboards/projects">
+                              Projects
                             </NavLink>
                           </NavItem>
                           <Nav vertical> 
