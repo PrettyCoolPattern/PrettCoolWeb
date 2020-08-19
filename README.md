@@ -1,39 +1,54 @@
-PrettyCoolPattern.com React Web App Public Development Project 
+PCP ReactJS Web-App Public Development 
 ====
 
 
-Relevant Uncommon Vocabulary (WIP)
-==
+### Relevant Uncommon Vocabulary (WIP)
+
 
 
 NodeJS
+
 NPM
+
 ReactJS
+
 Elements
+
 Cards
+
 Import
+
 GCP
+
 VM
+
 Col
+
 Row 
-Root
+
+Rootlea
+
 sudo rebooto
+
 eslint
 
 
-## Setup Step 1.
+
+
+# Setup, Step 1.
 
 
 Install Prerequisites:
 
-NodeJS
-NPM
-git
+NodeJS with NPM: https://nodejs.org/en/
+git: https://git-scm.com/downloads
 
 
-## Download Source Files For Web App & Set Up Project Workspace.
+# Download Source Files For Web App & Set Up Project Workspace.
 
-# 1) Get files
+
+
+## A) Get files with git:
 Type into git bash in the desired setup directory (git install prequisite): 
 
 git clone https://github.com/PrettyCoolPattern/PrettCoolWeb
@@ -51,9 +66,9 @@ Updating files: 100% (1625/1625), done.
 
 *28.70 MiB/s: Nice...
 
-Now you have the source code, edit Pages/ and .js files and any other files as a React app.
+Now you have the source code and may edit and run it as a React app.
 
-# 2) After making changes, upload changes to the group git repo by running the following code:
+## B) After making changes, upload changes to the group git repo by running the following git commands:
 
 *note, change  "your message about changes here" to a description of the update
 
@@ -65,6 +80,8 @@ git push
 
 Find example.env in your project root directory and rename it to .env 
 This file is set to be auto excluded in sharing and will be your passwords and keys file.
+
+
 
 ## Installation Instructions & Notes
 
@@ -178,11 +195,13 @@ found 5 vulnerabilities (1 low, 2 moderate, 2 high)
 
 
 
-## Additional Learning notes WIP & DIY:
+# Additional Learning notes WIP & DIY:
 
-Updating depreciated modules (one by one):
+### Updating depreciated modules:
 
-# react-scripts contained several depreciations and required updating, processed in this order:
+react-scripts contained several depreciations and required updating, which was processed in this order:
+
+npm audit reveals react-scripts
 
 npm i react-scripts@3.0.0
 npm install --save --save-exact react-scripts@3.0.1
@@ -206,10 +225,13 @@ babel-preset-react-app
 
 *npx comes with some npm/nodejs installs also installable independently
 
+
+### Run the following in git with npm installed in a fresh directory to start a blank react bootstrap app:
+
 npx create-react-app react-bootstrap-app
 npm install react-bootstrap bootstrap
 
-Add source & dependencies.
+### Add source & dependencies.
 
 npm install node-sass
 

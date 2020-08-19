@@ -224,7 +224,7 @@ export default class GalleryElements extends Component {
                 <CardBody>
                   <center>
 <CarouselBSExample  /></center>
-<center> PrettyCoolSlideshow *smiley*</center>
+<center>← PrettyCoolSlideshow →</center>
 </CardBody>
               </Card>
             </Col>
@@ -253,7 +253,7 @@ export default class GalleryElements extends Component {
 
 
             <Col xs="4" sm="4" md="4" xl="5">
-            <a href="#/dashboard/contact"> contact page.
+            <a href="#/dashboard/contact">
             <Card><CardHeader>
               Contact
             </CardHeader>

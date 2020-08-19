@@ -36,15 +36,15 @@ export const AboutNav = [{
     },
     {
       label: "Graphics & Design",
-      to: "#/dashboards/services",
+      to: "#/dashboards/gallery",
     },
     {
       label: "Writing",
-      to: "#/dashboards/services",
+      to: "#/dashboards/writing",
     },
     {
-      label: "Hardware Solutions + Repair",
-      to: "#/dashboards/services",
+      label: "Hardware Production",
+      to: "#/dashboards/projects",
     },
   ],
 },

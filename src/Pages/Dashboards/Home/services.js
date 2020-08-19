@@ -21,8 +21,8 @@ export default class HomeDashboard extends Component {
         <CSSTransitionGroup component="div" transitionName="TabsAnimation" transitionAppear={true}
           transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
 
-           <PageTitleAlt2 heading="PrettyCoolPattern.com"
-            subheading="Services, Arts, Media + Entertainment."/>
+           <PageTitleAlt2 heading="PrettyCoolPattern Design, Engineering &amp; Services | Website Application Development, Music, Graphic Arts, Apparel, Discussion &amp; Modern Arts Collective Non-Profit of West Maui, Hawaii"
+            subheading="PrettyCoolPattern Design, Engineering &amp; Services | Website Application Development, Music, Graphic Arts, Apparel, Discussion &amp; Modern Arts Collective Non-Profit of West Maui, Hawaii"/>
             <CRMDashboard2 />
                  </CSSTransitionGroup>
       </Fragment>

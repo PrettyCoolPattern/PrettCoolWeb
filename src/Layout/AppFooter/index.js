@@ -14,7 +14,7 @@ class AppFooter extends React.Component {
 
             </div>
             <div className="app-footer-right">
-              <a href="./contact"> Contact</a>
+              <a href="./#/dashboards/contact/"> Contact</a>
             </div>
           </div>
         </div>
