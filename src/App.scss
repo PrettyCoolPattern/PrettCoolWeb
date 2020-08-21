@@ -1,0 +1,19 @@
+@import "custom";
+// Icons
+@import "./assets/linear/style.css";
+@import "./assets/pe7/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
+@import "./assets/pe7/pe-icon-7-stroke/css/helper.css";
+.header {
+  text-align: center;
+}
+
+span {
+  &.dangerText {
+    color: #dc3545;
+  }
+
+  &.infoText {
+    color: #17a2b8;
+    font-weight: bold;
+  }
+}

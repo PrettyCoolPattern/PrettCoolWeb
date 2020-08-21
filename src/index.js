@@ -8,11 +8,11 @@ import { Router, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import { HashRouter } from "react-router-dom";
-import "./assets/base.scss";
+import './App.scss';
 import Main from "./Pages/Main";
 import configureStore from "./config/configureStore";
 import { Provider } from "react-redux";
-
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 const store = configureStore();
 const rootElement = document.getElementById("root");
@@ -39,3 +39,4 @@ if (module.hot) {
   });
 }
 serviceWorker.unregister();
+

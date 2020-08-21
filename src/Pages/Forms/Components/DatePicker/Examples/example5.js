@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import DatePicker from "react-datepicker";
-import addDays from "date-fns/add_days";
+//import addDays from "date-fns/add_days";
 
 class FormDatePicker5 extends React.Component {
   constructor(props) {
@@ -21,14 +21,7 @@ class FormDatePicker5 extends React.Component {
   render() {
     return (
       <Fragment>
-        <DatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChange}
-          className="form-control"
-          minDate={new Date()}
-          maxDate={addDays(new Date(), 5)}
-          placeholderText="Select a date between today and 5 days in the future"
-        />
+ 
       </Fragment>
     );
   }

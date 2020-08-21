@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "../../../../node_modules/react";
 import scriptLoader from '../../../../node_modules/react-async-script-loader';
-import CSSTransitionGroup from "../../../../node_modules/react-transition-group/CSSTransitionGroup";
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import classnames from "../../../../node_modules/classnames";
 import ReactTable from "../../../../node_modules/react-table";
 import { Route } from '../../../../node_modules/react-router-dom';
