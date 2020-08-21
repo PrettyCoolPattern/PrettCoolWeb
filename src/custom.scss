@@ -17,7 +17,6 @@
 @import "./assets/components/bootstrap4/code";
 @import "./assets/components/bootstrap4/grid";
 @import "./assets/components/bootstrap4/tables";
-@import "./assets/components/bootstrap4/forms";
 @import "./assets/components/bootstrap4/buttons";
 @import "./assets/components/bootstrap4/transitions";
 @import "./assets/components/bootstrap4/dropdown";
@@ -37,13 +36,10 @@
 @import "./assets/components/bootstrap4/list-group";
 @import "./assets/components/bootstrap4/close";
 @import "./assets/components/bootstrap4/toasts";
-@import "./assets/components/bootstrap4/modal";
 @import "./assets/components/bootstrap4/tooltip";
 @import "./assets/components/bootstrap4/popover";
 @import "./assets/components/bootstrap4/carousel";
-@import "./assets/components/bootstrap4/spinners";
 @import "./assets/components/bootstrap4/utilities";
-@import "./assets/components/bootstrap4/print";
 // LAYOUT
 
 @import "./assets/layout/layout";
@@ -63,8 +59,6 @@
 @import "./assets/elements/badges";
 @import "./assets/elements/cards";
 @import "./assets/elements/tabs";
-@import "./assets/elements/accordions";
-@import "./assets/elements/modals";
 @import "./assets/elements/loaders";
 @import "./assets/elements/progressbar";
 @import "./assets/elements/timeline";
@@ -93,7 +87,6 @@
 @import "./assets/pe7/pe-icon-7-stroke/css/helper.css";
 
 // Perfect Scrollbar
-@import "./assets/components/perfect-scrollbar/perfect-scrollbar";
 
 // RC Tabs
 @import "./assets/components/rc-tabs/rc-tabs";
@@ -115,13 +108,10 @@
 @import "./assets/components/modals/rodal";
 
 // Progress Bar
-@import "./assets/components/progress-bar/progress-bar";
 
 // Slick Carousel
-@import "./assets/components/slick-carousel/slick/slick";
 
 // Block loading
-@import "./assets/components/block-loading/block-loading";
 
 // Popovers & Tooltips
 @import "./assets/components/popovers-tooltips/popovers-tooltips";

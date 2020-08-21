@@ -380,58 +380,6 @@ export default class ShopElements extends Component {
                 </CardFooter>
               </Card>
             </Col>
-            <Col sm="12" md="6" xl="4">
-              <Card className="card-shadow-primary card-border text-white mb-3" color="focus">
-                <div className="dropdown-menu-header">
-                  <div className="dropdown-menu-header-inner bg-focus">
-                    <div className="menu-header-content">
-                      <div className="avatar-icon-wrapper mb-3 avatar-icon-xl">
-                        <div className="avatar-icon">
-                          <img src={avatar2} alt="Avatar 5" />
-                        </div>
-                      </div>
-                      <div>
-                        <h5 className="menu-header-title">Vinnie Wagstaff</h5>
-                        <h6 className="menu-header-subtitle">
-                          Backend Engineer
-                          </h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <CardFooter className="text-center d-block">
-                  <Button className="btn-shadow-dark btn-wider" color="warning">
-                    Send Message
-                    </Button>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col sm="12" md="12" xl="4">
-              <Card className="card-shadow-primary card-border text-white mb-3" color="dark">
-                <div className="dropdown-menu-header">
-                  <div className="dropdown-menu-header-inner bg-dark">
-                    <div className="menu-header-content">
-                      <div className="avatar-icon-wrapper mb-3 avatar-icon-xl">
-                        <div className="avatar-icon">
-                          <img src={avatar3} alt="Avatar 5" />
-                        </div>
-                      </div>
-                      <div>
-                        <h5 className="menu-header-title">Ruben Tillman</h5>
-                        <h6 className="menu-header-subtitle">
-                          Frontend UI Designer
-                          </h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <CardFooter className="text-center d-block">
-                  <Button className="btn-shadow-dark btn-wider" color="success">
-                    Send Message
-                    </Button>
-                </CardFooter>
-              </Card>
-            </Col>
           </Row>
         </CSSTransitionGroup>
       </Fragment>
