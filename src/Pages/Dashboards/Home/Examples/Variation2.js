@@ -44,6 +44,7 @@ import {
   faDotCircle,
   faAngleDown,
   faStrikethrough,
+  faAlignCenter,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Sparklines, SparklinesCurve } from "react-sparklines";
@@ -64,6 +65,7 @@ import audiopic from "../../../../assets/images/thumbs/audio.png";
 import visualpic from "../../../../assets/images/thumbs/visual.jpg";
 import logo from "../../../../assets/images/logoani.gif";
 import Main from "../../../Main";
+import CenterMode from "../../../Components/Carousel/Examples/Slideshow/CenterMode";
 
 const data55 = [
   { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
@@ -202,12 +204,13 @@ export default class CRMDashboard2 extends Component {
           transitionAppearTimeout={0}
           transitionEnter={false}
           transitionLeave={false}
-        >
+        ><center>
           <Row>
-          <Col md="auto"
+          <Col   mx-auto
                   className=" opacity-9"
                   style={{ width: "15rem" }} >
-              <Card fluid>
+                  
+              <Card  mx-auto >
                 <a href="#/dashboards/services">
                   {" "}
                   <Route path="#/dashboards/services" />
@@ -231,12 +234,11 @@ export default class CRMDashboard2 extends Component {
               </Card>
               <br></br>
               <a href="#/dashboards/gallery">
-                <Card style={{ width: "13rem" }}>
+                <Card mx-auto style={{ width: "13rem" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Visual Art Gallery
                     </div>
-                    <div> </div>
                   </CardHeader>
                   <CardBody>
                     <div>
@@ -250,16 +252,13 @@ export default class CRMDashboard2 extends Component {
                     <center>Visual Gallery.</center>
                   </CardBody>
                 </Card>
-              </a>
+              </a> <br></br>
             </Col>
-            <Col md="auto"
-                  className=" opacity-9"
-                  style={{ width: "15rem" }} >
+            <Col  mx-auto
+                  className=" opacity-9"> 
               <a href="#/dashboards/shop">
                 <Route path="#/dashboards/shop" />
-                <Card
-                  md="auto"
-                  style={{ width: "13rem" }}
+                <Card mx-auto 
                 >
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
@@ -304,14 +303,13 @@ export default class CRMDashboard2 extends Component {
                     <center>Non Fiction</center>
                   </CardBody>
                 </Card>
-              </a>
+              </a> <br></br>
             </Col>
-            <Col md="auto"
-                  className=" opacity-9"
-                  style={{ width: "15rem" }} >
+            <Col mx-auto
+                  className=" opacity-9">
               <a href="#/dashboards/services">
                 <Route path="#/dashboards/services" />
-                <Card className="opacity-9" style={{ width: "13rem" }}>
+                <Card mx-auto className="opacity-9" >
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       About
@@ -329,15 +327,15 @@ export default class CRMDashboard2 extends Component {
                     </div>
                     <center> Learn More</center>
                   </CardBody>
-                </Card>
+                </Card>     <br></br>
               </a> </Col>
-              <br></br>
+         
               
-              <Col md="auto"
+              <Col mx-auto
                   className=" opacity-9"
-                  style={{ width: "15rem" }} > <a href="#/dashboards/audio">
+                  > <a href="#/dashboards/audio">
                 <Card
-                  md="auto"
+               mx-auto
                   className="main-card mb-3 opacity-9"
                   style={{ width: "13rem" }}
                 >
@@ -361,7 +359,7 @@ export default class CRMDashboard2 extends Component {
                   </CardBody>
                 </Card>
               </a></Col>
-            <Col md="auto"
+            <Col mx-auto
                   className=" opacity-9"
                   style={{ width: "31rem" }} >
 
@@ -400,7 +398,7 @@ export default class CRMDashboard2 extends Component {
                 </CardBody>
               </Card>
             </Col>
-          </Row>
+          </Row></center>
           <Row></Row>
           <Row>
             {" "}
