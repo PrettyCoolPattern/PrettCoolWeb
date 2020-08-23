@@ -13,14 +13,12 @@ import FormWizardVar3 from "./Elements/Wizard/Examples/Variation3";
 
 import FormElementsSticky from "./Elements/StickyHeaders/";
 
-import FormDatePicker from "./Components/DatePicker/";
 import FormRangeSlider from "./Components/RangeSlider/";
 import FormWysiwygEditor from "./Components/WysiwygEditor/";
 import FormToggleSwitch from "./Components/ToggleSwitch/";
 import FormMultiSelect from "./Components/MultiSelect/";
 import FormDropdown from "./Components/Dropdown/";
 import FormInputMask from "./Components/InputMask/";
-import FormDropZone from "./Components/DropZone/";
 import FormTypeahead from "./Components/Typeahead/";
 import FormClipboard from "./Components/Clipboard/";
 import FormTextareaAutosize from "./Components/TextareaAutosize/";
@@ -57,14 +55,12 @@ const Forms = ({ match }) => (
 
           {/* Form Components */}
 
-          <Route path={`${match.url}/datepicker`} component={FormDatePicker} />
           <Route path={`${match.url}/toggle-switch`} component={FormToggleSwitch}/>
           <Route path={`${match.url}/range-slider`} component={FormRangeSlider}/>
           <Route path={`${match.url}/wysiwyg-editor`} component={FormWysiwygEditor}/>
           <Route path={`${match.url}/input-selects`} component={FormMultiSelect}/>
           <Route path={`${match.url}/dropdown`} component={FormDropdown} />
           <Route path={`${match.url}/input-mask`} component={FormInputMask} />
-          <Route path={`${match.url}/dropzone`} component={FormDropZone} />
           <Route path={`${match.url}/typeahead`} component={FormTypeahead} />
           <Route path={`${match.url}/clipboard`} component={FormClipboard} />
           <Route path={`${match.url}/textarea-autosize`} component={FormTextareaAutosize}/>

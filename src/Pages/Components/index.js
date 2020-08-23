@@ -31,10 +31,6 @@ import TooltipsPopoversExample from "./TooltipsPopovers/";
 
 import ModalsExample from "./Modal/";
 
-// Ratings
-
-import RatingsExample from "./Ratings/";
-
 // Image Crop
 
 import ImageCropExample from "./ImageCropper/";
@@ -65,15 +61,13 @@ import GuidedToursExample from "./GuidedTours/";
 
 // Maps
 
-import MapsExample from "./Maps/";
+//import MapsExample from "./Maps/";
 
 // Pagination
 
 import PaginationExamples from "./Pagination";
 
 // Calendar
-
-import CalendarExample from "./Calendar";
 
 // Layout
 
@@ -135,17 +129,10 @@ const Components = ({ match }) => (
 
           <Route path={`${match.url}/carousel`} component={CarouselExample} />
 
-          {/* Calendar */}
-
-          <Route path={`${match.url}/calendar`} component={CalendarExample} />
 
           {/* Modals */}
 
-          <Route path={`${match.url}/modals`} component={ModalsExample} />
-
-          {/* Maps */}
-
-          <Route path={`${match.url}/maps`} component={MapsExample} />
+          <Route path={`${match.url}/modals`} component={ModalsExample} />  
 
           {/* Image Crop */}
 
@@ -158,10 +145,6 @@ const Components = ({ match }) => (
           {/* Pagination */}
 
           <Route path={`${match.url}/pagination`} component={PaginationExamples}/>
-
-          {/* Ratings */}
-
-          <Route path={`${match.url}/ratings`} component={RatingsExample} />
 
           {/* Tree View */}
 

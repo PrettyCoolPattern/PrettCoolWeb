@@ -12,7 +12,6 @@ const Dashboards = lazy(() => import("../../Pages/Dashboards"));
 const Widgets = lazy(() => import("../../Pages/Widgets"));
 const Elements = lazy(() => import("../../Pages/Elements"));
 const Components = lazy(() => import("../../Pages/Components"));
-const Charts = lazy(() => import("../../Pages/Charts"));
 const Forms = lazy(() => import("../../Pages/Forms"));
 const Tables = lazy(() => import("../../Pages/Tables"));
 
@@ -58,23 +57,7 @@ const AppMain = () => {
                 <Route path="/forms" component={Forms}/>
             </Suspense>
 
-            {/* Charts */}
-
-            <Suspense fallback={
-                <div className="loader-container">
-                    <div className="loader-container-inner">
-                        <div className="text-center">
-                            <Loader type="ball-rotate"/>
-                        </div>
-                        <h6 className="mt-3">
-                             Loading Charts
-                            <small>Welcome to PrettyCoolPattern</small> </h6>
-                    </div>
-                </div>
-            }>
-                <Route path="/charts" component={Charts}/>
-            </Suspense>
-
+       
             {/* Tables */}
 
             <Suspense fallback={

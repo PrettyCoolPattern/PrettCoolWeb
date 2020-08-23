@@ -195,16 +195,12 @@ export default class CRMDashboard2 extends Component {
 
     return (
       <Fragment>
-        <CSSTransitionGroup
-          component="div"
-          transitionName="TabsAnimation"
-          transitionAppear={true}
-          transitionAppearTimeout={0}
-          transitionEnter={false}
-          transitionLeave={false}
-        >
-          <Row>
-            <Col md=" mb-3">
+        <CSSTransitionGroup component="div" transitionName="TabsAnimation"
+          transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
+
+          <Row>     
+            <Col xs="auto" sm="auto" md="auto" xl="auto">
+        
               <Card className="opacity-9" fluid>
                 <a href="#/dashboards/services">
                   {" "}
@@ -226,8 +222,9 @@ export default class CRMDashboard2 extends Component {
                     <center>Skills for hire or consult.</center>
                   </CardBody>
                 </a>
+             
               </Card>{" "}
-              <br></br>
+              <br></br>  
               <a href="#/dashboards/gallery">
                 <Card className=" mb-3 opacity-9" style={{ width: "13rem" }}>
                   <CardHeader className="card-header-tab">
@@ -248,9 +245,9 @@ export default class CRMDashboard2 extends Component {
                     <center>Visual Gallery.</center>
                   </CardBody>
                 </Card>
-              </a>
-            </Col>{" "}
-            <Col md="auto">
+              </a> 
+          </Col>{" "}
+            <Col>
               <a href="#/dashboards/shop">
                 {" "}
                 <Route path="#/dashboards/shop" />
@@ -305,7 +302,7 @@ export default class CRMDashboard2 extends Component {
                 </Card>
               </a>
             </Col>
-            <Col md="auto">
+            <Col>
               <a href="#/dashboards/services">
                 
                 <Route path="#/dashboards/services" />
@@ -392,7 +389,7 @@ export default class CRMDashboard2 extends Component {
                 </CardBody>
               </Card>
             </Col>
-          </Row>
+             </Row>
           <Row></Row>
           <Row>
             {" "}

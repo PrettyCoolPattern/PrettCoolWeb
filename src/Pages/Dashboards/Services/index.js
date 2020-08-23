@@ -9,13 +9,13 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 // Examples
 
 
-import PageTitle from "../Commerce";
+ 
 
 import CRMDashboard2 from "./ServicesPage";
 
 
 
-// import PageTitle from "../Commerce";
+//  
 
 export default class Services extends Component {
   render() {

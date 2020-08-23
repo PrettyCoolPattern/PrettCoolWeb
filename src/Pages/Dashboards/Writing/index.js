@@ -14,7 +14,7 @@ import WritingElements from "./writing";
 
 
 
-// import PageTitle from "../Commerce";
+//  
 
 export default class GalleryPage extends Component {
   render() {

@@ -9,13 +9,13 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 // Examples
 
 
-import PageTitle from "../Commerce";
+ 
 
 import MusicElements from "./music";
 
 
 
-// import PageTitle from "../Commerce";
+//  
 
 export default class GalleryPage extends Component {
   render() {

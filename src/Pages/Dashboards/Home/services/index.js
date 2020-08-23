@@ -9,7 +9,7 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 // Examples
 
 
-// import PageTitle from "../Commerce";
+//  
 
 export default class Services extends Component {
   render() {

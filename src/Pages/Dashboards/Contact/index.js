@@ -14,7 +14,7 @@ import ContactElements from "./contact";
 
 
 
-// import PageTitle from "../Commerce";
+//  
 
 export default class Contact extends Component {
   render() {

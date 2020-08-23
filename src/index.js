@@ -9,6 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import { HashRouter } from "react-router-dom";
 import './App.scss';
+import './App.js';
 import Main from "./Pages/Main";
 import configureStore from "./config/configureStore";
 import { Provider } from "react-redux";
