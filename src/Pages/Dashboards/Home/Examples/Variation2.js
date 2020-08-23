@@ -195,13 +195,19 @@ export default class CRMDashboard2 extends Component {
 
     return (
       <Fragment>
-        <CSSTransitionGroup component="div" transitionName="TabsAnimation"
-          transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
-
-          <Row>     
-            <Col xs="auto" sm="auto" md="auto" xl="auto">
-        
-              <Card className="opacity-9" fluid>
+        <CSSTransitionGroup
+          component="div"
+          transitionName="TabsAnimation"
+          transitionAppear={true}
+          transitionAppearTimeout={0}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
+          <Row>
+          <Col md="auto"
+                  className=" opacity-9"
+                  style={{ width: "15rem" }} >
+              <Card fluid>
                 <a href="#/dashboards/services">
                   {" "}
                   <Route path="#/dashboards/services" />
@@ -222,15 +228,14 @@ export default class CRMDashboard2 extends Component {
                     <center>Skills for hire or consult.</center>
                   </CardBody>
                 </a>
-             
-              </Card>{" "}
-              <br></br>  
+              </Card>
+              <br></br>
               <a href="#/dashboards/gallery">
-                <Card className=" mb-3 opacity-9" style={{ width: "13rem" }}>
+                <Card style={{ width: "13rem" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Visual Art Gallery
-                    </div>{" "}
+                    </div>
                     <div> </div>
                   </CardHeader>
                   <CardBody>
@@ -245,15 +250,15 @@ export default class CRMDashboard2 extends Component {
                     <center>Visual Gallery.</center>
                   </CardBody>
                 </Card>
-              </a> 
-          </Col>{" "}
-            <Col>
+              </a>
+            </Col>
+            <Col md="auto"
+                  className=" opacity-9"
+                  style={{ width: "15rem" }} >
               <a href="#/dashboards/shop">
-                {" "}
                 <Route path="#/dashboards/shop" />
                 <Card
                   md="auto"
-                  className=" opacity-9"
                   style={{ width: "13rem" }}
                 >
                   <CardHeader className="card-header-tab">
@@ -275,11 +280,10 @@ export default class CRMDashboard2 extends Component {
                 </Card>
               </a>
               <br></br>
-
               <a href="#/dashboards/writing">
                 <Card
                   md="auto"
-                  className="main-card mb-3 opacity-9"
+                  className="main-card mb-3"
                   style={{ width: "13rem" }}
                 >
                   <CardHeader className="card-header-tab">
@@ -302,9 +306,10 @@ export default class CRMDashboard2 extends Component {
                 </Card>
               </a>
             </Col>
-            <Col>
+            <Col md="auto"
+                  className=" opacity-9"
+                  style={{ width: "15rem" }} >
               <a href="#/dashboards/services">
-                
                 <Route path="#/dashboards/services" />
                 <Card className="opacity-9" style={{ width: "13rem" }}>
                   <CardHeader className="card-header-tab">
@@ -325,9 +330,12 @@ export default class CRMDashboard2 extends Component {
                     <center> Learn More</center>
                   </CardBody>
                 </Card>
-              </a>
+              </a> </Col>
               <br></br>
-              <a href="#/dashboards/audio">
+              
+              <Col md="auto"
+                  className=" opacity-9"
+                  style={{ width: "15rem" }} > <a href="#/dashboards/audio">
                 <Card
                   md="auto"
                   className="main-card mb-3 opacity-9"
@@ -352,9 +360,12 @@ export default class CRMDashboard2 extends Component {
                     <center>Music Production.</center>
                   </CardBody>
                 </Card>
-              </a>
-            </Col>
-            <Col lg="12" xl="6">
+              </a></Col>
+            <Col md="auto"
+                  className=" opacity-9"
+                  style={{ width: "31rem" }} >
+
+
               <Card className="mb-3 main-card opacity-9">
                 <CardHeader className="main-card dark card-header-tab">
                   <div className="card-header-title">
@@ -389,7 +400,7 @@ export default class CRMDashboard2 extends Component {
                 </CardBody>
               </Card>
             </Col>
-             </Row>
+          </Row>
           <Row></Row>
           <Row>
             {" "}
@@ -414,10 +425,9 @@ export default class CRMDashboard2 extends Component {
                   layout, added spunk)
                   <br></br>
                   <br></br>
-                  Find out what PCP is working on, get involved and learn more, by
-              visiting the new
-                <a href="#/dashboards/projects"> Projects Page</a>.
-                  <br></br>
+                  Find out what PCP is working on, get involved and learn more,
+                  by visiting the new
+                  <a href="#/dashboards/projects"> Projects Page</a>.<br></br>
                   <br></br>
                 </CardBody>
               </Card>
@@ -435,10 +445,9 @@ export default class CRMDashboard2 extends Component {
               <div> </div>
             </CardHeader>
             <CardBody>
-            The PCP 3D Web-Game development is kicking off!  Pre-Alpha 0.2 is now available
-                  <a href="../3D/"> here </a>.
-            
-              <br></br>
+              The PCP 3D Web-Game development is kicking off! Pre-Alpha 0.2 is
+              now available
+              <a href="../3D/"> here </a>.<br></br>
               <br></br>
             </CardBody>
           </Card>
@@ -469,10 +478,11 @@ export default class CRMDashboard2 extends Component {
                   </div>
                 </div>
                 <CardFooter className="text-center d-block">
-                <a href="#/dashboards/contact">
-                  <Button className="btn-shadow-dark btn-wider" color="dark">
-                    Send Message
-                  </Button></a>
+                  <a href="#/dashboards/contact">
+                    <Button className="btn-shadow-dark btn-wider" color="dark">
+                      Send Message
+                    </Button>
+                  </a>
                 </CardFooter>
               </Card>
             </Col>
