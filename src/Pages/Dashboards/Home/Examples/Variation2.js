@@ -333,7 +333,7 @@ export default class CRMDashboard2 extends Component {
               
               <Col mx-auto
                   className=" opacity-9"
-                  > <a href="#/dashboards/audio">
+                  > <a href="#/dashboards/music">
                 <Card
                mx-auto
                   className="main-card mb-3 opacity-9"

@@ -160,6 +160,29 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Development Notes:
 
+# IP Port routing
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8081
+
+# to out of network ip
+
+sysctl net.ipv4.ip_forward=1
+sudo iptables -A INPUT -i eth0 -p tcp --dport 3444 -j ACCEPT
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 98.155.235.253:3444
+iptables -t nat -A POSTROUTING -j MASQUERADE
+
+# flush rules, reset:
+sudo iptables -F
+
+
+
+/etc/hosts
+
+127.0.0.1   localhost
+127.0.1.1   guest-desktop
+your_server_IP example.com
+your_server_IP test.com
+
 # Additional Learning notes WIP & DIY:
 
 ### Updating depreciated modules:
@@ -174,12 +197,14 @@ Best practice is to create a fresh skeleton site from modern organizations and m
 
 *npx comes with some npm/nodejs installs also installable independently
 
+
 ### Run the following in git with npm installed in a fresh directory to start a blank react bootstrap app:
 
 npx create-react-app react-bootstrap-app
 npm install react-bootstrap bootstrap
 
-### Add source & dependencies.
+
+### Add source & project dependencies.
 
 npm install node-sass
 
