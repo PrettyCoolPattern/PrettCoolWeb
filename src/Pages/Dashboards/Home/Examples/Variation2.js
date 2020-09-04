@@ -3,7 +3,6 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import classnames from "classnames";
 import ReactTable from "react-table";
 import { Route } from "react-router-dom";
-import Services from "../services/";
 
 import {
   Row,
@@ -210,7 +209,7 @@ export default class CRMDashboard2 extends Component {
                   className=" opacity-9"
                   style={{ width: "12rem"  }} >
                   
-              <Card  mx-auto >
+              <Card  mx-auto  style={{ width: "11.5rem" }}>
                 <a href="#/dashboards/services">
                   {" "}
                   <Route path="#/dashboards/services" />
@@ -228,7 +227,7 @@ export default class CRMDashboard2 extends Component {
                         alt=""
                       />
                     </div>
-                    <center>Skills for hire or consult.</center>
+                    <center>Skills &amp; Consult.</center>
                   </CardBody>
                 </a>
               </Card>
@@ -249,7 +248,7 @@ export default class CRMDashboard2 extends Component {
                         alt=""
                       />
                     </div>
-                    <center>Visual Gallery.</center>
+                    <center>Visual Gallery</center>
                   </CardBody>
                 </Card>
               </a> <br></br>
@@ -258,8 +257,8 @@ export default class CRMDashboard2 extends Component {
                   className=" opacity-9"> 
               <a href="#/dashboards/shop">
                 <Route path="#/dashboards/shop" />
-                <Card mx-auto 
-                >
+            
+                <Card  mx-auto  style={{ width: "11.5rem" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Shoppe
@@ -274,7 +273,7 @@ export default class CRMDashboard2 extends Component {
                         alt=""
                       />
                     </div>
-                    <center>PrettyCoolProducts.</center>
+                    <center>PrettyCoolCommerce</center>
                   </CardBody>
                 </Card>
               </a>
@@ -309,7 +308,7 @@ export default class CRMDashboard2 extends Component {
                   className=" opacity-9">
               <a href="#/dashboards/services">
                 <Route path="#/dashboards/services" />
-                <Card mx-auto className="opacity-9" >
+                <Card  mx-auto  style={{ width: "11.5rem" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       About
@@ -336,7 +335,7 @@ export default class CRMDashboard2 extends Component {
                   > <a href="#/dashboards/music">
                 <Card
                mx-auto
-                  className="main-card mb-3 opacity-9"
+                  className="main-card mb-3"
                   style={{ width: "11rem" }}
                 >
                   <CardHeader className="card-header-tab">
@@ -364,7 +363,7 @@ export default class CRMDashboard2 extends Component {
                   style={{ width: "31rem" }} >
 
 
-              <Card className="mb-3 main-card opacity-9">
+              <Card className="mb-3 main-card">
                 <CardHeader className="main-card dark card-header-tab">
                   <div className="card-header-title">
                     <i className=" lnr-rocket icon-gradient opacity-9"> </i>
