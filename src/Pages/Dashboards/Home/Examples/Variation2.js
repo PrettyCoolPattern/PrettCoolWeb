@@ -208,7 +208,7 @@ export default class CRMDashboard2 extends Component {
           <Row>
           <Col   mx-auto
                   className=" opacity-9"
-                  style={{ width: "15rem" }} >
+                  style={{ width: "12rem"  }} >
                   
               <Card  mx-auto >
                 <a href="#/dashboards/services">
@@ -222,7 +222,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className="rounded-circle text-center"
                         src={servicespic}
                         alt=""
@@ -234,7 +234,7 @@ export default class CRMDashboard2 extends Component {
               </Card>
               <br></br>
               <a href="#/dashboards/gallery">
-                <Card mx-auto style={{ width: "13rem" }}>
+                <Card mx-auto style={{ width: "11rem" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Visual Art Gallery
@@ -243,7 +243,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className=" text-center"
                         src={visualpic}
                         alt=""
@@ -268,7 +268,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className=" text-center"
                         src={shoppic}
                         alt=""
@@ -283,7 +283,7 @@ export default class CRMDashboard2 extends Component {
                 <Card
                   md="auto"
                   className="main-card mb-3"
-                  style={{ width: "13rem" }}
+                  style={{ width: "11rem" }}
                 >
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
@@ -294,7 +294,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className=" text-center"
                         src={publishingpic}
                         alt=""
@@ -319,7 +319,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className=" text-center"
                         src={aboutpic}
                         alt=""
@@ -337,7 +337,7 @@ export default class CRMDashboard2 extends Component {
                 <Card
                mx-auto
                   className="main-card mb-3 opacity-9"
-                  style={{ width: "13rem" }}
+                  style={{ width: "11rem" }}
                 >
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
@@ -348,7 +348,7 @@ export default class CRMDashboard2 extends Component {
                   <CardBody>
                     <div>
                       <img
-                        width={165}
+                        width={140}
                         className=" text-center"
                         src={audiopic}
                         alt=""
