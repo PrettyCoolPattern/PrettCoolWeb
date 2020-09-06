@@ -8,7 +8,7 @@ import {
   AboutNav,
   ComponentsNav,
   FormsNav,
-  WidgetsNav,
+  AdminNav,
   ChartsNav,
 } from "./NavItems";
 
@@ -30,11 +30,11 @@ class Nav extends Component {
         <h5 className="app-sidebar__heading">About</h5>
         <MetisMenu content={AboutNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
           className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
-{/* 
-        <h5 className="app-sidebar__heading">Dashboard Widgets</h5>
-        <MetisMenu content={WidgetsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
-          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
 
+        <h5 className="app-sidebar__heading">Admin</h5>
+        <MetisMenu content={AdminNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
+          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
+{/* 
         <h5 className="app-sidebar__heading">Forms</h5>
         <MetisMenu content={FormsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
           className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>

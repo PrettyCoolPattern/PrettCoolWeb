@@ -60,3 +60,12 @@ export const AboutNav = [{
 },
 ]
 
+
+export const AdminNav = [{
+
+  icon: "pe-7s-car",
+  label: "Tools",
+  to: "http://prettycoolpattern.com:8000/",
+},
+]
+
