@@ -49,12 +49,12 @@ export const AboutNav = [{
   ],
 },
 {
-  icon: "pe-7s-car",
+  icon: "pe-7s-arc",
   label: "Projects",
   to: "#/dashboards/projects",
 },
 {
-  icon: "pe-7s-car",
+  icon: "pe-7s-mail",
   label: "Contact",
   to: "#/dashboards/contact",
 },
@@ -63,7 +63,7 @@ export const AboutNav = [{
 
 export const AdminNav = [{
 
-  icon: "pe-7s-car",
+  icon: "pe-7s-tools",
   label: "Tools",
   to: "http://prettycoolpattern.com:8000/",
 },

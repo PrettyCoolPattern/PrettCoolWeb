@@ -61,6 +61,7 @@ import avatar3 from "../../../assets/utils/images/avatars/3.jpg";
 import contrastus from "../../../assets/images/contrastus.png";
 import collage from "../../../assets/images/collage.png";
 import mandalashirt from "../../../assets/images/mandalashirt.png";
+import { kMaxLength } from "buffer";
 
 const CLIENT = {
   sandbox: process.env.PAYPAL_CLIENT_ID_SANDBOX,
@@ -213,11 +214,11 @@ export default class ContactElements extends Component {
           
 
 
-            <Col xs="auto" sm="auto" md="auto" xl="auto">
+            <Col xl="6" l="8" m="7" sm="8">
             
               <Card>
                 <CardBody>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdS1bZ17rrcq9Rty06XAAs1QN4zzf0_eeQ-cu86_RbE0UliEg/viewform?embedded=true" width="640" height="1100" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdS1bZ17rrcq9Rty06XAAs1QN4zzf0_eeQ-cu86_RbE0UliEg/viewform?embedded=true" width="350" height="1100" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 
   </CardBody>
               </Card>  </Col> 
