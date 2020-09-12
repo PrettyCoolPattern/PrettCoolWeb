@@ -7,8 +7,6 @@ import { toNumber } from "lodash";
 
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
-process.env.NODE_ENV = 'production';
-
 var EJSSERVICE =process.env.REACT_APP_EJSSERVICE
 var EJSTEMPLATE=process.env.REACT_APP_EJSTEMPLATE
 var EJSUSER =process.env.REACT_APP_EJSUSER
