@@ -5,6 +5,17 @@ import EmptyCart from "./empty-states/EmptyCart";
 import { Card } from "reactstrap";
 import { toNumber } from "lodash";
 
+import emailjs from "emailjs-com";
+import { init } from "emailjs-com";
+process.env.NODE_ENV = 'production';
+
+var EJSSERVICE =process.env.REACT_APP_EJSSERVICE
+var EJSTEMPLATE=process.env.REACT_APP_EJSTEMPLATE
+var EJSUSER =process.env.REACT_APP_EJSUSER
+
+init(EJSUSER)
+
+
 const CLIENT = {
   sandbox: process.env.PAYPAL_CLIENT_ID_SANDBOX,
   production:
@@ -88,6 +99,7 @@ class PaypalButton extends Component {
 
 
   updateCostClick() {
+    
 
 
 
@@ -103,6 +115,33 @@ for (var i = 0; i < l; i++) {
   document.write(x[i].tagName + "<br>");
 }
   
+
+var objectHTMLCollection = document.getElementsByClassName("cart-item"),
+string = [].map
+  .call(objectHTMLCollection, function (node) {
+    return node.textContent || node.innerText || "";
+  })
+  .join("");
+
+
+var x = document.getElementsByTagName("product-info");
+var l = x.length;
+for (var i = 0; i < l; i++) {
+document.write(x[i].tagName + "<br>");
+}
+
+var templateParams = {
+name: "Jason Hoku Levien",
+message: string ,
+};
+emailjs.send(EJSSERVICE,EJSTEMPLATE, templateParams).then(
+function (response) {
+  console.log("SUCCESS!", response.status, response.text);
+},
+function (error) {
+  console.log("FAILED...", error);
+}
+);
 }
   onApprove = (data, actions) => {
     actions.order.capture().then((details) => {
@@ -114,6 +153,9 @@ for (var i = 0; i < l; i++) {
       this.setState({ showButtons: false, paid: true });
     });
   };
+
+  
+
 
   render() {
     var Pro1 = null;
@@ -146,7 +188,7 @@ for (var i = 0; i < l; i++) {
     });
       return (
         <center>
-          <Card style={{ width: "13rem" }}>
+          <Card style={{ width: "13rem" }}> 
             <div className="main" style={{ width: "13rem" }}>
               {loading}
 
@@ -155,10 +197,10 @@ for (var i = 0; i < l; i++) {
                   <div>
                     {" "}
                     <div className="cart-info">
-                      {" "}
+                      {" "} <p> </p>
                       <strong>Orders:{Pro1 = this.props.totalItems }</strong> &nbsp;
                       <strong> Total: ${Pro2 = this.props.total}</strong>
-                   
+                   <p></p>
                     </div>{" "}
                   </div>
 
@@ -173,6 +215,7 @@ for (var i = 0; i < l; i++) {
                   />
                 </div>
               )}
+           
 
               {paid && (
                 <div className="main">

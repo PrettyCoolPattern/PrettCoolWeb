@@ -218,13 +218,16 @@ export default class ShopPage extends Component {
           />
 <center> <br />
 <Card  style={{ width: "22rem" }}> 
-         Welcome to the PrettyCoolShoppe!
-         <p>
+        <CardHeader> <strong>Welcome to the PrettyCoolShoppe!</strong></CardHeader>
+         <CardBody>   <p> </p><p>
+Thank you so much for taking a look at the available products PCP has to offer!
 
+         </p><p> </p><p>More information about the services offered here can be found at the 
+              <a href="#/dashboards/services"> services</a> page.
 
          </p>
          
-         
+         </CardBody>
           </Card>
        
 </center>
@@ -242,8 +245,13 @@ export default class ShopPage extends Component {
           openModal={this.state.modalActive}
           closeModal={this.closeModal}
         />  </div>
-        <center>
-        <Card  style={{ position: "bottom" , width: "13rem" }}>            
+        <center> 
+          
+          <Card  style={{ position: "bottom" , width: "26rem",}}> 
+          <img src="/images/shirtsize.png" height="80" ></img>
+      </Card> <p> </p><p> </p><p> </p><br></br>
+        <Card  style={{ position: "bottom" , width: "17rem" }}> 
+           <CardHeader><div><p> Official PayPal API tool: </p> </div></CardHeader>
          <Footer
           style={{ width: "13rem" }}
             cartBounce={this.state.cartBounce}
@@ -255,7 +263,7 @@ export default class ShopPage extends Component {
             categoryTerm={this.state.category}
             updateQuantity={this.updateQuantity}
             productQuantity={this.state.moq} 
-            ></Footer>  <PayPalButton 
+            ></Footer>        <CardBody> <PayPalButton 
             cartBounce={this.state.cartBounce}
             total={this.state.totalAmount}
             totalItems={this.state.totalItems}
@@ -267,7 +275,8 @@ export default class ShopPage extends Component {
             productQuantity={this.state.moq}
                style={{ width: "13rem" }}/> 
   
-         </Card ></center> <br />
+       
+  </CardBody>  </Card ></center> <br />
        
       </Fragment>
     )

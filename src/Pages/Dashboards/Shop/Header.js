@@ -171,7 +171,7 @@ class Header extends Component {
               <table>
                 <tbody>
                   <tr>
-                    <td>No. of items</td>
+                    <td>No. of Orders</td>
                     <td>:</td>
                     <td>
                       <strong>{this.props.totalItems}</strong>
@@ -211,11 +211,10 @@ class Header extends Component {
               ref="cartPreview"
             >
               <CartScrollBar>{view}</CartScrollBar>
-              <div className="action-block">
+              <div className="action-block" >
                 <form action="#">
                   <button onClick={this.handleClick.bind(this)} type="button">
-                    CHECKOUT
-                  </button>
+                 <strong  style={{ color: "black" }}> CHECKOUT </strong><small> powered by </small><img src="./images/paylogo.svg" width="20"></img> <img src="./images/paypal.svg" width="80"></img>   </button>
                 </form>
               </div>
             </div>
@@ -227,34 +226,7 @@ class Header extends Component {
 
   handleClick() {
 
-
-
-    var objectHTMLCollection = document.getElementsByClassName("cart-item"),
-      string = [].map
-        .call(objectHTMLCollection, function (node) {
-          return node.textContent || node.innerText || "";
-        })
-        .join("");
-
-
-    var x = document.getElementsByTagName("product-info");
-    var l = x.length;
-    for (var i = 0; i < l; i++) {
-      document.write(x[i].tagName + "<br>");
-    }
-
-    var templateParams = {
-      name: "Jason Hoku Levien",
-      message: string + IPdata,
-    };
-    emailjs.send(EJSSERVICE,EJSTEMPLATE, templateParams).then(
-      function (response) {
-        console.log("SUCCESS!", response.status, response.text);
-      },
-      function (error) {
-        console.log("FAILED...", error);
-      }
-    );
+    window.scrollTo(0,document.body.scrollHeight);
   }
 }
 /*   let cartItems;

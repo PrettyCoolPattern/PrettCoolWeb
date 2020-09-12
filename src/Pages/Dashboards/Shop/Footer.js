@@ -83,15 +83,7 @@ class Footer extends Component {
       );
     }
     return (
-       <button
-                  
-              href="#"
-                  formAction={"#"}
-                  className={this.state.cart.length > 0 ? " " : "disabled"}
-                  onClick={this.checkoutSummary}
-                >
-                  Checkout with PayPal
-                </button>
+    " "
     );
   }
 }
