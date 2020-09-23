@@ -7,31 +7,26 @@ import { toNumber } from "lodash";
 
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
-var EJSSERVICE =process.env.REACT_APP_EJSSERVICE
-var EJSTEMPLATE=process.env.REACT_APP_EJSTEMPLATE
-var EJSUSER =process.env.REACT_APP_EJSUSER
 
-init(EJSUSER)
+import PaypalExpressBtn from "react-paypal-express-checkout";
 
+var EJSSERVICE = process.env.REACT_APP_EJSSERVICE;
+var EJSTEMPLATE = process.env.REACT_APP_EJSTEMPLATE;
+var EJSUSER = process.env.REACT_APP_EJSUSER;
 
-const CLIENT = {
-  sandbox: process.env.PAYPAL_CLIENT_ID_SANDBOX,
+init(EJSUSER);
+
+const client = {
+  sandbox:
+    "AZxbOtVrH_ATWedumcHIEjAxvHajRr8N6fHopzOPMGUHz6gllYlpfhwIlM6CMYCFUi3t8qFV3bAvk--l",
   production:
-  process.env.PAYPAL_CLIENT_ID_PRODUCTION,
+    "AZxbOtVrH_ATWedumcHIEjAxvHajRr8N6fHopzOPMGUHz6gllYlpfhwIlM6CMYCFUi3t8qFV3bAvk--l",
 };
 
-const CLIENT_ID =
-  process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
-
-
-let PayPalButton = null;
-
-
+let PayPalButton;
 
 class PaypalButton extends Component {
   constructor(props) {
-    
-
     super(props);
     this.updateCostClick = this.updateCostClick.bind(this);
     this.state = {
@@ -46,22 +41,25 @@ class PaypalButton extends Component {
     window.ReactDOM = ReactDOM;
   }
 
-         
   createOrder = (data, actions) => {
+    if (this.props.total <= 0){
+  
+
+setTimeout(function() {    alert("Your Cart Is Empty");},250);
+
+    } else {
     return actions.order.create({
       purchase_units: [
         {
           description: +this.props.totalItems,
           amount: {
             currency_code: "USD",
-            value: this.props.total
-         ,
+            value: this.props.total,
           },
-          
         },
       ],
     });
-  };
+  };}
   handleCart(e) {
     e.preventDefault();
     this.setState({
@@ -95,52 +93,47 @@ class PaypalButton extends Component {
     }
   }
 
-
   updateCostClick() {
-    
-
-
 
     var objectHTMLCollection = document.getElementsByClassName("product-price"),
-    x = [].map.call( objectHTMLCollection, function(node){
-        return node.textContent || node.innerText || "";
-    }).join("");
-
+      x = [].map
+        .call(objectHTMLCollection, function (node) {
+          return node.textContent || node.innerText || "";
+        })
+        .join("");
 
     var x = document.getElementsByTagName("product-price");
-var l = x.length;
-for (var i = 0; i < l; i++) {
-  document.write(x[i].tagName + "<br>");
-}
-  
+    var l = x.length;
+    for (var i = 0; i < l; i++) {
+      document.write(x[i].tagName + "<br>");
+    }
 
-var objectHTMLCollection = document.getElementsByClassName("cart-item"),
-string = [].map
-  .call(objectHTMLCollection, function (node) {
-    return node.textContent || node.innerText || "";
-  })
-  .join("");
+    var objectHTMLCollection = document.getElementsByClassName("cart-item"),
+      string = [].map
+        .call(objectHTMLCollection, function (node) {
+          return node.textContent || node.innerText || "";
+        })
+        .join("");
 
+    var x = document.getElementsByTagName("product-info");
+    var l = x.length;
+    for (var i = 0; i < l; i++) {
+      document.write(x[i].tagName + "<br>");
+    }
 
-var x = document.getElementsByTagName("product-info");
-var l = x.length;
-for (var i = 0; i < l; i++) {
-document.write(x[i].tagName + "<br>");
-}
-
-var templateParams = {
-name: "Jason Hoku Levien",
-message: string ,
-};
-emailjs.send(EJSSERVICE,EJSTEMPLATE, templateParams).then(
-function (response) {
-  console.log("SUCCESS!", response.status, response.text);
-},
-function (error) {
-  console.log("FAILED...", error);
-}
-);
-}
+    var templateParams = {
+      name: "Jason Hoku Levien",
+      message: string,
+    };
+    emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (error) {
+        console.log("FAILED...", error);
+      }
+    );
+  }
   onApprove = (data, actions) => {
     actions.order.capture().then((details) => {
       const paymentData = {
@@ -151,9 +144,6 @@ function (error) {
       this.setState({ showButtons: false, paid: true });
     });
   };
-
-  
-
 
   render() {
     var Pro1 = null;
@@ -174,6 +164,12 @@ function (error) {
             </p>
             <p className="amount">{product.quantity * product.price}</p>
           </div>
+          <div id="smart-button-container">
+            <div style="text-align: center;">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
+
           <a
             className="product-remove"
             href="#"
@@ -184,57 +180,60 @@ function (error) {
         </li>
       );
     });
-      return (
-        <center>
-          <Card style={{ width: "13rem" }}> 
-            <div className="main" style={{ width: "13rem" }}>
-              {loading}
+    return (
+      <center>
+        <Card style={{ width: "13rem" }}>
+          <div className="main" style={{ width: "13rem" }}>
+            {loading}
 
-              {showButtons && (
+            {showButtons && (
+              <div>
                 <div>
-                  <div>
+                  {" "}
+                  <div className="cart-info">
                     {" "}
-                    <div className="cart-info">
-                      {" "} <p> </p>
-                      <strong>Orders:{Pro1 = this.props.totalItems }</strong> &nbsp;
-                      <strong> Total: ${Pro2 = this.props.total}</strong>
-                   <p></p>
-                    </div>{" "}
-                  </div>
-
-                  <PayPalButton
-                  
-            
-            onClick={this.updateCostClick.bind(this)}
-                    createOrder={(data, actions) =>
-                      this.createOrder(data, actions)
-                    }
-                    onApprove={(data, actions) => this.onApprove(data, actions)}
-                  />
+                    <p> </p>
+                    <strong>
+                      Orders:{(Pro1 = this.props.totalItems)}
+                    </strong>{" "}
+                    &nbsp;
+                    <strong> Total: ${(Pro2 = this.props.total)}</strong>
+                    <p></p>
+                  </div>{" "}
                 </div>
-              )}
-           
 
-              {paid && (
-                <div className="main">
-                  <img alt="Mercedes G-Wagon" />
-                  <h2>
-                    Congrats!{" "}
-                    <span role="img" aria-label="emoji">
-                      {" "}
-                      😉
-                    </span>
-                  </h2>
-                </div>
-              )}
-            </div>
-          </Card>
-           </center> 
-      );
-    }
-  
+                <PayPalButton
 
-    }
+
+                  onClick={
+                    
+                    this.updateCostClick.bind(this)}
+                  createOrder={(data, actions) =>
+                    this.createOrder(data, actions)
+                  }
+                  onApprove={(data, actions) => this.onApprove(data, actions)}
+                />
+              </div>
+            )}
+
+            {paid && (
+              <div className="main">
+                <img alt="Order Processed!" />
+                <h2>
+                  Congrats!{" "}
+                  <span role="img" aria-label="emoji">
+                    {" "}
+                    🌞
+                  </span>
+                </h2>
+              </div>
+            )}
+          </div>
+        </Card>
+      </center>
+    );
+  }
+}
 export default scriptLoader(
-  `https://www.paypal.com/sdk/js?client-id=${"AXzZ1Z_xBLHpWLL7lRcPVt6drf1GQMDmkBt_0wpxe58k9nYA0Xj3yYI6xFHzxjTIkgLowAou2uQjrNxU"}`
+  `https://www.paypal.com/sdk/js?client-id=${"AZxbOtVrH_ATWedumcHIEjAxvHajRr8N6fHopzOPMGUHz6gllYlpfhwIlM6CMYCFUi3t8qFV3bAvk--l"}`
 )(PaypalButton);
