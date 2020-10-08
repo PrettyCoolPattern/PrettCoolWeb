@@ -29,8 +29,8 @@
     },
     {
       "id": 5,
-      "name": "Custom Hosting",
-      "price": "4/month+",
+      "name": "Custom Hosting Solution",
+      "price": 10,
       "image": "./images/5.png",
       "category": "services"
     },
