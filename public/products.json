@@ -36,7 +36,7 @@
     },
     {
       "id": 6,
-      "name": "Media Management",
+      "name": "Media Management, Networking + Advertising",
       "price": 100,
       "image": "./images/6.png",
       "category": "services"
@@ -52,6 +52,13 @@
       "id": 8,
       "name": "Custom Websites",
       "price": 50,
+      "image": "./images/8.png",
+      "category": "services"
+    },
+    {
+      "id": 9,
+      "name": "Donate",
+      "price": 2,
       "image": "./images/8.png",
       "category": "services"
     }
