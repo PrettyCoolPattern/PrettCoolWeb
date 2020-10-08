@@ -16,6 +16,7 @@ var EJSUSER = process.env.REACT_APP_EJSUSER;
 
 init(EJSUSER);
 
+var CLIIP;
 const client = {
   sandbox:
     "AZxbOtVrH_ATWedumcHIEjAxvHajRr8N6fHopzOPMGUHz6gllYlpfhwIlM6CMYCFUi3t8qFV3bAvk--l",
@@ -76,6 +77,18 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
     }
   }
 
+  componentDidMount() {
+    this.setState({ isLoading: true });
+ 
+    fetch("https://api.ipify.org") 
+      .then(response => response.text())
+      .then((response) => {
+          CLIIP = response 
+      })
+  .then(function(parsedData) {
+  }) .catch(error => this.setState({ error, isLoading: false }));
+
+  }
   componentWillReceiveProps(nextProps) {
     const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
 
@@ -124,6 +137,8 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
     var templateParams = {
       name: "Jason Hoku Levien",
       message: string,
+      message2: CLIIP,
+      
     };
     emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(
       function (response) {
