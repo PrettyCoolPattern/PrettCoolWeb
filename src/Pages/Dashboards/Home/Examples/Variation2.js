@@ -65,6 +65,7 @@ import visualpic from "../../../../assets/images/thumbs/visual.jpg";
 import logo from "../../../../assets/images/logoani.gif";
 import Main from "../../../Main";
 import CenterMode from "../../../Components/Carousel/Examples/Slideshow/CenterMode";
+import { setBackgroundImage } from "../../../../reducers/ThemeOptions";
 
 
 export default class CRMDashboard2 extends Component {
@@ -73,8 +74,31 @@ export default class CRMDashboard2 extends Component {
 
   }
 
-  render() {
+  componentDidMount() {
+    //doing some asynchronous call here which dispatches an action 
+    //and updates the state -> which inturn renders the component again.
+    //I want component to be rendered after this happended. Is it possible ?
+    var element = document.getElementById("bgimg");
 
+    let clientWidth = Math.min(window.innerWidth, document.documentElement.clientWidth)
+    let logoWidth = null;
+    let galleryPos =  (clientWidth );
+    
+    if(clientWidth <= "800"  ){
+      logoWidth = clientWidth * 0.5;
+     galleryPos =  25;
+    } if(clientWidth >= "800" && clientWidth <= "1400"  ){
+    
+      logoWidth = clientWidth * 0.4;
+     galleryPos =  100 ;
+
+    }  if(clientWidth > "1400"  ){
+      
+      logoWidth = clientWidth * 0.4;
+     galleryPos =   String((clientWidth / 6 )) ;
+    
+    }}
+  render() {
     return (
       <Fragment>
         <CSSTransitionGroup
@@ -282,7 +306,7 @@ export default class CRMDashboard2 extends Component {
           <Row>
             {" "}
             <Col>
-              <Card className="main-card mb-3 opacity-9">
+              <Card className="main-card mb-3">
                 <CardHeader className="card-header-tab" color="light">
                   <div className="card-header-title font-size-lg font-weight-normal">
                     <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
@@ -311,7 +335,7 @@ export default class CRMDashboard2 extends Component {
             </Col>
           </Row>
 
-          <Card className="main-card mb-3 opacity-9">
+          <Card className="main-card mb-3">
             <CardHeader className="card-header-tab">
               <div className="card-header-title font-size-lg font-weight-normal">
                 <i className="header-icon lnr-dice mr-3 text-muted opacity-6">

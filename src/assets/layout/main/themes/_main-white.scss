@@ -3,9 +3,9 @@
 // Variables
 
 $app-container-bg:  rgb(251, 251, 251);
-$app-sidebar-bg: rgb(251, 251, 251);
-$app-header-bg:  rgba(251, 251, 251, 0.931);
-$app-header-logo-bg: rgba(251, 251, 251, 0.931);
+$app-sidebar-bg: rgb(255, 255, 255);
+$app-header-bg:  rgba(251, 251, 251, 0.966);
+$app-header-logo-bg: rgba(251, 251, 251, 0.966);
 
 // Content
 
@@ -18,22 +18,22 @@ $app-header-logo-bg: rgba(251, 251, 251, 0.931);
 
   .app-sidebar {
     background: $app-sidebar-bg;
-    opacity: 0.8
+    opacity: 0.9
   }
 
   .app-page-title {
-    background: rgba(255, 255, 255, .55);
+    background: rgba(255, 255, 255, 0.924);
     height: 100px;
   }
 
   .app-footer .app-footer__inner,
   .app-header {
-    background: $app-header-bg;opacity: 0.85;
+    background: $app-header-bg;opacity: 0.95;
   }
 
   &.fixed-header {
     .app-header__logo {
-      background: rgba($app-header-bg, .1);opacity: 0.85;
+      background: rgba($app-header-bg, .1);opacity: 0.95;
     }
   }
 
