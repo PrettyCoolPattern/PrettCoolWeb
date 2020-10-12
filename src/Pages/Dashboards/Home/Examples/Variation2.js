@@ -78,7 +78,7 @@ export default class CRMDashboard2 extends Component {
     //doing some asynchronous call here which dispatches an action 
     //and updates the state -> which inturn renders the component again.
     //I want component to be rendered after this happended. Is it possible ?
-    var element = document.getElementById("bgimg");
+  
 
     let clientWidth = Math.min(window.innerWidth, document.documentElement.clientWidth)
     let logoWidth = null;
@@ -93,7 +93,8 @@ export default class CRMDashboard2 extends Component {
      galleryPos =  100 ;
 
     }  if(clientWidth > "1400"  ){
-      
+
+
       logoWidth = clientWidth * 0.4;
      galleryPos =   String((clientWidth / 6 )) ;
     
