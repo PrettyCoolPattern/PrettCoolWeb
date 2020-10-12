@@ -54,12 +54,5 @@
       "price": 50,
       "image": "./images/8.png",
       "category": "services"
-    },
-    {
-      "id": 9,
-      "name": "Donate",
-      "price": 2,
-      "image": "./images/9.png",
-      "category": "services"
     }
   ]

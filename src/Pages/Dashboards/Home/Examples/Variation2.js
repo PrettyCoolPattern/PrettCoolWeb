@@ -264,8 +264,7 @@ export default class CRMDashboard2 extends Component {
                     rolling out over the coming weeks.
                     <br></br>
                     <br></br>   Please report any issues and commentary through
-                    the contact page and thank you for <s>trying PCP</s>{" "}
-                    stopping by.
+                    the contact page and thank you for stopping by.
                     <br></br>
                     <br></br> <br></br>{" "}
                     <center>
