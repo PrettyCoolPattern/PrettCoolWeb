@@ -115,7 +115,8 @@ export default class CRMDashboard2 extends Component {
                   className=" opacity-9"
                   style={{ width: "12rem"  }} >
                   
-              <Card  mx-auto  style={{ width: "11.5rem" }}>
+              <Card  mx-auto  style={{ width: "11rem", 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                 <a href="#/dashboards/services">
                   {" "}
                   <Route path="#/dashboards/services" />
@@ -139,7 +140,8 @@ export default class CRMDashboard2 extends Component {
               </Card>
               <br></br>
               <a href="#/dashboards/gallery">
-                <Card mx-auto style={{ width: "11rem" }}>
+                <Card mx-auto style={{ width: "11rem", 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Visual Art Gallery
@@ -164,7 +166,8 @@ export default class CRMDashboard2 extends Component {
               <a href="#/dashboards/shop">
                 <Route path="#/dashboards/shop" />
             
-                <Card  mx-auto  style={{ width: "11.5rem" }}>
+                <Card  mx-auto  style={{ width: "11rem", 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Shoppe
@@ -188,7 +191,12 @@ export default class CRMDashboard2 extends Component {
                 <Card
                   md="auto"
                   className="main-card mb-3"
-                  style={{ width: "11rem" }}
+                  style={{ 
+                    width: "11rem",
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)"
+  
+                
+                }}
                 >
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
@@ -214,7 +222,8 @@ export default class CRMDashboard2 extends Component {
                   className=" opacity-9">
               <a href="#/dashboards/services">
                 <Route path="#/dashboards/services" />
-                <Card  mx-auto  style={{ width: "11.5rem" }}>
+                <Card  mx-auto  style={{ width: "11rem", 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       About
@@ -234,7 +243,6 @@ export default class CRMDashboard2 extends Component {
                   </CardBody>
                 </Card>     <br></br>
               </a> </Col>
-         
               
               <Col mx-auto
                   className=" opacity-9"
@@ -242,8 +250,9 @@ export default class CRMDashboard2 extends Component {
                 <Card
                mx-auto
                   className="main-card mb-3"
-                  style={{ width: "11rem" }}
-                >
+                  style={{ width: "11rem", 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
+                
                   <CardHeader className="card-header-tab">
                     <div className="card text-center card-shadow-focus opacity-9">
                       Audio Art Gallery
@@ -269,7 +278,8 @@ export default class CRMDashboard2 extends Component {
                   style={{ width: "31rem" }} >
 
 
-              <Card className="mb-3 main-card">
+              <Card className="mb-3 main-card" style={{ 
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                 <CardHeader className="main-card dark card-header-tab">
                   <div className="card-header-title">
                     <i className=" lnr-rocket icon-gradient opacity-9"> </i>
@@ -307,7 +317,8 @@ export default class CRMDashboard2 extends Component {
           <Row>
             {" "}
             <Col>
-              <Card className="main-card mb-3">
+              <Card className="main-card mb-3" style={{
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                 <CardHeader className="card-header-tab" color="light">
                   <div className="card-header-title font-size-lg font-weight-normal">
                     <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
@@ -336,7 +347,8 @@ export default class CRMDashboard2 extends Component {
             </Col>
           </Row>
 
-          <Card className="main-card mb-3">
+          <Card className="main-card mb-3" style={{
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
             <CardHeader className="card-header-tab">
               <div className="card-header-title font-size-lg font-weight-normal">
                 <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
