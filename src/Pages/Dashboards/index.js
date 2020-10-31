@@ -10,7 +10,11 @@ import GalleryPage from "./Gallery/";
 import Writing from "./Writing/"; 
 import Music from "./Music/"; 
 import Contact from "./Contact/"; 
+import CalendarPage from "./Calendar/"; 
 import Projects from "./Projects/"; 
+
+import AccountPage from "./Account/";
+
 // Layout
 
 import AppHeader from "../../Layout/AppHeader/";
@@ -36,7 +40,9 @@ const Dashboards = ({ match }) => (
           <Route path={`${match.url}/writing`} component={Writing} />
           <Route path={`${match.url}/music`} component={Music} />
           <Route path={`${match.url}/contact`} component={Contact} />
+          <Route path={`${match.url}/account`} component={AccountPage} />
           <Route path={`${match.url}/projects`} component={Projects} />
+          <Route path={`${match.url}/calendar`} component={CalendarPage} />
         </div>
         <AppFooter />
       </div>

@@ -4,6 +4,11 @@ export const MainNav = [
     label: "Home",
         to: "#/dashboards/home",
           
+  }, {
+    icon: "pe-7s-date",
+    label: "Events",
+        to: "#/dashboards/calendar",
+          
   },
   {
     icon: "pe-7s-photo",
@@ -65,7 +70,7 @@ export const AdminNav = [{
 
   icon: "pe-7s-tools",
   label: "Tools",
-  to: "http://prettycoolpattern.com:8000/",
+  to: "#/dashboards/account",
 },
 ]
 

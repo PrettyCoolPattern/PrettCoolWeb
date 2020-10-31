@@ -235,6 +235,7 @@ export default class ContactElements extends Component {
 
   submitContact() {
     let { formName, formEmail, formMessage } = this.state;
+    document.getElementById("contactFormButton").disabled = true;
 
     if (
       (formName.length !== null && formName.length < 1) ||
@@ -242,20 +243,28 @@ export default class ContactElements extends Component {
       (formMessage.length !== null && formMessage.length < 1)
     ) {
       alert("You must fill this form entirely.");
+      document.getElementById("contactFormButton").disabled = false;
     } else {
       var templateParams = {
-        name: "Jason Hoku Levien",
-        message: `Contact Form Submission Message: ${formMessage}`,
-        message2: ` FormName: ${formName}  , Email: ${formEmail} ID: ${CLIIP}`,
+        name: `HokuBot: ${CLIIP}`,
+        message: `Contact Form Submission From SubmittedFormName: ${formName}  Message: ${formMessage}`,
+        message2: ` SubmittedEmail: ${formEmail} || ID: ${CLIIP}` + (window.location.href),
       };
 
       emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(
         function (response) {
           console.log("SUCCESS!", response.status, response.text);
-          alert("Your message has been sent!");
+          alert("Your message has sent successfully!");
+          var form = document.getElementById("contactFormID");
+          document.getElementById("contactFormID").hidden = true;
+          document.getElementById("contactFormThanks").hidden = false;
+          document.getElementById("contactFormButton").disabled = true;
+          
         },
         function (error) {
           console.log("FAILED...", error);
+          alert("The message did not send. Perhaps you've lost internet?")
+          document.getElementById("contactFormButton").disabled = false;
         }
       );
     }
@@ -280,10 +289,6 @@ export default class ContactElements extends Component {
             <br />
             <br />
             <Row>
-              {" "}
-              <Col>
-                {" "}
-                <Row>
                   <Col>
                     <Card
                       style={{
@@ -291,7 +296,7 @@ export default class ContactElements extends Component {
                         boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       }}
                     >
-                      <CardHeader>Contact PrettyCoolPattern.</CardHeader>
+                      <CardHeader>Contact PrettyCoolPattern.</CardHeader>     
                       <CardBody>
                         <p>
                           &nbsp;
@@ -307,7 +312,7 @@ export default class ContactElements extends Component {
                       </CardBody>
                     </Card>
                   </Col>
-                </Row>
+                <Col>
                 <br />
                 <Card
                   className="main-card mb-3"
@@ -317,9 +322,10 @@ export default class ContactElements extends Component {
                   }}
                 >
                   <CardBody>
-                    <CardTitle>Contact</CardTitle>
+                    <CardTitle>Contact</CardTitle>    <br /> <span id="contactFormThanks" hidden > Thank you for your submission! A response can be expected in 0-3 days.</span>
+        
                     <br />
-                    <Form>
+                    <Form  id="contactFormID">
                       <FormGroup row>
                         <Label for="examplePassword" sm={3}>
                           Name
@@ -373,15 +379,13 @@ export default class ContactElements extends Component {
                       <center>
                         <FormGroup check row>
                           <Col sm={{ size: 12 }}>
-                            <Button onClick={this.submitContact}>Submit</Button>
+                            <Button id="contactFormButton" disabled={false} onClick={this.submitContact}>Submit</Button>
                           </Col>
                         </FormGroup>
                       </center>
                     </Form>
                   </CardBody>
-                </Card>
-              </Col>
-            </Row>
+                </Card></Col></Row>
           </Container>
         </CSSTransitionGroup>
       </Fragment>
