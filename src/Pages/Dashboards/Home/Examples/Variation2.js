@@ -110,14 +110,14 @@ export default class CRMDashboard2 extends Component {
           transitionEnter={false}
           transitionLeave={false}
         ><center>
-          <Row>
+          <Row   >
           <Col   mx-auto
                   className=" opacity-9"
                   style={{ width: "12rem"  }} >
                   
               <Card  mx-auto  style={{ width: "11rem", 
                     boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                <a href="#/dashboards/services">
+                <a  style={  {fontWeight:"bold"  }} href="#/dashboards/services">
                   {" "}
                   <Route path="#/dashboards/services" />
                   <CardHeader className="card-header-tab">
@@ -134,12 +134,12 @@ export default class CRMDashboard2 extends Component {
                         alt=""
                       />
                     </div>
-                    <center>Skills &amp; Consult.</center>
+                    <center>Skills &amp; Consult</center>
                   </CardBody>
                 </a>
               </Card>
               <br></br>
-              <a href="#/dashboards/gallery">
+              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/gallery">
                 <Card mx-auto style={{ width: "11rem", 
                     boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
                   <CardHeader className="card-header-tab">
@@ -163,7 +163,7 @@ export default class CRMDashboard2 extends Component {
             </Col>
             <Col  mx-auto
                   className=" opacity-9"> 
-              <a href="#/dashboards/shop">
+              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/shop">
                 <Route path="#/dashboards/shop" />
             
                 <Card  mx-auto  style={{ width: "11rem", 
@@ -182,12 +182,12 @@ export default class CRMDashboard2 extends Component {
                         alt=""
                       />
                     </div>
-                    <center>PrettyCoolCommerce</center>
+                    <center>PrettyCoolShop</center>
                   </CardBody>
                 </Card>
               </a>
               <br></br>
-              <a href="#/dashboards/writing">
+              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/writing">
                 <Card
                   md="auto"
                   className="main-card mb-3"
@@ -220,7 +220,7 @@ export default class CRMDashboard2 extends Component {
             </Col>
             <Col mx-auto
                   className=" opacity-9">
-              <a href="#/dashboards/services">
+              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/services">
                 <Route path="#/dashboards/services" />
                 <Card  mx-auto  style={{ width: "11rem", 
                     boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
@@ -246,7 +246,7 @@ export default class CRMDashboard2 extends Component {
               
               <Col mx-auto
                   className=" opacity-9"
-                  > <a href="#/dashboards/music">
+                  > <a  style={  {fontWeight:"bold"  }} href="#/dashboards/music">
                 <Card
                mx-auto
                   className="main-card mb-3"
@@ -269,7 +269,7 @@ export default class CRMDashboard2 extends Component {
                       />
                       <br></br>
                     </div>
-                    <center>Music Production.</center>
+                    <center>Music Production</center>
                   </CardBody>
                 </Card>
               </a></Col>
@@ -340,7 +340,7 @@ export default class CRMDashboard2 extends Component {
                   <br></br>
                   Find out what PCP is working on, get involved and learn more,
                   by visiting the new
-                  <a href="#/dashboards/projects"> Projects Page</a>.<br></br>
+                  <a  style={  {fontWeight:"bold"  }} href="#/dashboards/projects"> Projects Page</a>.<br></br>
                   <br></br>
                 </CardBody>
               </Card>
@@ -361,7 +361,7 @@ export default class CRMDashboard2 extends Component {
             <CardBody>
               The PCP 3D Web-Game development is kicking off! Pre-Alpha 0.2 is
               now available
-              <a href="../3D/"> here </a>.<br></br>
+              <a  style={  {fontWeight:"bold"  }} href="../3D/"> here </a>.<br></br>
               <br></br>
             </CardBody>
           </Card>
@@ -392,7 +392,7 @@ export default class CRMDashboard2 extends Component {
                   </div>
                 </div>
                 <CardFooter className="text-center d-block">
-                  <a href="#/dashboards/contact">
+                  <a  style={  {fontWeight:"bold"  }} href="#/dashboards/contact">
                     <Button className="btn-shadow-dark btn-wider" color="dark">
                       Send Message
                     </Button>
