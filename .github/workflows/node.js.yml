@@ -31,7 +31,7 @@ jobs:
       run: npm i
 
 jobs: Job2
-  build: Build2
+  build: 
 
     runs-on: ubuntu-latest
 
