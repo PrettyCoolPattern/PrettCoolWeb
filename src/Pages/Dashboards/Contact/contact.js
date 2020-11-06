@@ -296,7 +296,7 @@ export default class ContactElements extends Component {
                         boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       }}
                     >
-                      <CardHeader>Contact PrettyCoolPattern.</CardHeader>     
+                      <CardHeader>Contact MicroHawaii.</CardHeader>     
                       <CardBody>
                         <p>
                           &nbsp;
@@ -305,8 +305,8 @@ export default class ContactElements extends Component {
                           contact method listed here.<p />
                           <br />
                           Jason Hoku Levien <br />
-                          <a href="mailto:info@PrettyCoolPattern.com">
-                            info@PrettyCoolPattern.com <br />
+                          <a href="mailto:contact@MicroHawaii.com">
+                          contact@MicroHawaii.com <br />
                           </a> (808)385-1775
                         </p>
                       </CardBody>
