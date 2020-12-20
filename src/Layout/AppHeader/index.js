@@ -11,10 +11,37 @@ import SearchBox from "./Components/SearchBox";
 import MegaMenu from "./Components/MegaMenu";
 import UserBox from "./Components/UserBox";
 import HeaderRightDrawer from "./Components/HeaderRightDrawer";
+import ReactGA from "react-ga";
+import { findDOMNode } from "react-dom";
 
 import HeaderDots from "./Components/HeaderDots";
 
+import SendToGoogleAnalytics from "./Components/analytics";
+
 class Header extends React.Component {
+  
+componentDidMount() {
+  document.addEventListener("click", this.onClickGA.bind(this), false);
+  ReactGA.initialize("UA-102481694-6");
+}
+componentDidUnmount() {
+  document.removeEventListener("click", this.onClickGA.bind(this), false);
+}
+
+onClickGA(event) {
+  ReactGA.pageview(window.location.href + window.location);
+  const domNode = findDOMNode(event.target);
+  ReactGA.outboundLink(
+    {
+      label: "Clicked :" + domNode.outerHTML,
+    },
+    function () {
+      try {
+      } catch (error) {}
+    }
+  );
+}
+
   render() {
     let {
       headerBackgroundColor,

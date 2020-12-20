@@ -206,7 +206,7 @@ export default class WritingElements extends Component {
         <CSSTransitionGroup component="div" transitionName="TabsAnimation"
           transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
 
-         <iframe width="700" height="800" src="./IndividualIntelligence.html"></iframe>
+         <iframe title="IndieIntel, Jason Hoku Publishing" width="700" height="800" src="./IndividualIntelligence.html"></iframe>
   
         </CSSTransitionGroup>
         

@@ -104,7 +104,7 @@ export default class ShopPage extends Component {
     let productQty = selectedProducts.quantity;
     if (this.checkProduct(productID)) {
       console.log("hi");
-      let index = cartItem.findIndex((x) => x.id == productID);
+      let index = cartItem.findIndex((x) => x.id === productID);
       cartItem[index].quantity =
         Number(cartItem[index].quantity) + Number(productQty);
       this.setState({
@@ -133,7 +133,7 @@ export default class ShopPage extends Component {
   }
   handleRemoveProduct(id, e) {
     let cart = this.state.cart;
-    let index = cart.findIndex((x) => x.id == id);
+    let index = cart.findIndex((x) => x.id === id);
     cart.splice(index, 1);
     this.setState({
       cart: cart,
@@ -206,7 +206,6 @@ export default class ShopPage extends Component {
             handleCategory={this.handleCategory}
             categoryTerm={this.state.category}
             updateQuantity={this.updateQuantity}
-            productQuantity={this.state.moq}
           />
           <center>
             {" "}
@@ -214,7 +213,7 @@ export default class ShopPage extends Component {
             <Card style={{ width: "22rem" }}>
               <CardHeader>
                 {" "}
-                <strong>Welcome to the microHawaii E-Shop</strong>
+                <strong>Welcome to the PrettyCoolPattern E-Shop</strong>
               </CardHeader>
               <CardBody>
                 {" "}
@@ -249,20 +248,34 @@ export default class ShopPage extends Component {
           />{" "}
         </div>
         <center>
-          <Card style={{ position: "bottom", width: "26rem" }}>  <CardHeader> <strong>Shirt Sizings:</strong></CardHeader>
+          <Card style={{ position: "bottom", width: "26rem" }}>
+            {" "}
+            <CardHeader>
+              {" "}
+              <strong>Shirt Sizings:</strong>
+            </CardHeader>
             <img src="/images/shirtsize.png" height="80"></img>
           </Card>{" "}
           <br></br>
-          <Card  style={{ width: "22rem" }}> 
-      
-         <CardBody>   <p> </p><p> If you have any questions please use the <a href="#/dashboards/contact"> easy contact form.</a>
-<br></br>
-         </p><p> </p><p> Please refer to the 
-              <a href="#/dashboards/services"> services</a> page for more information about expertises and offers.
-
-         </p>
-         <br></br>
-         </CardBody>
+          <Card style={{ width: "22rem" }}>
+            <CardBody>
+              {" "}
+              <p> </p>
+              <p>
+                {" "}
+                If you have any questions please use the{" "}
+                <a href="#/dashboards/contact"> easy contact form.</a>
+                <br></br>
+              </p>
+              <p> </p>
+              <p>
+                {" "}
+                Please refer to the
+                <a href="#/dashboards/services"> services</a> page for more
+                information about expertises and offers.
+              </p>
+              <br></br>
+            </CardBody>
           </Card>
           <p> </p>
           <p> </p>

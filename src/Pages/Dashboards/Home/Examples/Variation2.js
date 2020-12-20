@@ -67,38 +67,36 @@ import Main from "../../../Main";
 import CenterMode from "../../../Components/Carousel/Examples/Slideshow/CenterMode";
 import { setBackgroundImage } from "../../../../reducers/ThemeOptions";
 
-
 export default class CRMDashboard2 extends Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {
-    //doing some asynchronous call here which dispatches an action 
+    //doing some asynchronous call here which dispatches an action
     //and updates the state -> which inturn renders the component again.
     //I want component to be rendered after this happended. Is it possible ?
-  
 
-    let clientWidth = Math.min(window.innerWidth, document.documentElement.clientWidth)
+    let clientWidth = Math.min(
+      window.innerWidth,
+      document.documentElement.clientWidth
+    );
     let logoWidth = null;
-    let galleryPos =  (clientWidth );
-    
-    if(clientWidth <= "800"  ){
+    let galleryPos = clientWidth;
+
+    if (clientWidth <= "800") {
       logoWidth = clientWidth * 0.5;
-     galleryPos =  25;
-    } if(clientWidth >= "800" && clientWidth <= "1400"  ){
-    
+      galleryPos = 25;
+    }
+    if (clientWidth >= "800" && clientWidth <= "1400") {
       logoWidth = clientWidth * 0.4;
-     galleryPos =  100 ;
-
-    }  if(clientWidth > "1400"  ){
-
-
+      galleryPos = 100;
+    }
+    if (clientWidth > "1400") {
       logoWidth = clientWidth * 0.4;
-     galleryPos =   String((clientWidth / 6 )) ;
-    
-    }}
+      galleryPos = String(clientWidth / 6);
+    }
+  }
   render() {
     return (
       <Fragment>
@@ -109,216 +107,244 @@ export default class CRMDashboard2 extends Component {
           transitionAppearTimeout={0}
           transitionEnter={false}
           transitionLeave={false}
-        ><center>
-          <Row   >
-          <Col   mx-auto
-                  className=" opacity-9"
-                  style={{ width: "12rem"  }} >
-                  
-              <Card  mx-auto  style={{ width: "11rem", 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                <a  style={  {fontWeight:"bold"  }} href="#/dashboards/services">
-                  {" "}
-                  <Route path="#/dashboards/services" />
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Services
-                    </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img
-                        width={140}
-                        className="rounded-circle text-center"
-                        src={servicespic}
-                        alt=""
-                      />
-                    </div>
-                    <center>Skills &amp; Consult</center>
-                  </CardBody>
-                </a>
-              </Card>
-              <br></br>
-              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/gallery">
-                <Card mx-auto style={{ width: "11rem", 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Visual Art Gallery
-                    </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img
-                        width={140}
-                        className=" text-center"
-                        src={visualpic}
-                        alt=""
-                      />
-                    </div>
-                    <center>Visual Gallery</center>
-                  </CardBody>
-                </Card>
-              </a> <br></br>
-            </Col>
-            <Col  mx-auto
-                  className=" opacity-9"> 
-              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/shop">
-                <Route path="#/dashboards/shop" />
-            
-                <Card  mx-auto  style={{ width: "11rem", 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Shoppe
-                    </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img
-                        width={140}
-                        className=" text-center"
-                        src={shoppic}
-                        alt=""
-                      />
-                    </div>
-                    <center>PrettyCoolShop</center>
-                  </CardBody>
-                </Card>
-              </a>
-              <br></br>
-              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/writing">
+        >
+          <center>
+            <Row>
+              <Col mx-auto className=" opacity-9" style={{ width: "12rem" }}>
                 <Card
-                  md="auto"
-                  className="main-card mb-3"
-                  style={{ 
+                  mx-auto
+                  style={{
                     width: "11rem",
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)"
-  
-                
-                }}
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                  }}
                 >
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Written Publishing
-                    </div>{" "}
-                    <div> </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img
-                        width={140}
-                        className=" text-center"
-                        src={publishingpic}
-                        alt=""
-                      />
-                    </div>
-                    <center>Non Fiction</center>
-                  </CardBody>
+                  <a
+                    style={{ fontWeight: "bold" }}
+                    href="#/dashboards/services"
+                  >
+                    {" "}
+                    <Route path="#/dashboards/services" />
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        Services
+                      </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className="rounded-circle text-center"
+                          src={servicespic}
+                          alt=""
+                        />
+                      </div>
+                      <center>Skills &amp; Consult</center>
+                    </CardBody>
+                  </a>
                 </Card>
-              </a> <br></br>
-            </Col>
-            <Col mx-auto
-                  className=" opacity-9">
-              <a  style={  {fontWeight:"bold"  }} href="#/dashboards/services">
-                <Route path="#/dashboards/services" />
-                <Card  mx-auto  style={{ width: "11rem", 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      About
-                    </div>{" "}
-                    <div> </div>
-                  </CardHeader>
-                  <CardBody>
-                    <div>
-                      <img
-                        width={140}
-                        className=" text-center"
-                        src={aboutpic}
-                        alt=""
-                      />
-                    </div>
-                    <center> Learn More</center>
-                  </CardBody>
-                </Card>     <br></br>
-              </a> </Col>
-              
-              <Col mx-auto
-                  className=" opacity-9"
-                  > <a  style={  {fontWeight:"bold"  }} href="#/dashboards/music">
+                <br></br>
+                <a style={{ fontWeight: "bold" }} href="#/dashboards/gallery">
+                  <Card
+                    mx-auto
+                    style={{
+                      width: "11rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                    }}
+                  >
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        Visual Art Gallery
+                      </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className=" text-center"
+                          src={visualpic}
+                          alt=""
+                        />
+                      </div>
+                      <center>Visual Gallery</center>
+                    </CardBody>
+                  </Card>
+                </a>{" "}
+                <br></br>
+              </Col>
+              <Col mx-auto className=" opacity-9">
+                <a style={{ fontWeight: "bold" }} href="#/dashboards/shop">
+                  <Route path="#/dashboards/shop" />
+
+                  <Card
+                    mx-auto
+                    style={{
+                      width: "11rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                    }}
+                  >
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        Shoppe
+                      </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className=" text-center"
+                          src={shoppic}
+                          alt=""
+                        />
+                      </div>
+                      <center>PrettyCoolShop</center>
+                    </CardBody>
+                  </Card>
+                </a>
+                <br></br>
+                <a style={{ fontWeight: "bold" }} href="#/dashboards/writing">
+                  <Card
+                    md="auto"
+                    className="main-card mb-3"
+                    style={{
+                      width: "11rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                    }}
+                  >
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        Written Publishing
+                      </div>{" "}
+                      <div> </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className=" text-center"
+                          src={publishingpic}
+                          alt=""
+                        />
+                      </div>
+                      <center>Non Fiction</center>
+                    </CardBody>
+                  </Card>
+                </a>{" "}
+                <br></br>
+              </Col>
+              <Col mx-auto className=" opacity-9">
+                <a style={{ fontWeight: "bold" }} href="#/dashboards/services">
+                  <Route path="#/dashboards/services" />
+                  <Card
+                    mx-auto
+                    style={{
+                      width: "11rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                    }}
+                  >
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        About
+                      </div>{" "}
+                      <div> </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className=" text-center"
+                          src={aboutpic}
+                          alt=""
+                        />
+                      </div>
+                      <center> Learn More</center>
+                    </CardBody>
+                  </Card>{" "}
+                  <br></br>
+                </a>{" "}
+              </Col>
+
+              <Col mx-auto className=" opacity-9">
+                {" "}
+                <a style={{ fontWeight: "bold" }} href="#/dashboards/music">
+                  <Card
+                    mx-auto
+                    className="main-card mb-3"
+                    style={{
+                      width: "11rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                    }}
+                  >
+                    <CardHeader className="card-header-tab">
+                      <div className="card text-center card-shadow-focus opacity-9">
+                        Audio Art Gallery
+                      </div>{" "}
+                      <div> </div>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <img
+                          width={140}
+                          className=" text-center"
+                          src={audiopic}
+                          alt=""
+                        />
+                        <br></br>
+                      </div>
+                      <center>Music Production</center>
+                    </CardBody>
+                  </Card>
+                </a>
+              </Col>
+              <Col mx-auto className=" opacity-9" style={{ width: "31rem" }}>
                 <Card
-               mx-auto
-                  className="main-card mb-3"
-                  style={{ width: "11rem", 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                
-                  <CardHeader className="card-header-tab">
-                    <div className="card text-center card-shadow-focus opacity-9">
-                      Audio Art Gallery
-                    </div>{" "}
-                    <div> </div>
-                  </CardHeader>
+                  className="mb-3 main-card"
+                  style={{
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                  }}
+                >
+                  <CardHeader className="main-card dark card-header-tab">
+                    <div className="card-header-title">
+                      <i className=" lnr-rocket icon-gradient opacity-9"> </i>
+                      PrettyCoolBulletin
+                    </div>
+                  </CardHeader>{" "}
                   <CardBody>
+                    {" "}
                     <div>
-                      <img
-                        width={140}
-                        className=" text-center"
-                        src={audiopic}
-                        alt=""
-                      />
+                      <small> 12/17/20 </small> <br></br> <br></br>
+                         I'd like to thank everyone who'se shown support through
+                      the goals and work, wouldn't have gotten here without you.
+                      <br></br> <br></br> This website is an{" "}
+                      <a href="https://github.com/JasonHoku/MicroHawaii">
+                        open-source{" "}
+                      </a>{" "}
+                      , custom, "React App", written in the NodeJS environment.
+                      Visit the about page to learn more, report issues and make
+                      contact.
+                      <br></br>
+                      <br></br> <br></br>{" "}
+                      <center>
+                        {" "}
+                        <img src={logo} alt="logo" width="100"></img>
+                      </center>
+                      <br></br>
                       <br></br>
                     </div>
-                    <center>Music Production</center>
                   </CardBody>
                 </Card>
-              </a></Col>
-            <Col mx-auto
-                  className=" opacity-9"
-                  style={{ width: "31rem" }} >
-
-
-              <Card className="mb-3 main-card" style={{ 
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
-                <CardHeader className="main-card dark card-header-tab">
-                  <div className="card-header-title">
-                    <i className=" lnr-rocket icon-gradient opacity-9"> </i>
-                    PrettyCoolBulletin
-                  </div>
-                </CardHeader>{" "}
-                <CardBody>
-                  {" "}
-                  <div>
-                    <small> 8/17/20 </small> <br></br> <br></br>
-                       I'd like to thank everyone who'se shown support through
-                    the goals and work, wouldn't have gotten here without you.
-                    <br></br> <br></br>
-                      The site is being transfered to modern templature,
-                    utilizing the React frameworks as the primary language.
-                    Improvements to speed, aestetics and new features will be
-                    rolling out over the coming weeks.
-                    <br></br>
-                    <br></br>   Please report any issues and commentary through
-                    the contact page and thank you for stopping by.
-                    <br></br>
-                    <br></br> <br></br>{" "}
-                    <center>
-                      {" "}
-                      <img src={logo} width="100"></img>
-                    </center>
-                    <br></br>
-                    <br></br>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row></center>
+              </Col>
+            </Row>
+          </center>
           <Row></Row>
           <Row>
             {" "}
             <Col>
-              <Card className="main-card mb-3" style={{
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
+              <Card
+                className="main-card mb-3"
+                style={{
+                  boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                }}
+              >
                 <CardHeader className="card-header-tab" color="light">
                   <div className="card-header-title font-size-lg font-weight-normal">
                     <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
@@ -340,15 +366,26 @@ export default class CRMDashboard2 extends Component {
                   <br></br>
                   Find out what PCP is working on, get involved and learn more,
                   by visiting the new
-                  <a  style={  {fontWeight:"bold"  }} href="#/dashboards/projects"> Projects Page</a>.<br></br>
+                  <a
+                    style={{ fontWeight: "bold" }}
+                    href="#/dashboards/projects"
+                  >
+                    {" "}
+                    Projects Page
+                  </a>
+                  .<br></br>
                   <br></br>
                 </CardBody>
               </Card>
             </Col>
           </Row>
 
-          <Card className="main-card mb-3" style={{
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)" }}>
+          <Card
+            className="main-card mb-3"
+            style={{
+              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+            }}
+          >
             <CardHeader className="card-header-tab">
               <div className="card-header-title font-size-lg font-weight-normal">
                 <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
@@ -361,7 +398,11 @@ export default class CRMDashboard2 extends Component {
             <CardBody>
               The PCP 3D Web-Game development is kicking off! Pre-Alpha 0.2 is
               now available
-              <a  style={  {fontWeight:"bold"  }} href="../3D/"> here </a>.<br></br>
+              <a style={{ fontWeight: "bold" }} href="../3D/">
+                {" "}
+                here{" "}
+              </a>
+              .<br></br>
               <br></br>
             </CardBody>
           </Card>
@@ -392,7 +433,7 @@ export default class CRMDashboard2 extends Component {
                   </div>
                 </div>
                 <CardFooter className="text-center d-block">
-                  <a  style={  {fontWeight:"bold"  }} href="#/dashboards/contact">
+                  <a style={{ fontWeight: "bold" }} href="#/dashboards/contact">
                     <Button className="btn-shadow-dark btn-wider" color="dark">
                       Send Message
                     </Button>

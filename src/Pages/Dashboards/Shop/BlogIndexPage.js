@@ -31,7 +31,7 @@ function BlogIndexPage({ blogRoot, pageCount, pageNumber, postRoutes }) {
       )}
       <footer className={styles.footer}>
         <div>
-          <a href="/rss.xml" target="_blank" style={{ float: 'right' }}>
+          <a href="/rss.xml" target="_blank" rel="noreferrer" style={{ float: 'right' }}>
             RSS
           </a>
           <Link href="/about">About</Link> &bull; <Link href="/tags">Tags</Link>{' '}
