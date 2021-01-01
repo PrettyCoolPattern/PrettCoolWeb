@@ -172,7 +172,7 @@ export default class AccountElements extends Component {
                   backgroundColor: "transparent",
                 }}
               >
-                Thank you for signing up with MauiArtPrints!
+                Thank you for signing up with PrettyCoolPattern!
               </CardBody>{" "}
               <CardHeader
                 style={{
