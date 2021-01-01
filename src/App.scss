@@ -120,62 +120,56 @@
 
 @import "assets/layout/responsive/responsive-base";
 
-
-
 div.card {
-
-    box-shadow: "0px 0px 0px 5px rgba(50,50,50, .8)" 
+  box-shadow: "0px 0px 0px 5px rgba(50,50,50, .8)";
 }
-
 
 .card-header {
-    font-size: medium;
-}.card {
-    font-size: medium;
+  font-size: medium;
 }
-div.app-footer{
-    
-    z-index: 200;
-    position: absolute;
-    
+.card {
+  font-size: medium;
+}
+div.app-footer {
+  z-index: 200;
+  position: absolute;
 }
 .maptxt {
-    font-weight: bolder;
-    font-size: medium;
-     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-weight: bolder;
+  font-size: medium;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    color: black;
-    border-color: gray;
-    border-radius: 5px;
-    text-align:  left;
-    box-shadow: gray;
+  color: black;
+  border-color: gray;
+  border-radius: 5px;
+  text-align: left;
+  box-shadow: gray;
 }
 
 @media screen and (max-width: 495px) {
-    div.MobileAct {
-      display: none;
-    }
+  div.MobileAct {
+    display: none;
   }
-  @media screen and (max-width: 400px) {
-    div.app-header-left {
-      display: none;
-    }
-  }  
-  @media screen and (max-width: 400px) {
-    div.search-wrapper {
-      display: none;
-    }
-  }  
-  @media screen and (max-width: 334) {
-    div.header-btn-lg {
-      display: none;
-    }
+}
+@media screen and (max-width: 400px) {
+  div.app-header-left {
+    display: none;
   }
+}
+@media screen and (max-width: 400px) {
+  div.search-wrapper {
+    display: none;
+  }
+}
+@media screen and (max-width: 334) {
+  div.header-btn-lg {
+    display: none;
+  }
+}
 
-  
 .centerInput {
   position: absolute;
   top: 50%;
@@ -191,4 +185,49 @@ div.app-footer{
   transform: scale(
     1.2
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.landingContent {
+  background-image: url("./images/Mandala1kSeriesX.gif");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 35%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  align-self: center;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  -webkit-animation: myfirst 3s; /* Chrome, Safari, Opera */
+  animation: myfirst 5s;
+  align-items: center;
+  padding-left: 15px;
+  opacity: 1;
+  transition: opacity 1s;
+  padding-right: 15px;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: radial-gradient(#e66465, #9198e5) !important;
 }

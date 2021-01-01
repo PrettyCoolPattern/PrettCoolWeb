@@ -2,6 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Suspense, lazy, Fragment } from "react";
 import Loader from "react-loaders";
 
+import LandingPage from "../../Pages/home";
 import { ToastContainer } from "react-toastify";
 
 const UserPages = lazy(() => import("../../Pages/UserPages"));
@@ -163,9 +164,7 @@ const AppMain = () => {
             </Suspense>
 
 
-            <Route exact path="/" render={() => (
-                <Redirect to="/dashboards/home"/>
-            )}/>
+            <Route exact path="/" component={LandingPage} />
             <ToastContainer/>
         </Fragment>
     )
