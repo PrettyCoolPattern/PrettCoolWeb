@@ -99,21 +99,24 @@ export default class AccountElements extends Component {
 
     const MY_MUTATION_MUTATION = gql`
     mutation MyMutation {
-      createPonoMap(
+      createMicroComment(
         input: {
           data: {
-            User: "${localStorage.getItem("username")} + ${Date().toString()}"
-            data1: "${this.state.formName} + ${this.state.formDesc}"
+            name: "${this.state.formName}  + ${Date().toString()}"
+            comment: "+ ${this.state.formDesc}"
+            user: "${localStorage.getItem("username")}"
           }
         }
       ) {
-        ponoMap {
-          id
-          data1
+        microComment {
+          name
+          comment
+          user
           
         }
       }
     }
+    
     `;
 
     const MyMutationMutation = (props) => {
