@@ -352,7 +352,7 @@ E-Commerce + Design
           </Row>
 
 
-          <Row>
+          <Row style={{ justifyContent: "center" }}>
             <Col sm="12" md="6" xl="4">
               <Card className="card-shadow-primary card-border text-white mb-3" color="primary">
                 <div className="dropdown-menu-header">

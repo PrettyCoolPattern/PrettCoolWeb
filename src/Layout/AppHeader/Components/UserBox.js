@@ -125,7 +125,7 @@ class UserBox extends React.Component {
                 </UncontrolledButtonDropdown>
               </div>
               <div className="widget-content-left  ml-3 header-user-info">
-                <div className="widget-heading">Jason Hoku Levien</div>
+                <div className="widget-heading">Jason Hoku </div>
                 <div className="widget-subheading">Founder, Developer</div>
               </div>
               <div className="widget-content-right header-user-info ml-3">

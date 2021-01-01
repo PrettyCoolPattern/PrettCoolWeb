@@ -409,7 +409,7 @@ export default class CRMDashboard2 extends Component {
 
           <Row></Row>
 
-          <Row>
+          <Row style={{ justifyContent: "center" }}>
             <Col sm="12" md="6" xl="4">
               <Card
                 className="card-shadow-primary card-border text-white mb-3"
