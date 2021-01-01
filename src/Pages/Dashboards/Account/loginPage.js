@@ -1,4 +1,3 @@
-
 import gql from "graphql-tag";
 import React, { Component, Fragment } from "react";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
@@ -170,15 +169,7 @@ export default class LoginPageElements extends Component {
                 boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
               }}
             >
-              <CardHeader
-                style={{
-                  width: "23rem",
-                  boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                }}
-              >
-                {" "}
-                PrettyCoolPattern Login
-              </CardHeader>
+              <CardHeader>PrettyCoolPattern Login</CardHeader>
               <CardBody
                 style={{
                   backgroundColor: "#CCCCCCC",
@@ -191,13 +182,13 @@ export default class LoginPageElements extends Component {
                 <p>Please sign in to become authenticated.</p>
               </CardBody>{" "}
               <CardBody hidden id="signUp">
-                <br /> <br /> <br /> <br /> <br />
                 <span className="centerInput">
-                  <br /> Username:{" "}
+                  {" "}
+                  Username:{" "}
                   <Input
                     name="signFormUser"
                     id="signFormUser"
-                    value={this.state.signFormUser}
+                    value={this.state.signFormUser} 
                     onChange={this.handleInputChange}
                   ></Input>
                   <br /> Password:&nbsp;&nbsp;
@@ -208,7 +199,7 @@ export default class LoginPageElements extends Component {
                     onChange={this.handleInputChange}
                     type="password"
                   ></Input>
-                  <br /> E-Mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <br /> E-Mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                   <Input
                     name="signFormEmail"
                     id="signFormEmail"
@@ -220,9 +211,8 @@ export default class LoginPageElements extends Component {
                 </span>
               </CardBody>
               <CardBody hidden id="signUp2">
-                <br /> <br /> <br /> <br /> <br />
                 <span className="centerInput">
-                  <br /> Username:{" "}
+                  Username:{" "}
                   <Input
                     name="signFormUser"
                     id="signFormUser"
@@ -237,9 +227,10 @@ export default class LoginPageElements extends Component {
                     onChange={this.handleInputChange}
                     type="password"
                   ></Input>
-                  <br />
                 </span>
               </CardBody>
+                  <br />
+                  <br />
               <CardBody
                 style={{
                   backgroundColor: "#666666",
