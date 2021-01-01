@@ -103,7 +103,7 @@ export default class AccountElements extends Component {
         input: {
           data: {
             name: "${this.state.formName}  + ${Date().toString()}"
-            comment: "+ ${this.state.formDesc}"
+            comment: "${this.state.formDesc}"
             user: "${localStorage.getItem("username")}"
           }
         }
