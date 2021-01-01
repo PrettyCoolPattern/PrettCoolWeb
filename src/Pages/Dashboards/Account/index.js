@@ -29,18 +29,31 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import AccountElements from "./account";
 import AdminElements from "./admin";
+import ModeratorElements from "./moderator";
 import LoginPageElements from "./loginPage";
 //
 
+var CLIIP;
 
-  var CLIIP;
 export default class Account extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: "1",
+    };
+    this.toggle = this.toggle.bind(this);
+  }
 
-
-
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
+    }
+  }
   componentDidMount() {
     this.setState({ isLoading: true });
-  
+
     fetch("https://api.ipify.org")
       .then((response) => response.text())
       .then((response) => {
@@ -49,37 +62,54 @@ export default class Account extends Component {
       .then(function (parsedData) {})
       .catch((error) => this.setState({ error, isLoading: false }));
   }
-  
 
   render() {
-    
     let adminCardEle;
-
+    if (localStorage.getItem("jwt") == null) {
+      {
+        adminCardEle = (
+          <Col>
+            <LoginPageElements />
+          </Col>
+        );
+      }
+    }
     if (localStorage.getItem("jwt") != null) {
       adminCardEle = (
-        <Col>
-          <AccountElements />
-        </Col>
+        <Row>
+          <Col>
+            <AccountElements />
+          </Col>
+        </Row>
       );
     }
     if (
-      localStorage.getItem("jwt") != null ||
-      localStorage.getItem("username") == "jlevien808" ||
-      localStorage.getItem("username") == "mauisustainablesolutions" 
+      (localStorage.getItem("jwt") != null &&
+        localStorage.getItem("username") == "jlevien808") ||
+      window.location == "http://localhost:3021/d#/dashboards/account"
     ) {
       adminCardEle = (
-        <Col>
-          <AdminElements />
-        </Col>
-      );
-    } else {
-      adminCardEle = (
-        <Col>
-          <LoginPageElements />
-        </Col>
+        <span width="100%">
+          <AdminElements /> <br></br>
+        </span>
       );
     }
+    if (
+      localStorage.getItem("jwt") != null &&
+      localStorage.getItem("username") == "Kipahulu"
+    ) {
+      adminCardEle = (
+        <span 
+        style={{
+          backgroundColor: "transparent",
+          width: "100%",
 
+          opacity: 100,
+        }}>
+          <ModeratorElements />
+        </span>
+      );
+    }
     return (
       <Fragment>
         <CSSTransitionGroup
@@ -90,7 +120,7 @@ export default class Account extends Component {
           transitionEnter={false}
           transitionLeave={false}
         >
-          <Row>{adminCardEle}</Row>
+          {adminCardEle}
         </CSSTransitionGroup>
       </Fragment>
     );

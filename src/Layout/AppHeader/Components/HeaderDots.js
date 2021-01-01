@@ -75,7 +75,7 @@ function getTabs() {
     title: tab.title,
     getContent: () => tab.content,
     key: index,
-  }));  
+  }));
 }
 
 class HeaderDots extends React.Component {
@@ -90,9 +90,6 @@ class HeaderDots extends React.Component {
     return (
       <Fragment>
         <div className="header-dots">
-          
-<Button disabled> Login Coming Soon </Button>
-
         </div>
       </Fragment>
     );

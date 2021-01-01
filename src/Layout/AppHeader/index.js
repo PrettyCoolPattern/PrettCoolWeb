@@ -13,34 +13,34 @@ import UserBox from "./Components/UserBox";
 import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 import ReactGA from "react-ga";
 import { findDOMNode } from "react-dom";
+import Login from "../../Login/Login";
 
 import HeaderDots from "./Components/HeaderDots";
 
 import SendToGoogleAnalytics from "./Components/analytics";
 
 class Header extends React.Component {
-  
-componentDidMount() {
-  document.addEventListener("click", this.onClickGA.bind(this), false);
-  ReactGA.initialize("UA-102481694-6");
-}
-componentDidUnmount() {
-  document.removeEventListener("click", this.onClickGA.bind(this), false);
-}
+  componentDidMount() {
+    document.addEventListener("click", this.onClickGA.bind(this), false);
+    ReactGA.initialize("UA-102481694-3");
+  }
+  componentDidUnmount() {
+    document.removeEventListener("click", this.onClickGA.bind(this), false);
+  }
 
-onClickGA(event) {
-  ReactGA.pageview(window.location.href + window.location);
-  const domNode = findDOMNode(event.target);
-  ReactGA.outboundLink(
-    {
-      label: "Clicked :" + domNode.outerHTML,
-    },
-    function () {
-      try {
-      } catch (error) {}
-    }
-  );
-}
+  onClickGA(event) {
+    ReactGA.pageview(window.location.href + window.location);
+    const domNode = findDOMNode(event.target);
+    ReactGA.outboundLink(
+      {
+        label: "Clicked :" + domNode.outerHTML,
+      },
+      function () {
+        try {
+        } catch (error) {}
+      }
+    );
+  }
 
   render() {
     let {
@@ -50,21 +50,30 @@ onClickGA(event) {
     } = this.props;
     return (
       <Fragment>
-        <CSSTransitionGroup component="div"
+        <CSSTransitionGroup
+          component="div"
           className={cx("app-header", headerBackgroundColor, {
             "header-shadow": enableHeaderShadow,
           })}
-          transitionName="HeaderAnimation" transitionAppear={true} transitionAppearTimeout={1500}
-          transitionEnter={false} transitionLeave={false}>
+          transitionName="HeaderAnimation"
+          transitionAppear={true}
+          transitionAppearTimeout={1500}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
           <HeaderLogo />
-          <div className={cx("app-header__content", {
+          <div
+            className={cx("app-header__content", {
               "header-mobile-open": enableMobileMenuSmall,
-            })}>
+            })}
+          >
             <div className="app-header-left">
               <SearchBox />
               <MegaMenu />
             </div>
             <div className="app-header-right">
+              {" "}
+              <Login />
               <HeaderDots />
               <UserBox />
               <HeaderRightDrawer />
