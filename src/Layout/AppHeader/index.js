@@ -13,11 +13,13 @@ import UserBox from "./Components/UserBox";
 import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 import ReactGA from "react-ga";
 import { findDOMNode } from "react-dom";
+
 import Login from "../../Login/Login";
 
 import HeaderDots from "./Components/HeaderDots";
 
 import SendToGoogleAnalytics from "./Components/analytics";
+import { scale } from "chroma-js";
 
 class Header extends React.Component {
   componentDidMount() {

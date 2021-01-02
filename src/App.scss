@@ -130,10 +130,6 @@ div.card {
 .card {
   font-size: medium;
 }
-div.app-footer {
-  z-index: 200;
-  position: absolute;
-}
 .maptxt {
   font-weight: bolder;
   font-size: medium;
@@ -223,4 +219,42 @@ div.app-footer {
   font-size: calc(10px + 2vmin);
   color: white;
   background-color: radial-gradient(#e66465, #9198e5) !important;
+}
+
+.chatNotify {
+  z-index: 125;
+  position: fixed;
+  bottom: 55px;
+  right: 25px;
+  width: 65px;
+  height: 65px;
+  background-color: #190624;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #f4ceff;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 25s;
+  animation-duration: 25s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

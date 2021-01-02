@@ -188,7 +188,7 @@ export default class LoginPageElements extends Component {
                   <Input
                     name="signFormUser"
                     id="signFormUser"
-                    value={this.state.signFormUser} 
+                    value={this.state.signFormUser}
                     onChange={this.handleInputChange}
                   ></Input>
                   <br /> Password:&nbsp;&nbsp;
@@ -229,8 +229,8 @@ export default class LoginPageElements extends Component {
                   ></Input>
                 </span>
               </CardBody>
-                  <br />
-                  <br />
+              <br />
+              <br />
               <CardBody
                 style={{
                   backgroundColor: "#666666",
