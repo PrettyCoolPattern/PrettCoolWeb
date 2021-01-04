@@ -15,13 +15,13 @@
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   padding: 16px;
-  max-width: 960px;
   margin: 0 auto;
+  justify-content: center;
   @media (max-width: 768px) {
     padding: 10px;
   }
   .product {
-    min-height: 355px;
+    max-height: 350px;
     flex-basis: calc(25% - 32px);
     -webkit-flex-basis: calc(25% - 32px);
     @media (max-width: 768px) {

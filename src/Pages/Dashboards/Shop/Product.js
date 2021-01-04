@@ -86,13 +86,14 @@ class Product extends Component {
     let id = this.props.id;
     let quantity = this.props.productQuantity;
     return (
-      <div style={{ width: "13rem" }}>
+      <div style={{ width: "13rem", marginRight: "20px" }}>
         <p>
           <center>
             <div
               className="product"
               style={{
                 boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                height: "400px",
               }}
             >
               <div className="product-image">
@@ -118,6 +119,7 @@ class Product extends Component {
                 updateQuantity={this.props.updateQuantity}
                 resetQuantity={this.resetQuantity}
               />
+              <br />
               <button
                 className={!this.state.isAdded ? "" : "added"}
                 type="button"
@@ -131,11 +133,10 @@ class Product extends Component {
                 )}
               >
                 {!this.state.isAdded ? "ADD TO CART" : "✔ ADDED"}
-              </button>{" "}
+              </button>
             </div>
-            &nbsp;{" "}
-          </center>{" "}
-        </p>{" "}
+          </center>
+        </p>
       </div>
     );
   }
