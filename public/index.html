@@ -13,10 +13,25 @@
     <title>PrettyCoolPattern.com Arts & E-Commerce Portfolio</title>
 
     </head>
-  <body><style>
+  <body><style> body {
+    background-repeat: no-repeat;
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  @media screen and (max-width: 600px) {
     body {
-      background-image:  url('assets/images/bgr.jpg');
+    background-image: url("assets/images/bgr.jpg");
     }
+  }
+  @media screen and (min-width: 601px) {
+    body {
+    background-image: url("assets/images/bgwide.jpg");
+    }
+  }
     </style>
    
     <noscript>You need to enable JavaScript to run this app.</noscript>

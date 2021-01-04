@@ -35,14 +35,6 @@ class Main extends React.Component {
         render={({ width }) => (
           <Fragment>
             <div
-              style={{
-                backgroundImage: "url(./assets/images/bgr.jpg)",
-                position: "sticky",
-                margin: 0,
-                padding: 0,
-                width: "100%",
-                height: "100vh",
-              }}
               className={cx(
                 "app-container app-theme-" + colorScheme,
                 { "fixed-header": enableFixedHeader },

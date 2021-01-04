@@ -26,13 +26,12 @@ class LandingPage extends React.Component {
             className="landingContent"
             onClick={() => (window.location.hash = "/dashboards/home")}
           >
-            <br />
             <span
               style={{
                 position: "absolute",
-                top: "25px",
-                padding: "25px",
-                zIndex:125,
+
+                top: "5px",
+                zIndex: 125,
                 textAlign: "center",
               }}
             >
@@ -42,8 +41,8 @@ class LandingPage extends React.Component {
             <span
               style={{
                 position: "absolute",
-                top: "155px",
-                zIndex:125,
+                bottom: "255px",
+                zIndex: 125,
               }}
             >
               Click To Enter
@@ -59,12 +58,8 @@ class LandingPage extends React.Component {
               }}
               src="/images/Mandala1kSeriesX.gif"
             ></img>
-            <br />
-            <br />
-            <br />
-            <br /> <br /> <br /> <br />
           </span>
-        </CSSTransitionGroup>{" "}
+        </CSSTransitionGroup>
       </Fragment>
     );
   }
