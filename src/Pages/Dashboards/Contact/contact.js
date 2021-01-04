@@ -172,7 +172,7 @@ export default class ContactElements extends Component {
     } else {
       var templateParams = {
         name: `PrettyCoolPattern | Contact From: ${CLIIP}`,
-        message: `SubmittedFormName: ${formName}  Message: ${formMessage}`,
+        message: `FormName: ${formName} FormEmail: ${formEmail} +  Message: ${formMessage}`,
         message2: `ClientInfo: ${CLIIP} :: ${this.state.infoCLI}`,
       };
       emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(

@@ -237,7 +237,7 @@ export default class ShopPage extends Component {
           <Card
             style={{
               position: "bottom",
-              width: "26rem",
+              width: "24rem",
               boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
             }}
           >
