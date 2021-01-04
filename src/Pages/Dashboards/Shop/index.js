@@ -196,12 +196,17 @@ export default class ShopPage extends Component {
           <center>
             {" "}
             <br />
-            <Card style={{ width: "22rem" }}>
+            <Card
+              style={{
+                width: "22rem",
+                boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+              }}
+            >
               <CardHeader>
                 {" "}
                 <strong>Welcome to the PrettyCoolPattern E-Shop</strong>
               </CardHeader>
-              <CardBody>
+              <CardBody style={{}}>
                 {" "}
                 <p> </p>
                 <p> </p>
@@ -229,7 +234,13 @@ export default class ShopPage extends Component {
           />{" "}
         </div>
         <center>
-          <Card style={{ position: "bottom", width: "26rem" }}>
+          <Card
+            style={{
+              position: "bottom",
+              width: "26rem",
+              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+            }}
+          >
             {" "}
             <CardHeader>
               {" "}
@@ -238,31 +249,41 @@ export default class ShopPage extends Component {
             <img src="/images/shirtsize.png" height="80"></img>
           </Card>{" "}
           <br></br>
-          <Card style={{ width: "22rem" }}>
-            <CardBody>
+          <Card
+            style={{
+              width: "22rem",
+              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+            }}
+          >
+            <CardBody style={{ textAlign: "left" }}>
               {" "}
               <p> </p>
               <p>
-                {" "}
-                If you have any questions please use the{" "}
-                <a href="#/dashboards/contact"> easy contact form.</a>
-                <br></br>
+                <li>
+                  If you have any questions please use the{" "}
+                  <a href="#/dashboards/contact"> easy contact form.</a>
+                </li>
               </p>
-              <p> </p>
               <p>
-                {" "}
-                Please refer to the
-                <a href="#/dashboards/services"> services</a> page for more
-                information about expertises and offers.
+                <li>
+                  Refer to the
+                  <a href="#/dashboards/services"> services</a> page for more
+                  information about expertise and offers.
+                </li>
               </p>
-              <br></br>
             </CardBody>
           </Card>
           <p> </p>
           <p> </p>
           <p> </p>
           <br></br>
-          <Card style={{ position: "bottom", width: "17rem" }}>
+          <Card
+            style={{
+              position: "bottom",
+              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+              width: "17rem",
+            }}
+          >
             <Footer
               style={{ width: "13rem" }}
               cartBounce={this.state.cartBounce}
