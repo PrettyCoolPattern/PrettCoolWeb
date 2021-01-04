@@ -201,6 +201,7 @@ div.card {
   position: absolute;
   align-self: center;
   font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
   -webkit-animation: myfirst 3s;
@@ -211,7 +212,7 @@ div.card {
   transition: opacity 1s;
   padding-right: 15px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(35px + 2vmin);
   color: white;
   background-color: radial-gradient(#e66465, #9198e5) !important;
 }

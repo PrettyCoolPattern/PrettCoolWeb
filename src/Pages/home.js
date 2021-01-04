@@ -27,15 +27,35 @@ class LandingPage extends React.Component {
             onClick={() => (window.location.hash = "/dashboards/home")}
           >
             <br />
-            <h1>PrettyCoolPattern Arts</h1>
+            <span
+              style={{
+                position: "absolute",
+                top: "25px",
+                padding: "25px",
+                zIndex:125,
+                textAlign: "center",
+              }}
+            >
+              PrettyCoolPattern Arts
+            </span>
             <br />
-            <h4>Click To Enter</h4> <br />
-            <br />
-            <br />
+            <span
+              style={{
+                position: "absolute",
+                top: "155px",
+                zIndex:125,
+              }}
+            >
+              Click To Enter
+            </span>{" "}
             <br />
             <img
               style={{
                 width: window.innerWidth * 0.35,
+                alignContent: "center",
+                position: "absolute",
+                maxWidth: "600px",
+                maxHeight: "600px",
               }}
               src="/images/Mandala1kSeriesX.gif"
             ></img>
