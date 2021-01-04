@@ -12,7 +12,7 @@ class FormQueryComponent extends Component {
   }
   render() {
     this.state.authVar = axios
-      .get(`https://api.PrettyCoolPattern.com/pono-forms/`, {
+      .get(`https://api.PrettyCoolPattern.com/micro-comments/`, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,

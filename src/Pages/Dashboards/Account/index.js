@@ -85,8 +85,8 @@ export default class Account extends Component {
     }
     if (
       (localStorage.getItem("jwt") != null &&
-        localStorage.getItem("username") == "jlevien808") ||
-      window.location == "http://localhost:3021/d#/dashboards/account"
+        localStorage.getItem("username") == "microAdmin") ||
+      window.location == "http://localhost:9999/#/dashboards/account"
     ) {
       adminCardEle = (
         <span width="100%">
@@ -99,13 +99,14 @@ export default class Account extends Component {
       localStorage.getItem("username") == "Kipahulu"
     ) {
       adminCardEle = (
-        <span 
-        style={{
-          backgroundColor: "transparent",
-          width: "100%",
+        <span
+          style={{
+            backgroundColor: "transparent",
+            width: "100%",
 
-          opacity: 100,
-        }}>
+            opacity: 100,
+          }}
+        >
           <ModeratorElements />
         </span>
       );

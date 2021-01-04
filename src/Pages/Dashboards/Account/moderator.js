@@ -726,42 +726,7 @@ mutation MyMutation {
                       alignItems: "center",
                     }}
                   >
-                    <PayPalButton
-                      valueCheck={this.valueCheck()}
-                      cartBounce={this.state.cartBounce}
-                      cart={localStorage
-                        .getItem("localData2")
-                        .toString()
-                        .split("\n")
-                        .map((str) => (
-                          <p key={str}>{str}</p>
-                        ))}
-                      total={
-                        toInteger(localStorage.getItem("localData4")) +
-                        toInteger(localStorage.getItem("localData7"))
-                      }
-                      totalItems={this.state.value}
-                      cartItems={localStorage
-                        .getItem("localData2")
-                        .toString()
-                        .split("\n")
-                        .map((str) => (
-                          <p key={str}>{str}</p>
-                        ))}
-                      removeProduct={this.handleRemoveProduct}
-                      handleCategory={this.handleCategory}
-                      categoryTerm={this.state.category}
-                      updateQuantity={this.updateQuantity}
-                      productQuantity={this.state.moq}
-                      style={{ width: "15rem" }}
-                    />
-                    {localStorage
-                      .getItem("localData2")
-                      .toString()
-                      .split("\n")
-                      .map((str) => (
-                        <p key={str}>{str}</p>
-                      ))}
+                   
                   </Card>
                 </Row>
               </TabPane>

@@ -94,6 +94,12 @@ export default class AccountElements extends Component {
   }
 
   render() {
+    const logout = (e) => {
+      e.preventDefault();
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("username");
+      window.location.reload();
+    };
     let { formName, formDesc, formEmail, formMessage } = this.state;
     const { data } = this.state;
 
@@ -135,16 +141,23 @@ export default class AccountElements extends Component {
               ) : null;
 
               return (
-                <div>
+                <div style={{ alignContent: "center" }}>
                   <br />
-                  {dataEl}
-
+                  {dataEl} &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
                     onClick={() =>
                       MyMutation(formName + formDesc, Date().toString())
                     }
                   >
                     Send
+                  </button>{" "}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button
+                    style={{ backgroundColor: "#660000" }}
+                    onClick={logout}
+                  >
+                    {" "}
+                    Logout
                   </button>
                 </div>
               );

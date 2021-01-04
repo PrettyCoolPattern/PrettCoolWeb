@@ -81,31 +81,7 @@ const LoginAct = (props) => {
       text = `Sup ${localStorage.getItem("username")}, you are connected! `;
     }
   } else {
-    text = [
-      <div
-        className="app-header-right"
-        style={{
-          alignContent: "center",
-        }}
-      >
-        <a href={`/#/dashboards/account`}>
-          <Button
-            className="btn-icon-horizontal btn-transition app-header-right"
-            outline
-            color="dark"
-          >
-            <i
-              className="pe-7s-news-paper"
-              style={{
-                fontSize: "20px",
-                alignContent: "center",
-              }}
-            ></i>
-            &nbsp; Sign-Up
-          </Button>
-        </a>
-      </div>,
-    ];
+    text = [];
   }
 
   return (
