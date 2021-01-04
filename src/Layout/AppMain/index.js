@@ -165,13 +165,12 @@ const AppMain = () => {
         fallback={
           <div className="loader-container">
             <div className="loader-container-inner">
-              <div className="text-center">
+              <div className="text-center loader">
                 <Loader
                   style={{
                     transform: "scale(5.5)",
                     top: "-100px",
                     position: "relative",
-                    color: "rgb(156, 22, 156)",
                   }}
                   type="ball-clip-rotate-multiple"
                 />
