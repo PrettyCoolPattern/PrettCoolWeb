@@ -244,7 +244,7 @@ export default class LoginPageElements extends Component {
                     id="signUpConfirm"
                     className="zoom"
                     style={{
-                      width: "125px",
+                      width: "120px",
                       backgroundColor: "#333333",
                       height: "60px",
                       alignSelf: "center",
@@ -260,7 +260,7 @@ export default class LoginPageElements extends Component {
                     id="signInConfirm"
                     className="zoom"
                     style={{
-                      width: "125px",
+                      width: "120px",
                       backgroundColor: "#333333",
                       height: "60px",
                       alignSelf: "center",
@@ -283,7 +283,7 @@ export default class LoginPageElements extends Component {
                       id="signIn"
                       className="zoom"
                       style={{
-                        width: "125px",
+                        width: "120px",
                         backgroundColor: "#333333",
                         height: "60px",
                         alignSelf: "center",
@@ -294,7 +294,6 @@ export default class LoginPageElements extends Component {
                       &nbsp; Sign-In
                     </Button>
                   </a>
-                  &nbsp; &nbsp; &nbsp; &nbsp;
                   <a
                     onClick={() => (
                       (document.getElementById("signUp").hidden = false),
@@ -308,7 +307,7 @@ export default class LoginPageElements extends Component {
                       className="zoom"
                       id="signUpPre"
                       style={{
-                        width: "125px",
+                        width: "120px",
                         backgroundColor: "#333333",
                         height: "60px",
                         alignSelf: "center",
@@ -333,7 +332,7 @@ export default class LoginPageElements extends Component {
                       className="zoom "
                       id="signUpBack"
                       style={{
-                        width: "125px",
+                        width: "120px",
                         backgroundColor: "#333333",
                         height: "60px",
                         alignSelf: "center",
@@ -358,7 +357,7 @@ export default class LoginPageElements extends Component {
                       className="zoom "
                       id="signInBack"
                       style={{
-                        width: "125px",
+                        width: "120px",
                         backgroundColor: "#333333",
                         height: "60px",
                         alignSelf: "center",

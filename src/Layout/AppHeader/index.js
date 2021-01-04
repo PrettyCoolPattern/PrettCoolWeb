@@ -74,7 +74,6 @@ class Header extends React.Component {
               <MegaMenu />
             </div>
             <div className="app-header-right">
-              {" "}
               <Login />
               <HeaderDots />
               <UserBox />

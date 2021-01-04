@@ -218,11 +218,6 @@ export default class ShopPage extends Component {
               <CardBody>
                 {" "}
                 <p> </p>
-                <p>
-                  Thank you so much for expressing interest in the products
-                  microHawaii has to offer!
-                  <br></br>
-                </p>
                 <p> </p>
                 <p>
                   More information about the services offered here can be found

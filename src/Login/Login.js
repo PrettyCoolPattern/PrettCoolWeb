@@ -28,7 +28,7 @@ const Loginbutton = (props) => (
             alignContent: "center",
           }}
         ></i>
-        &nbsp; Login
+        Login
       </Button>
     </a>{" "}
   </div>
@@ -76,10 +76,6 @@ const LoginAct = (props) => {
 
   if (isLogged) {
     text = `Welcome ${localStorage.getItem("username")}, you are connected!`;
-
-    if (isLogged && localStorage.getItem("username") == "jlevien808") {
-      text = `Sup ${localStorage.getItem("username")}, you are connected! `;
-    }
   } else {
     text = [];
   }
@@ -87,7 +83,6 @@ const LoginAct = (props) => {
   return (
     <span className="app-header-right">
       {text}
-
       {buttons}
     </span>
   );
