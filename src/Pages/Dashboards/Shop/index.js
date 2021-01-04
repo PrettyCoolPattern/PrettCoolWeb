@@ -193,20 +193,6 @@ export default class ShopPage extends Component {
     return (
       <Fragment>
         <div>
-          <Header
-            cartBounce={this.state.cartBounce}
-            total={this.state.totalAmount}
-            totalItems={this.state.totalItems}
-            cartItems={this.state.cart}
-            removeProduct={this.handleRemoveProduct}
-            handleSearch={this.handleSearch}
-            productsList={this.state.products}
-            productQuantity={this.state.quantity}
-            handleMobileSearch={this.handleMobileSearch}
-            handleCategory={this.handleCategory}
-            categoryTerm={this.state.category}
-            updateQuantity={this.updateQuantity}
-          />
           <center>
             {" "}
             <br />

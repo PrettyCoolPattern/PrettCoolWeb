@@ -64,7 +64,6 @@ import { Sparklines, SparklinesCurve } from "react-sparklines";
 
 import { makeData } from "../../Tables/DataTables/Examples/utils";
 
-
 var EJSSERVICE = process.env.REACT_APP_EJSSERVICE;
 var EJSTEMPLATE = process.env.REACT_APP_EJSTEMPLATE;
 var EJSUSER = process.env.REACT_APP_EJSUSER;
@@ -212,102 +211,104 @@ export default class ContactElements extends Component {
             <br />
             <br />
             <br />
-            <Row>
-              <Col>
-                <Card
-                  style={{
-                    width: "24rem",
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                  }}
-                >
-                  <CardHeader>Contact PrettyCoolPattern.</CardHeader>
-                  <CardBody>
-                    <p>
-                      &nbsp; For any inquirines, comments, concerns or critique,
-                      please use this simple form or reach out through the
-                      contact method listed here.
-                      <p />
-                      <br />
-                      Jason Hoku Levien <br />
-                      <a href="mailto:contact@prettycoolpattern.com">
-                        contact@prettycoolpattern.com <br />
-                      </a>{" "}
-                      (808)385-1775
-                    </p>
-                    <span id="contactFormThanks" hidden>
-                      {" "}
-                      Thank you for your submission! A response can be expected
-                      in 0-3 days.
-                    </span>
+            <Row
+              style={{
+                justifyContent: "center",
+              }}
+            >
+              <Card
+                style={{
+                  width: "24rem",
+                  boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                }}
+              >
+                <CardHeader>Contact PrettyCoolPattern.</CardHeader>
+                <CardBody>
+                  <p>
+                    &nbsp; For any inquirines, comments, concerns or critique,
+                    please use this simple form or reach out through the contact
+                    method listed here.
+                    <p />
                     <br />
-                    <Form id="contactFormID">
-                      <FormGroup row>
-                        <Label for="examplePassword" sm={3}>
-                          Name
-                        </Label>
-                        <Col sm={8}>
-                          <Input
-                            type="input"
-                            style={{ width: "270px" }}
-                            name="formName"
-                            value={this.state.formName}
-                            onChange={this.handleInputChange}
-                            id="formName"
-                            placeholder="Who's inquiring?"
-                          />
+                    Jason Hoku Levien <br />
+                    <a href="mailto:contact@prettycoolpattern.com">
+                      contact@prettycoolpattern.com <br />
+                    </a>{" "}
+                    (808)385-1775
+                  </p>
+                  <span id="contactFormThanks" hidden>
+                    {" "}
+                    Thank you for your submission! A response can be expected in
+                    0-3 days.
+                  </span>
+                  <br />
+                  <Form id="contactFormID">
+                    <FormGroup row>
+                      <Label for="examplePassword" sm={3}>
+                        Name
+                      </Label>
+                      <Col sm={8}>
+                        <Input
+                          type="input"
+                          style={{ width: "265px" }}
+                          name="formName"
+                          value={this.state.formName}
+                          onChange={this.handleInputChange}
+                          id="formName"
+                          placeholder="Who's inquiring?"
+                        />
+                      </Col>
+                    </FormGroup>
+                    <br />{" "}
+                    <FormGroup row>
+                      <Label for="exampleEmail" sm={3}>
+                        Email
+                      </Label>
+                      <Col sm={8}>
+                        <Input
+                          style={{ width: "265px" }}
+                          type="formEmail"
+                          name="formEmail"
+                          value={this.state.formEmail}
+                          onChange={this.handleInputChange}
+                          id="formEmail"
+                          placeholder="How to best reach you?"
+                        />
+                      </Col>
+                    </FormGroup>
+                    <br />
+                    <FormGroup row height="1005px">
+                      <Label for="formMessage" sm={3}>
+                        Info:
+                      </Label>
+                      <Col sm={8}>
+                        <Input
+                          type="textarea"
+                          name="formMessage"
+                          value={this.state.formMessage}
+                          onChange={this.handleInputChange}
+                          id="formMessage"
+                          style={{ width: "265px", height: "170px" }}
+                        />
+                      </Col>
+                    </FormGroup>
+                    <br />
+                    <center>
+                      <FormGroup check row>
+                        <Col sm={{ size: 12 }}>
+                          <Button
+                            id="contactFormButton"
+                            disabled={false}
+                            onClick={this.submitContact}
+                          >
+                            Submit
+                          </Button>
                         </Col>
                       </FormGroup>
-                      <br />{" "}
-                      <FormGroup row>
-                        <Label for="exampleEmail" sm={3}>
-                          Email
-                        </Label>
-                        <Col sm={8}>
-                          <Input
-                            style={{ width: "270px" }}
-                            type="formEmail"
-                            name="formEmail"
-                            value={this.state.formEmail}
-                            onChange={this.handleInputChange}
-                            id="formEmail"
-                            placeholder="How to best reach you?"
-                          />
-                        </Col>
-                      </FormGroup>
-                      <br />
-                      <FormGroup row height="1005px">
-                        <Label for="formMessage" sm={3}>
-                          Info:
-                        </Label>
-                        <Col sm={8}>
-                          <Input
-                            type="textarea"
-                            name="formMessage"
-                            value={this.state.formMessage}
-                            onChange={this.handleInputChange}
-                            id="formMessage"
-                            style={{ width: "270px", height: "170px" }}
-                          />
-                        </Col>
-                      </FormGroup>
-                      <br />
-                      <center>
-                        <FormGroup check row>
-                          <Col sm={{ size: 12 }}>
-                            <Button
-                              id="contactFormButton"
-                              disabled={false}
-                              onClick={this.submitContact}
-                            >
-                              Submit
-                            </Button>
-                          </Col>
-                        </FormGroup>
-                      </center>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
+                    </center>
+                  </Form>
+                </CardBody>
+              </Card>
             </Row>
           </Container>
         </CSSTransitionGroup>
