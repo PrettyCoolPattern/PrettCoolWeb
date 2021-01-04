@@ -24,6 +24,7 @@
     background: #fff;
     position: relative;
     border-radius: 4px;
+    z-index: 999;
   }
   .close {
     position: absolute;
@@ -42,6 +43,7 @@
 .quick-view-details {
   padding: 24px;
   background: $gray-medium-bg;
+  z-index: 999;
   border-radius: 0 0 4px 4px;
   .product-price {
     font-size: 18px;
@@ -50,16 +52,16 @@
     color: $primary-green;
     font-weight: bold;
     font-size: 24px;
-    float: right;
+    float: center;
     &:before {
-      content: "$";
+      content: " $";
     }
   }
 }
 .quick-view-image {
   img {
-    width: 100%;
-    max-width: 500px;
+    max-width: 350px;
+    max-height: 525px;
     margin: 0 auto;
     display: block;
     border-radius: 4px 4px 0 0;

@@ -35,11 +35,12 @@ class QuickView extends Component {
   render() {
     return (
       <div
+        style={{ zIndex: 999, position: "fixed" }}
         className={
           this.props.openModal ? "modal-wrapper active" : "modal-wrapper"
         }
       >
-        <div className="modal" ref="modal">
+        <div style={{ zIndex: 999 }} className="modal" ref="modal">
           <button
             type="button"
             className="close"

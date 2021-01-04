@@ -214,12 +214,12 @@ div.card {
   justify-content: center;
   font-size: calc(30px + 2vmin);
   color: white;
-  background-color: radial-gradient(#e66465, #9198e5) !important;
+  background-color: radial-gradient(#e66465, #ae91e5) !important;
 }
 
 .chatNotify {
-  z-index: 125;
   position: fixed;
+  z-index: 85;
   bottom: 55px;
   right: 25px;
   width: 65px;
@@ -254,4 +254,3 @@ div.card {
     opacity: 1;
   }
 }
-

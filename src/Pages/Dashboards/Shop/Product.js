@@ -86,7 +86,7 @@ class Product extends Component {
     let id = this.props.id;
     let quantity = this.props.productQuantity;
     return (
-      <div style={{ width: "13rem", marginRight: "20px" }}>
+      <div style={{ width: "13rem", marginRight: "20px", }}>
         <p>
           <center>
             <div
