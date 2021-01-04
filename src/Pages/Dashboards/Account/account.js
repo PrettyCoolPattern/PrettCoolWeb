@@ -196,7 +196,7 @@ export default class AccountElements extends Component {
                 }}
               >
                 {" "}
-                Additional Feautres Coming Soon{" "}
+                Additional Features Coming Soon{" "}
               </CardHeader>
               <CardBody
                 style={{

@@ -58,7 +58,7 @@ class ProductManagerComponent extends Component {
 
       axios
         .post(
-          `https://api.PrettyCoolPattern.com/maui-art-prints-products`,
+          `https://api.microhawaii.com/pcp-products`,
           JSON.stringify(formData),
           {
             headers: {

@@ -60,19 +60,18 @@ import { get, initial } from "lodash";
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: "https://api.PrettyCoolPattern.com/graphql",
+    uri: "https://api.microhawaii.com/graphql",
     headers: {
       "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }),
 });
 const MY_QUERY_COPY_QUERY = gql`
-  query MyQueryCopy {
-    ponoMaps {
-      id
-      User
-      data1
-      created_at
+  query MyQuery {
+    microComments {
+      name
+      comment
     }
   }
 `;
@@ -93,7 +92,7 @@ const MyQueryCopyQuery = (props) => {
           <pre>
             {
               //JSON DATA
-              (respData = JSON.stringify(data.ponoMaps, null, 1))
+              (respData = JSON.stringify(data.microComments, null, 1))
             }
           </pre>;
 
@@ -172,7 +171,7 @@ export default class ModeratorElements extends Component {
       });
 
       axios
-        .post(`https://api.PrettyCoolPattern.com/upload`, formData, {
+        .post(`https://api.microhawaii.com/upload`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -311,6 +310,7 @@ mutation MyMutation {
           style={{
             backgroundColor: "transparent",
             width: "100%",
+            justifyContent: "center",
           }}
         >
           <ApolloProvider client={apolloClient}>
@@ -324,11 +324,12 @@ mutation MyMutation {
                 width: "100%",
               }}
             >
-              {" "}
               <CardHeader
                 className="ponoTitle"
                 style={{
                   backgroundColor: "transparent",
+                  justifyContent: "center",
+                  alignSelf: "center",
                   width: "100%",
 
                   opacity: 100,
@@ -353,18 +354,16 @@ mutation MyMutation {
                     height: "100%",
                     width: "100%",
                     backgroundColor: "transparent",
+                    justifyContent: "center",
+                    alignSelf: "center",
 
                     opacity: 100,
                   }}
                 >
                   <Button
-                    size="md"
+                    size="sm"
                     outline
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Helvetica",
-                    }}
-                    color="primary"
+                    color="alternate"
                     className={
                       "btn-pill btn-wide " +
                       classnames({ active: this.state.activeTab === "1" })
@@ -378,11 +377,7 @@ mutation MyMutation {
                   <Button
                     width="25px"
                     outline
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Helvetica",
-                    }}
-                    color="primary"
+                    color="alternate"
                     className={
                       "btn-pill btn-wide mr-1 ml-1 " +
                       classnames({ active: this.state.activeTab === "2" })
@@ -396,11 +391,7 @@ mutation MyMutation {
                   <Button
                     width="25px"
                     outline
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Helvetica",
-                    }}
-                    color="primary"
+                    color="alternate"
                     className={
                       "btn-pill btn-wide mr-1 ml-1 " +
                       classnames({ active: this.state.activeTab === "4" })
@@ -497,7 +488,14 @@ mutation MyMutation {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <CardTitle>Data Types:</CardTitle>
+                    <CardTitle
+                      style={{
+                        justifyContent: "center",
+                        alignSelf: "center",
+                      }}
+                    >
+                      Data Types:
+                    </CardTitle>
                     <TabContent
                       activeTab={this.state.activeTab2}
                       style={{
@@ -508,16 +506,19 @@ mutation MyMutation {
                         width: "100%",
                       }}
                     >
-                      <CardHeader className="ponoTitle ">
+                      <CardHeader
+                        style={{
+                          justifyContent: "center",
+                          alignSelf: "center",
+                          backgroundColor: "transparent",
+                        }}
+                        className="ponoTitle "
+                      >
                         {" "}
                         <Button
-                          size="md"
+                          size="sm"
                           outline
-                          style={{
-                            color: "#FFFFFF",
-                            fontFamily: "Helvetica",
-                          }}
-                          color="primary"
+                          color="alternate"
                           className={
                             "btn-pill btn-wide " +
                             classnames({
@@ -531,13 +532,9 @@ mutation MyMutation {
                           Products
                         </Button>
                         <Button
-                          size="md"
+                          size="sm"
                           outline
-                          style={{
-                            color: "#FFFFFF",
-                            fontFamily: "Helvetica",
-                          }}
-                          color="primary"
+                          color="alternate"
                           className={
                             "btn-pill btn-wide " +
                             classnames({
@@ -551,13 +548,9 @@ mutation MyMutation {
                           Users
                         </Button>
                         <Button
-                          size="md"
+                          size="sm"
                           outline
-                          style={{
-                            color: "#FFFFFF",
-                            fontFamily: "Helvetica",
-                          }}
-                          color="primary"
+                          color="alternate"
                           className={
                             "btn-pill btn-wide " +
                             classnames({
@@ -568,7 +561,6 @@ mutation MyMutation {
                             this.toggle2("3");
                           }}
                         >
-                          {" "}
                           Comments
                         </Button>
                       </CardHeader>

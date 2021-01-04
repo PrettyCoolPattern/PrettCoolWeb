@@ -12,7 +12,7 @@ class FormQueryComponent extends Component {
   }
   render() {
     this.state.authVar = axios
-      .get(`https://api.PrettyCoolPattern.com/micro-comments/`, {
+      .get(`https://api.microhawaii.com/pcp-products/`, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -20,10 +20,9 @@ class FormQueryComponent extends Component {
       })
       .then((res) => {
         if (res.err == null) {
-         
-        }          let concData = "";
+        }
+        let concData = "";
         for (var i = 0; i < JSON.parse(JSON.stringify(res.data)).length; i++) {
-
           concData =
             concData + JSON.stringify(JSON.parse(JSON.stringify(res.data))[i]);
           this.state.textVar = concData;
