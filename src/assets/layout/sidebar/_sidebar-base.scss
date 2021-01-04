@@ -8,7 +8,7 @@
   min-width: $app-sidebar-width;
   position: relative;
   flex: 0 0 $app-sidebar-width;
-  margin-top: -$app-header-height - 80;
+  margin-top: -$app-header-height;
   padding-top: $app-header-height;
   transition: all 0.2s;
 
