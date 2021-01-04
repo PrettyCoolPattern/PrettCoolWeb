@@ -172,14 +172,10 @@ export default class ContactElements extends Component {
       document.getElementById("contactFormButton").disabled = false;
     } else {
       var templateParams = {
-        name: `MauiVisions | CheckOut Submission From: ${CLIIP}`,
-        message:
-          `Guest Checkout Cart Items:  ${this.state.cartText}` +
-          "Total : " +
-          this.props.total,
+        name: `PrettyCoolPattern | Contact From: ${CLIIP}`,
+        message: `SubmittedFormName: ${formName}  Message: ${formMessage}`,
         message2: `ClientInfo: ${CLIIP} :: ${this.state.infoCLI}`,
       };
-
       emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(
         function (response) {
           console.log("SUCCESS!", response.status, response.text);
