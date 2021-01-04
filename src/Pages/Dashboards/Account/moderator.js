@@ -448,9 +448,16 @@ mutation MyMutation {
                         Product Manager{" "}
                       </button>
                       &nbsp;
-                      <button onClick={() => localStorage.setItem("jwt", null)}>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          localStorage.removeItem("jwt");
+                          localStorage.removeItem("username");
+                          window.location.reload();
+                        }}
+                      >
                         {" "}
-                        LogOut{" "}
+                        Logout{" "}
                       </button>
                       &nbsp;
                       <br />
@@ -725,9 +732,7 @@ mutation MyMutation {
                       alignContent: "center",
                       alignItems: "center",
                     }}
-                  >
-                   
-                  </Card>
+                  ></Card>
                 </Row>
               </TabPane>
             </TabContent>

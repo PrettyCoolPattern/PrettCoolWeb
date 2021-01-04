@@ -138,6 +138,8 @@ export default class LoginPageElements extends Component {
         .then((result) => {
           localStorage.setItem("jwt", result.data.jwt);
           localStorage.setItem("username", this.state.signFormUser);
+          window.location.reload();
+
           if (result.data.errors) {
             alert("Invalid User/Pass");
           }
