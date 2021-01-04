@@ -33,14 +33,12 @@ class LandingPage extends React.Component {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <img
+              style={{
+                width: window.innerWidth * 0.35,
+              }}
+              src="/images/Mandala1kSeriesX.gif"
+            ></img>
             <br />
             <br />
             <br />

@@ -37,12 +37,12 @@
 }
 
 body {
-  
-  background-image: url('/assets/images/bgr.jpg');
-background-repeat: repeat-y;
+  background-image: url("/assets/images/bgr.jpg");
+  background-repeat: repeat-y;
 }
 
 card {
-
-  box-shadow: "0px 0px 0px 5px rgba(50,50,50, .8)" 
+  box-shadow: "0px 0px 0px 5px rgba(50,50,50, .8)";
 }
+
+
