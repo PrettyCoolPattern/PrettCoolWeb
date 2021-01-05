@@ -27,6 +27,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import Calendar from "react-calendar";
+import "../../../assets/components/Calendar.css";
 class EventManagerComponent extends Component {
   constructor(props) {
     super(props);
@@ -100,9 +101,7 @@ class EventManagerComponent extends Component {
   stopTimer() {
     clearInterval(this.timerId);
   }
-  componentDidMount() {
-    this.startTimer;
-  }
+  componentDidMount() {}
   componentDidUnmount() {
     this.stopTimer;
   }
@@ -147,8 +146,9 @@ class EventManagerComponent extends Component {
             />
           </span>{" "}
           <br />
-          Add Selected Calendar Data:
+          Add Data to Date:
           <Input
+            disabled
             value={this.state.set}
             style={{ width: "100%", top: "15px", position: "relative" }}
             type="text"

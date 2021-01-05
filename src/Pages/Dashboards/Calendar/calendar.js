@@ -8,8 +8,6 @@ var CalendarUI = require("tui-calendar"); /* CommonJS */
 require("tui-calendar/dist/tui-calendar.css");
 
 // If you use the default popups, use this.
-require("tui-date-picker/dist/tui-date-picker.css");
-require("tui-time-picker/dist/tui-time-picker.css");
 /**
  * Calendar's options prop
  * @type {string[]}
