@@ -20,6 +20,10 @@ import FormQueryComponent from "./FormQueryComponent.js";
 import UserQueryComponent from "./UserQueryComponent.js";
 import { toInteger } from "lodash";
 import ProductManagerComponent from "./ProductManagerComponent.js";
+import ChatManagerComponent from "./ChatManagerComponent.js";
+import ContentManagerComponent from "./ContentManagerComponent.js";
+import EventManagerComponent from "./EventManagerComponent.js";
+import NoteManagerComponent from "./NoteManagerComponent.js";
 
 import classnames from "classnames";
 
@@ -335,9 +339,7 @@ mutation MyMutation {
                   opacity: 100,
                 }}
               >
-                <i className="header-icon pe-7s-tools icon-gradient bg-plum-plate">
-                  {" "}
-                </i>
+                <i className="header-icon pe-7s-tools icon-gradient bg-plum-plate"></i>
                 Moderator Control Panel
               </CardHeader>
               <div
@@ -404,7 +406,7 @@ mutation MyMutation {
                   </Button>
                 </CardHeader>
               </div>
-              <br /> <br />
+              <br />
               <TabPane
                 className="ponoTitle"
                 tabId="1"
@@ -415,9 +417,7 @@ mutation MyMutation {
                   opacity: 100,
                 }}
               >
-                {" "}
                 <Row style={{ justifyContent: "center" }}>
-                  {" "}
                   <Card
                     style={{
                       width: "26rem",
@@ -425,21 +425,72 @@ mutation MyMutation {
                       alignContent: "center",
                       height: "100%",
                       alignItems: "center",
+                      marginRight: "10px",
+                      marginLeft: "10px",
+                      marginTop: "10px",
                     }}
                   >
-                    <br />
-                    <Form onSubmit={this.setMutation()}>
-                      <br />
+                    <CardTitle
+                      style={{
+                        justifyContent: "center",
+                        alignSelf: "center",
+                      }}
+                    >
+                      Main Website Tools:
+                    </CardTitle>
+                    <span style={{ marginLeft: "10px", display: "block" }}>
                       <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
                         onClick={() => {
-                          this.toggle("3");
+                          this.toggle("Chat");
                         }}
                       >
                         {" "}
-                        Product Manager{" "}
+                        Chat{" "}
                       </button>
                       &nbsp;
                       <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        onClick={() => {
+                          this.toggle("Products");
+                        }}
+                      >
+                        {" "}
+                        Products{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        onClick={() => {
+                          this.toggle("Events");
+                        }}
+                      >
+                        {" "}
+                        Events{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        onClick={() => {
+                          this.toggle("Content");
+                        }}
+                      >
+                        {" "}
+                        Content Editor{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        onClick={() => {
+                          this.toggle("Notes");
+                        }}
+                      >
+                        {" "}
+                        Notes{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ marginTop: "10px", borderRadius: "10px" }}
                         onClick={(e) => {
                           e.preventDefault();
                           localStorage.removeItem("jwt");
@@ -453,39 +504,16 @@ mutation MyMutation {
                       &nbsp;
                       <br />
                       <br />
-                      <Input></Input>
-                      <Button disabled>Approve Comment #</Button>
-                      <br />
-                      <Input></Input>
-                      <Button disabled>Reject Comment #</Button>
-                      <br />
-                      <Input type="textarea"></Input>
-                      <Button disabled style={{ top: "-22px" }}>
-                        Set HomePage Article Data
-                      </Button>
-                      <br />
-                      <Input type="textarea"></Input>
-                      <Button disabled style={{ top: "-22px" }}>
-                        Set About Article Data
-                      </Button>
-                      <br />
-                      <Input
-                        value={this.state.formName}
-                        onChange={this.handleInputChange}
-                        type="textarea"
-                      ></Input>
-                      <span style={{ position: "relative", top: "-22px" }}>
-                        <MyMutationMutation></MyMutationMutation>
-                      </span>
-                      <br />
-                      <br />
-                    </Form>{" "}
+                    </span>
                   </Card>
                   <Card
                     style={{
                       width: "26rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       backgroundColor: "transparent",
+                      marginLeft: "10px",
+                      marginRight: "10px",
+                      marginTop: "10px",
                     }}
                   >
                     <CardTitle
@@ -494,7 +522,7 @@ mutation MyMutation {
                         alignSelf: "center",
                       }}
                     >
-                      Data Types:
+                      Data Browser:
                     </CardTitle>
                     <TabContent
                       activeTab={this.state.activeTab2}
@@ -725,6 +753,81 @@ mutation MyMutation {
                       alignItems: "center",
                     }}
                   ></Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Chat">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ChatManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Events">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <EventManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Products">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ProductManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Content">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ContentManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Notes">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <NoteManagerComponent />
+                  </Card>
                 </Row>
               </TabPane>
             </TabContent>

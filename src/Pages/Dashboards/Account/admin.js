@@ -53,6 +53,7 @@ import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import { relative } from "path";
 import ModeratorElements from "./moderator";
 import AccountElements from "./account";
+import LoginPageElements from "./loginPage";
 
 // This setup is only needed once per application;
 const apolloClient = new ApolloClient({
@@ -262,6 +263,16 @@ export default class AdminElements extends Component {
               <CardBody>
                 <TabContent activeTab={this.state.activeTab}>
                   <TabPane tabId="1">
+                    <Card
+                      style={{
+                        width: "100%",
+                        boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                        alignContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <LoginPageElements />
+                    </Card>
                     <Card
                       style={{
                         width: "100%",
