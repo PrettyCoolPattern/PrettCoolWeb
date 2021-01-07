@@ -136,6 +136,7 @@ export default class AccountElements extends Component {
     `;
 
     const MyMutationMutation = (props) => {
+      this.state.sendButton = "Send";
       try {
         return (
           <Mutation mutation={MY_MUTATION_MUTATION}>
@@ -146,20 +147,21 @@ export default class AccountElements extends Component {
                 if (error) {
                 }
               } catch (error) {}
-              const dataEl = data ? (
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-              ) : null;
-
+              const dataEl = data
+                ? ((<pre>{JSON.stringify(null, null, 2)}</pre>),
+                  (this.state.sendButton = "Message Sent!"))
+                : null;
               return (
                 <div style={{ alignContent: "center" }}>
                   <br />
                   {dataEl} &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
+                    id="apiupform2"
                     onClick={() =>
                       MyMutation(formName + formDesc, Date().toString())
                     }
                   >
-                    Send
+                    {this.state.sendButton}
                   </button>{" "}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <button
