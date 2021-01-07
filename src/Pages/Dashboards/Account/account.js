@@ -15,6 +15,7 @@ import ReactDOM from "react-dom";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
 
+import classnames from "classnames";
 import {
   Row,
   Col,
@@ -67,9 +68,11 @@ export default class AccountElements extends Component {
       formName: [],
       formDesc: [],
       formMessage: "",
+      activeTab: "1",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputChange2 = this.handleInputChange2.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   handleInputChange(event) {
@@ -83,6 +86,13 @@ export default class AccountElements extends Component {
     });
   }
 
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
+    }
+  }
   submitContact() {
     let { formName, formEmail, formMessage } = this.state;
 
@@ -168,68 +178,145 @@ export default class AccountElements extends Component {
     };
     return (
       <Fragment>
-        <Container fluid>
+        <Row
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            alignContent: "center",
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
           <ApolloProvider client={apolloClient}>
             <Card
               style={{
-                width: "25rem",
+                width: "24rem",
                 boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
               }}
             >
-              <CardHeader
+              <TabContent
+                activeTab={this.state.activeTab}
                 style={{
                   backgroundColor: "transparent",
-                }}
-              >
-                Succseffully Signed-In as {localStorage.getItem("username")}
-              </CardHeader>
-              <CardBody
-                style={{
-                  backgroundColor: "transparent",
-                }}
-              >
-                Thank you for signing up with PrettyCoolPattern!
-              </CardBody>{" "}
-              <CardHeader
-                style={{
-                  backgroundColor: "transparent",
-                }}
-              >
-                {" "}
-                Additional Features Coming Soon{" "}
-              </CardHeader>
-              <CardBody
-                style={{
+                  opacity: 0.9,
                   justifyContent: "center",
+                  alignSelf: "center",
+                  width: "100%",
                 }}
               >
-                <Form
+                <CardHeader
+                  className="ponoTitle"
                   style={{
+                    backgroundColor: "transparent",
                     justifyContent: "center",
+                    alignSelf: "center",
+                    width: "100%",
+
+                    opacity: 100,
                   }}
                 >
-                  Name: <br />
-                  <Input
-                    onChange={this.handleInputChange}
-                    name="formName"
-                    type="text"
-                    value={this.state.formName}
-                  ></Input>
-                  <br />
-                  Message: <br />
-                  <Input
-                    onChange={this.handleInputChange2}
-                    name="formDesc"
-                    type="textarea"
-                    value={this.state.formDesc}
-                  ></Input>
-                  <br />
-                </Form>
-                <MyMutationMutation />
-              </CardBody>
+                  <Button
+                    size="sm"
+                    outline
+                    color="alternate"
+                    className={
+                      "btn-pill btn-wide " +
+                      classnames({ active: this.state.activeTab === "1" })
+                    }
+                    onClick={() => {
+                      this.toggle("1");
+                    }}
+                  >
+                    Contact
+                  </Button>
+                  &nbsp;
+                  <Button
+                    size="sm"
+                    outline
+                    color="alternate"
+                    className={
+                      "btn-pill btn-wide " +
+                      classnames({ active: this.state.activeTab === "2" })
+                    }
+                    onClick={() => {
+                      this.toggle("2");
+                    }}
+                  >
+                    Public Chat
+                  </Button>
+                  &nbsp;
+                  <Button
+                    size="sm"
+                    outline
+                    color="alternate"
+                    className={
+                      "btn-pill btn-wide " +
+                      classnames({ active: this.state.activeTab === "3" })
+                    }
+                    onClick={() => {
+                      this.toggle("3");
+                    }}
+                  >
+                    Your Account
+                  </Button>
+                </CardHeader>
+                <TabPane tabId="1">
+                  <CardHeader
+                    style={{
+                      backgroundColor: "transparent",
+                    }}
+                  >
+                    Welcome, {localStorage.getItem("username")} !
+                  </CardHeader>
+                  <CardBody
+                    style={{
+                      backgroundColor: "transparent",
+                    }}
+                  >
+                    <div> Thank you for signing up with PrettyCoolPattern!</div>{" "}
+                    <br />
+                    Additional site features are coming soon, for now you can
+                    send a message directly to administaration here.
+                    <br />
+                    <br />
+                    <Form
+                      style={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      Contact Info: <br />
+                      <Input
+                        onChange={this.handleInputChange}
+                        name="formName"
+                        type="text"
+                        value={this.state.formName}
+                      ></Input>
+                      <br />
+                      Message: <br />
+                      <Input
+                        style={{ width: "250px" }}
+                        onChange={this.handleInputChange2}
+                        name="formDesc"
+                        type="textarea"
+                        value={this.state.formDesc}
+                      ></Input>
+                      <br />
+                    </Form>
+                    <MyMutationMutation />
+                  </CardBody>
+                </TabPane>
+                <TabPane tabId="2">
+                  <CardBody>Public Chat, Coming Soon.</CardBody>
+                </TabPane>
+                <TabPane tabId="3">
+                  <CardBody>
+                    Account information and tools will propagate here soon.
+                  </CardBody>
+                </TabPane>
+              </TabContent>
             </Card>
           </ApolloProvider>
-        </Container>
+        </Row>
       </Fragment>
     );
   }

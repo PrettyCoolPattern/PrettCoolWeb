@@ -116,51 +116,59 @@ class EventManagerComponent extends Component {
   render() {
     return (
       <Fragment>
-        <CardHeader> PCP Event Manager</CardHeader>
-        <CardBody>
-          <div
-            style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-            }}
-          >
-            <p>
-              {Intl.DateTimeFormat("en-US", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-              }).format(Date.now())}
-            </p>
-          </div>{" "}
-          [ Load Event Data Here]
-          <br />
-          <input style={{ width: "50px" }}></input> &nbsp;
-          <button> Delete Event #</button> <br />
-          <br />
-          <span className="calendarVar">
-            <Calendar
-              className="calendarVar"
-              onChange={(e) => this.setState({ set: e })}
-            />
-          </span>{" "}
-          <br />
-          Add Data to Date:
-          <Input
-            disabled
-            value={this.state.set}
-            style={{ width: "100%", top: "15px", position: "relative" }}
-            type="text"
-          ></Input>{" "}
-          <br /> Description:
-          <Input
-            style={{ top: "15px", position: "relative" }}
-            type="textarea"
-          ></Input>{" "}
-          &nbsp;
-          <button> Add</button> <br />
-        </CardBody>
+        <Card
+          style={{
+            boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+            width: "22rem",
+          }}
+        >
+          <CardHeader> PCP Event Manager</CardHeader>
+          <CardBody>
+            <div
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+                width: "16rem",
+              }}
+            >
+              <p>
+                {Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                }).format(Date.now())}
+              </p>
+            </div>{" "}
+            [ Load Event Data Here]
+            <br />
+            <input style={{ width: "50px" }}></input> &nbsp;
+            <button> Delete Event #</button> <br />
+            <br />
+            <span className="calendarVar">
+              <Calendar
+                className="calendarVar"
+                onChange={(e) => this.setState({ set: e })}
+              />
+            </span>{" "}
+            <br />
+            Select Date then Add Data:
+            <Input
+              disabled
+              value={this.state.set}
+              style={{ width: "100%", top: "15px", position: "relative" }}
+              type="text"
+            ></Input>{" "}
+            <br /> Description:
+            <Input
+              style={{ top: "15px", position: "relative" }}
+              type="textarea"
+            ></Input>{" "}
+            &nbsp;
+            <button> Add</button> <br />
+          </CardBody>
+        </Card>
         <br />
       </Fragment>
     );

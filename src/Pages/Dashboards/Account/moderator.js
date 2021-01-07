@@ -127,7 +127,6 @@ export default class ModeratorElements extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlePriceInputChange = this.handlePriceInputChange.bind(this);
     this.getData = this.getData.bind(this);
-    this.heartBeat = this.heartBeat.bind(this);
     this.toggle = this.toggle.bind(this);
     this.toggle2 = this.toggle2.bind(this);
   }
@@ -216,9 +215,6 @@ export default class ModeratorElements extends Component {
       formName = document.getElementById("formName");
     }
   }
-  heartBeat() {
-    setInterval(this.getData, 3000);
-  }
   componentDidMount() {
     this.setState({ cartItems: ["x"] });
     this.getData();
@@ -227,8 +223,8 @@ export default class ModeratorElements extends Component {
     setTimeout(() => this.getData(), 2500);
 
     this.intervalID2 = setInterval(() => {
-      this.getData();
-    }, 5000);
+      this.getData.bind(this);
+    }, 1000);
   }
   componentWillUnmount() {
     clearInterval(this.intervalID2);
