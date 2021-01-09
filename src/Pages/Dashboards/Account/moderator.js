@@ -153,19 +153,13 @@ export default class ModeratorElements extends Component {
   }
   getMetrics() {
     console.log("Updating Metrics"),
-      this.setState({ userMetric: localStorage.getItem("ActiveUserCount") }),
       this.setState({
+        userMetric: localStorage.getItem("ActiveUserCount"),
         chatMetric: localStorage.getItem("ActiveChatUserCount"),
+        issuesMetric: localStorage.getItem("ActiveIssueCount"),
+        commentsMetric: localStorage.getItem("CommentsCount"),
+        SurveyMetric: localStorage.getItem("NewSurveyCount"),
       });
-    this.setState({
-      issuesMetric: localStorage.getItem("ActiveIssueCount"),
-    });
-    this.setState({
-      commentsMetric: localStorage.getItem("CommentsCount"),
-    });
-    this.setState({
-      SurveyMetric: localStorage.getItem("NewSurveyCount"),
-    });
   }
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -354,25 +348,19 @@ export default class ModeratorElements extends Component {
               </CardHeader>
               <br />
               <br />
-              <TabPane
-                className="ponoTitle"
-                tabId="1"
-                style={{
-                  height: "100%",
-                  backgroundColor: "transparent",
-                  alignContent: "center",
-                  opacity: 100,
-                }}
-              >
-                <Row style={{ justifyContent: "center" }}>
+              <Row style={{ justifyContent: "center" }}>
+                <Row>
+                  {" "}
                   <Card
                     style={{
-                      width: "24rem",
+                      width: "auto",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       alignContent: "center",
                       height: "100%",
-                      marginTop: "10px",
-                      marginBottom: "-20px",
+                      marginTop: "-5px",
+                      marginBottom: "-10px",
+                      marginLeft: "25px",
+                      marginRight: "25px",
                       alignItems: "center",
                     }}
                   >
@@ -599,59 +587,74 @@ export default class ModeratorElements extends Component {
                       <br />
                     </span>
                   </Card>
-                  <Card
-                    style={{
-                      width: "24rem",
-                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                      alignContent: "center",
-                      height: "100%",
-                      marginTop: "12px",
-                      alignItems: "center",
-                      marginBottom: "25px",
-                    }}
-                  >
-                    <CardTitle
+                </Row>
+                <TabPane
+                  className="ponoTitle"
+                  tabId="1"
+                  style={{
+                    height: "100%",
+                    backgroundColor: "transparent",
+                    alignContent: "center",
+                    opacity: 100,
+                  }}
+                >
+                  <Row>
+                    {" "}
+                    <Card
                       style={{
-                        justifyContent: "center",
-                        alignSelf: "center",
+                        width: "18rem",
+                        boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                        alignContent: "center",
+                        height: "100%",
+                        marginTop: "15px",
+                        marginLeft: "25px",
+                        alignItems: "center",
+                        marginBottom: "25px",
                       }}
                     >
-                      <h4>Highlight Metrics:</h4>
-                    </CardTitle>
-                    <TabContent
-                      activeTab={this.state.activeTab2}
-                      style={{
-                        backgroundColor: "transparent",
-                        opacity: 0.9,
-                        justifyContent: "center",
-                        alignSelf: "center",
-                        width: "100%",
-                      }}
-                    >
-                      <TabPane
-                        className="ponoTitle"
-                        tabId="1"
+                      <CardTitle
                         style={{
-                          height: "100%",
-                          opacity: 100,
+                          justifyContent: "center",
+                          alignSelf: "center",
                         }}
                       >
-                        <h4>
-                          Users: {this.state.userMetric}
-                          <br />
-                          Chat Live: {this.state.chatMetric}
-                          <br />
-                          Comments: {this.state.commentsMetric}
-                          <br />
-                          Open Issues: {this.state.issuesMetric}
-                          <br />
-                          Survey Responses: {this.state.SurveyMetric}
-                        </h4>
-                      </TabPane>
-                    </TabContent>
-                  </Card>
-                </Row>
-              </TabPane>
+                        <h4>Highlight Metrics:</h4>
+                      </CardTitle>
+                      <TabContent
+                        activeTab={this.state.activeTab2}
+                        style={{
+                          backgroundColor: "transparent",
+                          opacity: 0.9,
+                          justifyContent: "center",
+                          alignSelf: "center",
+                          width: "100%",
+                        }}
+                      >
+                        <TabPane
+                          className="ponoTitle"
+                          tabId="1"
+                          style={{
+                            height: "100%",
+                            opacity: 100,
+                          }}
+                        >
+                          <h4>
+                            Users: {this.state.userMetric}
+                            <br />
+                            Chat Live: {this.state.chatMetric}
+                            <br />
+                            Comments: {this.state.commentsMetric}
+                            <br />
+                            Open Issues: {this.state.issuesMetric}
+                            <br />
+                            Survey Responses: {this.state.SurveyMetric}
+                          </h4>
+                        </TabPane>
+                      </TabContent>
+                    </Card>
+                  </Row>
+                </TabPane>
+              </Row>
               <TabPane tabId="2">
                 <Row style={{ justifyContent: "center" }}>
                   {" "}
