@@ -5,9 +5,9 @@ export const MainNav = [
     to: "#/dashboards/home",
   },
   {
-    icon: "pe-7s-date",
-    label: "Events",
-    to: "#/dashboards/calendar",
+    icon: "pe-7s-shopbag",
+    label: "Shop",
+    to: "./#/dashboards/shop",
   },
   {
     icon: "pe-7s-photo",
@@ -25,9 +25,9 @@ export const MainNav = [
     to: "#/dashboards/writing",
   },
   {
-    icon: "pe-7s-shopbag",
-    label: "Shop",
-    to: "./#/dashboards/shop",
+    icon: "pe-7s-date",
+    label: "Events",
+    to: "#/dashboards/calendar",
   },
 ];
 export const AboutNav = [

@@ -21,6 +21,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  CardTitle,
   CardLink,
   CardImg,
   NavLink,
@@ -97,19 +98,29 @@ export default class ProjectElements extends Component {
           <Row
             style={{
               alignContent: "center",
-              alignItems: "center",
               justifyContent: "center",
+              marginTop: "-15px",
+              marginBottom: "-15px",
+
+              textAlign: "center",
             }}
+            width="100%"
           >
-            <Col xs="auto" sm="auto" md="auto" xl="auto">
-              <Card>
-                <CardBody>
-                  <h1>Welcome to PrettyCoolPattern blogs.</h1>
-                </CardBody>
-              </Card>
-            </Col>
+            <CardTitle
+              style={{
+                textAlign: "center",
+                borderRadius: "25px",
+                backgroundColor: "#440066BB",
+                paddingRight: "10px",
+                paddingLeft: "10px",
+                fontWeight: "900",
+                color: "whitesmoke",
+                fontSize: "36px",
+              }}
+            >
+              PrettyCoolBlog
+            </CardTitle>
           </Row>
-          <br></br>
 
           <Row
             style={{
@@ -122,15 +133,12 @@ export default class ProjectElements extends Component {
               <Card>
                 <CardBody>
                   <h3>
-                    With over fifteen years of software development experience,
-                    Jason Hoku, along-side the PrettyCoolPattern team are
-                    dedicated to a variety of powerful skillsets and networks.
+                    The PrettyCoolPattern team is dedicated to a variety of
+                    powerful skillsets and networks.
                   </h3>
                   <li>
                     OpenSource on &nbsp;
-                    <a href="https://github.com/JasonHoku">
-                      GitHub
-                    </a>
+                    <a href="https://github.com/JasonHoku">GitHub</a>
                   </li>
                   <li>
                     Website Tutorials on &nbsp;
@@ -151,51 +159,63 @@ export default class ProjectElements extends Component {
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://www.facebook.com/PrettyCoolPattern"
                     >
                       {<ImFacebook size="50px" />}
+                      2k
                     </a>
-                    2k &nbsp; &nbsp;&nbsp;
+                    &nbsp; &nbsp;&nbsp;
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://www.instagram.com/jasonlevien/"
                     >
                       {<ImInstagram size="50px" />}
+                      14k{" "}
                     </a>
-                    14k &nbsp; &nbsp;&nbsp;
+                    &nbsp; &nbsp;&nbsp;
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://www.youtube.com/JasonLevien808"
                     >
                       {<ImYoutube size="50px" />}
+                      170{" "}
                     </a>
-                    170 &nbsp; &nbsp;&nbsp;
+                    &nbsp; &nbsp;&nbsp;
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://twitter.com/JasonHoku"
                     >
                       {<ImTwitter size="50px" />}
+                      6k{" "}
                     </a>
-                    6k &nbsp; &nbsp;&nbsp;
+                    &nbsp; &nbsp;&nbsp;
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://discord.gg/fjV4yg7TWd"
                     >
                       {<FaDiscord size="50px" />}
+                      200
                     </a>
-                    200&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
+                        marginTop:"5px",
                       }}
                       href="https://www.linkedin.com/in/jasonlevien/"
                     >
@@ -205,6 +225,7 @@ export default class ProjectElements extends Component {
                     <a
                       style={{
                         textDecorationLine: "none",
+                        marginTop:"5px",
                       }}
                       href="https://github.com/JasonHoku"
                     >
@@ -212,7 +233,6 @@ export default class ProjectElements extends Component {
                     </a>
                     &nbsp;&nbsp;&nbsp;
                   </Row>
-                  <br></br>
                 </CardBody>
               </Card>
               <Row
@@ -298,7 +318,7 @@ export default class ProjectElements extends Component {
           <Card
             alignContent="center"
             style={{
-              width: "60%",
+              width: "100%",
               alignContent: "center",
               alignItems: "center",
               justifyContent: "center",
@@ -307,7 +327,7 @@ export default class ProjectElements extends Component {
             <CardHeader>
               {" "}
               <a href="https://github.com/JasonHoku">
-                Jason Hoku, GitHub Contribution Activity:
+                GitHub Contribution Activity:
               </a>
             </CardHeader>
             <CardBody>
@@ -323,8 +343,8 @@ export default class ProjectElements extends Component {
             <Col xs="auto" sm="auto" md="auto" xl="auto">
               <Card>
                 <CardBody>
-                  For now you can find more about PrettyCoolPattern skillsets on
-                  the <a href="#/dashboards/services">services</a> page.
+                  Find more about PrettyCoolPattern on the{" "}
+                  <a href="#/dashboards/services">services</a> page.
                   <br></br>
                 </CardBody>
               </Card>
