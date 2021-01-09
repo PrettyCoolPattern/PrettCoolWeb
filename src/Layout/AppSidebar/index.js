@@ -37,7 +37,6 @@ class AppSidebar extends Component {
           })}
           transitionName="SidebarAnimation" transitionAppear={true} transitionAppearTimeout={1500}
           transitionEnter={false} transitionLeave={false}>
-          <HeaderLogo />
           <PerfectScrollbar>
             <div className="app-sidebar__inner">
               <Nav />

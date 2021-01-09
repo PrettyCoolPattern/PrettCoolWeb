@@ -27,6 +27,7 @@ import {
   ListGroup,
   ListGroupItem,
   Card,
+  CardTitle,
   CardBody,
   CardHeader,
   NavLink,
@@ -192,31 +193,58 @@ export default class ShopPage extends Component {
     document.getElementById("popupContainer");
     return (
       <Fragment>
+        <Row
+          style={{
+            alignContent: "center",
+            justifyContent: "center",
+            marginTop: "-15px",
+            marginBottom: "-15px",
+
+            textAlign: "center",
+          }}
+          width="100%"
+        >
+          <CardTitle
+            style={{
+              textAlign: "center",
+              borderRadius: "25px",
+              backgroundColor: "#440066BB",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              fontWeight: "900",
+              color: "whitesmoke",
+              fontSize: "36px",
+            }}
+          >
+            PrettyCoolShoppe
+          </CardTitle>
+        </Row>
         <div>
           <center>
             {" "}
             <br />
             <Card
               style={{
-                width: "22rem",
+                width: "19rem",
                 boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                borderRadius:"35px"
               }}
             >
-              <CardHeader>
-                {" "}
-                <strong>Welcome to the PrettyCoolPattern E-Shop</strong>
-              </CardHeader>
-              <CardBody style={{}}>
-                {" "}
-                <p> </p>
-                <p> </p>
-                <p>
-                  More information about the services offered here can be found
-                  at the
-                  <a href="#/dashboards/services"> services</a> page.
-                </p>
-                <br></br>
-              </CardBody>
+              <CardTitle>
+                <div width="100%">
+                  <strong style={{ fontSize: "130%" }}>
+                    Welcome to the Shop
+                  </strong>{" "}
+                </div>
+                <br />
+                <br />
+                <span style={{ fontFamily: "monospace", fontSize: "150%" }}>
+                  {" "}
+                  Apparel and web services
+                </span>
+                <br />
+                <br /> <a href="/#/dashboards/contact">Questions?</a>
+              </CardTitle>
             </Card>
           </center>
           <Products
@@ -244,7 +272,7 @@ export default class ShopPage extends Component {
             {" "}
             <CardHeader>
               {" "}
-              <strong>Shirt Sizings:</strong>
+              <strong>Shirt Sizes:</strong>
             </CardHeader>
             <img src="/images/shirtsize.png" height="80"></img>
           </Card>{" "}
@@ -255,22 +283,16 @@ export default class ShopPage extends Component {
               boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
             }}
           >
-            <CardBody style={{ textAlign: "left" }}>
-              {" "}
-              <p> </p>
-              <p>
-                <li>
-                  If you have any questions please use the{" "}
-                  <a href="#/dashboards/contact"> easy contact form.</a>
-                </li>
-              </p>
-              <p>
-                <li>
-                  Refer to the
-                  <a href="#/dashboards/services"> services</a> page for more
-                  information about expertise and offers.
-                </li>
-              </p>
+            <CardBody style={{ textAlign: "left", fontSize: "120%" }}>
+              <li>
+                If you have any questions please use the{" "}
+                <a href="#/dashboards/contact"> contact form.</a>
+              </li>{" "}
+              <br />
+              <li>
+                <a href="#/dashboards/services">The services page</a> has more
+                information about offers.
+              </li>
             </CardBody>
           </Card>
           <p> </p>
