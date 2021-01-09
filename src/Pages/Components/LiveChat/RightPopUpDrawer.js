@@ -202,7 +202,11 @@ class HeaderRightDrawer extends React.Component {
               >
                 <div style={{ width: "350px" }}>
                   <a href="/#/dashboards/Account">
-                    <Button size="large" style={{ fontSize: "120%" }}>
+                    <Button
+                      onClick={this.closeRightSidebar}
+                      size="large"
+                      style={{ fontSize: "120%" }}
+                    >
                       <div
                         style={{
                           position: "relative",
@@ -259,7 +263,11 @@ class HeaderRightDrawer extends React.Component {
               >
                 <div style={{ width: "350px" }}>
                   <a href="/#/dashboards/services">
-                    <Button size="large" style={{ fontSize: "120%" }}>
+                    <Button
+                      onClick={this.closeRightSidebar}
+                      size="large"
+                      style={{ fontSize: "120%" }}
+                    >
                       <div
                         style={{
                           position: "relative",
