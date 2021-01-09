@@ -312,29 +312,38 @@ class HeaderRightDrawer extends React.Component {
               </div>{" "}
               <br />
               <div
-                className="helpFooter"
-                style={{ position: "bottom", marginLeft: "25px" }}
+                style={{
+                  position: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
               >
-                <Input
-                  disabled
-                  type="textarea"
-                  placeholder="Live Chat Currently Offline: This form will send messages directly to admin."
-                  style={{ width: "190px", height: "125px" }}
-                ></Input>{" "}
-                <br />
-                <Input
-                  onChange={this.handleInputChange}
-                  name="formName"
-                  value={this.state.formName}
-                  type="textarea"
-                  style={{ width: "190px" }}
-                ></Input>
-                <span style={{ position: "relative", top: "-15px" }}>
-                  <ApolloProvider client={apolloClient}>
-                    <MyMutationMutation />
-                  </ApolloProvider>
-                </span>
-                <img src="/images/PCP-Site-Logo.gif"></img>
+                <div
+                  className="helpFooter"
+                  style={{ position: "bottom", marginLeft: "25px" }}
+                >
+                  <Input
+                    disabled
+                    type="textarea"
+                    placeholder="Live Chat Currently Offline: This form will send messages directly to admin."
+                    style={{ width: "190px", height: "125px" }}
+                  ></Input>{" "}
+                  <br />
+                  <Input
+                    onChange={this.handleInputChange}
+                    name="formName"
+                    value={this.state.formName}
+                    type="textarea"
+                    style={{ width: "190px" }}
+                  ></Input>
+                  <span style={{ position: "relative", top: "-15px" }}>
+                    <ApolloProvider client={apolloClient}>
+                      <MyMutationMutation />
+                    </ApolloProvider>
+                  </span>{" "}
+                  <br />
+                  <img src="/images/PCP-Site-Logo.gif"></img>{" "}
+                </div>
               </div>
             </div>
           </PerfectScrollbar>
