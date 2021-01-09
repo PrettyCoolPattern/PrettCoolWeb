@@ -1,4 +1,5 @@
 import React, { Component, Fragment, useEffect } from "react";
+import { compose, graphql } from "react-apollo";
 import { gql, useQuery } from "@apollo/client";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
@@ -36,13 +37,13 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-class DocumentationPage extends Component {
+class IssueManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
       noteVar: "",
-      textVar2: "Select an Instance ",
-      deleteIDVar: "26",
+      textVar: " Loading...",
+      deleteIDVar: "0",
     };
   }
 
@@ -61,10 +62,10 @@ class DocumentationPage extends Component {
     clearInterval(this.state.intervalId);
   }
   getData() {
-    console.log("Check Live Chat Data");
+    console.log("Check Chat Data");
     try {
       this.state.authVar = axios
-        .get(`https://api.microHawaii.com/live-chats`, {
+        .get(`https://api.microHawaii.com/issues`, {
           headers: {
             "content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -82,8 +83,12 @@ class DocumentationPage extends Component {
           ) {
             concData =
               concData +
-              "\r\n Available Instance #: " +
-              String(JSON.parse(JSON.stringify(res.data))[i].instance);
+              "\r\n ID#" +
+              String(JSON.parse(JSON.stringify(res.data))[i].id) +
+              "| " +
+              String(JSON.parse(JSON.stringify(res.data))[i].Title) +
+              ": " +
+              String(JSON.parse(JSON.stringify(res.data))[i].Description);
 
             this.state.textVar = concData
               .split("\n")
@@ -103,6 +108,11 @@ class DocumentationPage extends Component {
       noteVar: event.target.value,
     });
   }
+  handleInputChange3(event) {
+    this.setState({
+      titleVar: event.target.value,
+    });
+  }
   handleInputChange2(event) {
     this.setState({
       deleteIDVar: event.target.value,
@@ -111,23 +121,23 @@ class DocumentationPage extends Component {
 
   onSubmit = () => {
     const formData = new FormData();
-    formData.Answers = this.state.noteVar;
+    formData.Description = this.state.noteVar;
+    formData.Title = this.state.titleVar;
+    formData.User = localStorage.getItem("username");
+    console.log(formData);
 
     axios
-      .post(
-        `https://api.microhawaii.com/live-chats`,
-        JSON.stringify(formData),
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      )
+      .post(`https://api.microhawaii.com/issues`, JSON.stringify(formData), {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
       .then((res) => {
         if (res.err == null) {
           document.getElementById("apiupform").hidden = false;
         }
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -142,7 +152,7 @@ class DocumentationPage extends Component {
 
     axios
       .post(
-        `https://api.microhawaii.com/live-chats`,
+        `https://api.microhawaii.com/micro-comments`,
         JSON.stringify(formData),
         {
           headers: {
@@ -155,6 +165,7 @@ class DocumentationPage extends Component {
         if (res.err == null) {
           alert("Success!");
         }
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -174,9 +185,9 @@ class DocumentationPage extends Component {
     const { data } = this.state;
 
     const MY_MUTATION_MUTATION = gql`
-      mutation DeleteNote {
-        deleteSurvey(input: { where: { id: ${this.state.deleteIDVar} } }) {
-          survey {
+      mutation DeleteIssue {
+        deleteIssue(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          issue {
             id
           }
         }
@@ -204,7 +215,7 @@ class DocumentationPage extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Activate Chat #
+                  Delete Issue #
                 </button>
               );
             }}
@@ -215,106 +226,69 @@ class DocumentationPage extends Component {
 
     return (
       <Fragment>
-        <CardHeader> Webtools Documentation </CardHeader>
+        <CardHeader>Issue Manager</CardHeader>
         <CardBody>
           <div
             style={{
-              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-              borderRadius: "5px",
+              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+              marginLeft: "-15px",
+              marginRight: "-15px",
+              maxWidth: "375px",
             }}
           >
-            <strong>
-              ChangeLog Post<b> 1/19/21</b>
-            </strong>
-            <small> V1.1 </small>
-            <br />
-            <br />{" "}
-            <Row>
-              <Col>
-                <b>Content Editor</b>
-              </Col>
-              <Col>Used for changing parts of the website easily</Col>
-            </Row>{" "}
-            <br />
-            <br />
-            <Row>
-              <Col>
-                <b>Video Manager</b>
-              </Col>
-              <Col>Manages Custom Videos and Streaming.</Col>
-            </Row>{" "}
-            <br />
-            <br />
-            <Row>
-              <Col>
-                <b>User Management</b>
-              </Col>
-              <Col>Send Emails, Create Moderators, Ban Accounts</Col>
-            </Row>{" "}
-            <br />
-            <br />
-            <Row>
-              <Col>
-                <b>Comments</b>
-              </Col>
-              <Col>Manage Comment Submissions</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Products</b>
-              </Col>
-              <Col>Add, Edit, or Delete Shop Products and Content</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Events</b>
-              </Col>
-              <Col>Manage Event Calendar Data</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Your Notes</b>
-              </Col>
-              <Col>Personal Notekeeping Tool</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Surveys</b>
-              </Col>
-              <Col>Create, manage and view survey utilities.</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Report Issue</b>
-              </Col>
-              <Col>Manage and report issues to web development.</Col>
-            </Row>{" "}
-            <br />
-            <Row>
-              <Col>
-                <b>Live Chat</b>
-              </Col>
-              <Col>Chat with users who are live on your website!</Col>
-            </Row>{" "}
-            <br />
+            <div style={{ marginLeft: "5px" }}>
+              <Input
+                value={this.state.titleVar}
+                name="titleVar"
+                placeholder="Issue Title"
+                id="titleVar"
+                onChange={() => this.handleInputChange3(event)}
+                style={{ top: "5px", position: "relative" }}
+                type="text"
+              ></Input>{" "}
+              <br />
+              <Input
+                value={this.state.noteVar}
+                name="NoteVar"
+                id="NoteVar"
+                placeholder="Issue Description"
+                onChange={() => this.handleInputChange(event)}
+                style={{ top: "15px", position: "relative", width: "250px" }}
+                type="textarea"
+              ></Input>{" "}
+              <br /> <br />
+              <button onClick={() => this.onSubmit()}>
+                {" "}
+                Submit Issue
+              </button>{" "}
+              <br />
+              <br />
+              <input
+                type="number"
+                onChange={() => this.handleInputChange2(event)}
+                style={{ width: "50px" }}
+              ></input>{" "}
+              &nbsp;
+              <MyMutationMutation />
+              <br />
+              <span style={{ marginLeft: "2px", marginRight: "2px" }}>
+                <div
+                  style={{
+                    boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+                    marginRight: "5px",
+                  }}
+                >
+                  {" "}
+                  Comments:
+                  {this.state.textVar}
+                </div>
+              </span>
+            </div>
           </div>{" "}
-          <br />
-          <br />{" "}
-          <a
-            href="https://github.com/PrettyCoolPattern/PrettCoolWeb/
-      "
-          >
-            Source Code And Readme
-          </a>{" "}
-          <br />
         </CardBody>
+        <br />
       </Fragment>
     );
   }
 }
-export default DocumentationPage;
+export default IssueManager;

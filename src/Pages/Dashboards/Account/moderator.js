@@ -29,6 +29,7 @@ import SurveyManagerComponent from "./SurveyManagerComponent.js";
 import LiveChatManagerComponent from "./LiveChatManagerComponent.js";
 import DocumentationPage from "./Documentation.js";
 import VideoManager from "./VideoManager.js";
+import IssueManager from "./IssueManager.js";
 
 import classnames from "classnames";
 
@@ -896,7 +897,9 @@ export default class ModeratorElements extends Component {
                       alignContent: "center",
                       alignItems: "center",
                     }}
-                  ></Card>
+                  >
+                    <IssueManager />
+                  </Card>
                 </Row>
               </TabPane>
             </TabContent>
