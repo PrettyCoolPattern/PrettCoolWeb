@@ -204,7 +204,7 @@ class NoteManagerComponent extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Delete Chat#
+                  Delete Comment #
                 </button>
               );
             }}
@@ -215,7 +215,7 @@ class NoteManagerComponent extends Component {
 
     return (
       <Fragment>
-        <CardHeader> PCP Site Chat Manager</CardHeader>
+        <CardHeader> PCP Site Comment Manager</CardHeader>
         <CardBody>
           <div
             style={{

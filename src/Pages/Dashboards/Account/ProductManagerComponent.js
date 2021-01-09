@@ -29,6 +29,20 @@ import axios from "axios";
 import { idText } from "typescript";
 import { toHtml } from "@fortawesome/fontawesome-svg-core";
 
+import { gql, useQuery } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import { Query, ApolloProvider, Mutation } from "react-apollo";
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: "https://api.microhawaii.com/graphql",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  }),
+});
+
 class ProductManagerComponent extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +52,11 @@ class ProductManagerComponent extends Component {
     };
   }
 
+  handleInputChange2(event) {
+    this.setState({
+      deleteIDVar: event.target.value,
+    });
+  }
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -72,7 +91,6 @@ class ProductManagerComponent extends Component {
             alert("Success!");
             document.getElementById("apiupform").hidden = false;
           }
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -89,51 +107,144 @@ class ProductManagerComponent extends Component {
   };
 
   render() {
+    let { formName, formDesc, formEmail, formMessage } = this.state;
+    const { data } = this.state;
+
+    const MY_MUTATION_MUTATION = gql`
+      mutation DeleteChat {
+        deletePcpProduct(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          pcpProduct {
+            id
+          }
+        }
+      }
+    `;
+
+    const MyMutationMutation = (props) => {
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+              ) : null;
+
+              return (
+                <button
+                  onClick={() =>
+                    MyMutation(formName + formDesc, Date().toString())
+                  }
+                >
+                  Delete Product #
+                </button>
+              );
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
+
+    this.state.authVar = axios
+      .get(`https://api.microHawaii.com/pcp-products`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+      .then((res) => {
+        if (res.err == null) {
+        }
+        let concData = "";
+        for (var i = 0; i < JSON.parse(JSON.stringify(res.data)).length; i++) {
+          concData =
+            concData +
+            "\r\n ID#" +
+            String(JSON.parse(JSON.stringify(res.data))[i].id) +
+            "| " +
+            String(JSON.parse(JSON.stringify(res.data))[i].ProductName) +
+            " - " +
+            String(JSON.parse(JSON.stringify(res.data))[i].Description) +
+            " Image: " +
+            process.env.REACT_APP_BACKEND_URL +
+            String(JSON.parse(JSON.stringify(res.data))[i].Image[0].url);
+          this.state.textVar = concData
+            .split("\n")
+            .map((str) => <span key={str}>{str}</span>);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     return (
       <Fragment>
         <CardHeader> PCP Product Adder</CardHeader>
         <CardBody>
-          <p></p>
-          <button> Load Newest ID</button> <br />
-          ID #: &nbsp;<input disabled></input> <br />
-          Title : &nbsp;<input></input> <br />
-          Sizes: &nbsp;<input></input> <br />
-          Shop: &nbsp;<input></input> <br />
-          Price: &nbsp;<input></input> <br />
-          <p></p>
-          <button> Initialize Product</button> <br />
-        </CardBody>
-        <h2> Status: Pending</h2>
-        <div className="App">
-          <br />
-          <Form onSubmit={this.onSubmit}>
-            File Upload:<br></br>{" "}
-            <Input
-              type="file"
-              encType="multipart/form-data"
-              name="apiup"
-              id="apiupform"
-              onChange={this.onImageChange}
-              alt="image"
-            />
-            <br />
-            <br />
-            <div>
-              <Button
-                style={{
-                  alignSelf: "center",
-                  display: "block",
-                  position: "relative",
-                  width: "100%",
-                }}
-                type="submit"
-              >
-                Send Image
-              </Button>
+          <span style={{ marginLeft: "2px", marginRight: "2px" }}>
+            <div
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+                marginRight: "5px",
+                maxWidth: "375px",
+              }}
+            >
+              <p></p>
+              ID #: &nbsp;<input disabled></input> <br />
+              Title : &nbsp;<input></input> <br />
+              Description: &nbsp;<input></input> <br />
+              Options: &nbsp;<input></input> <br />
+              Category: &nbsp;<input></input> <br />
+              Price: &nbsp;<input></input> <br />
+              <p></p>
+              <button> Initialize Product</button> <br />
+              <h2> Status: Pending</h2>
+              <div className="App">
+                <br />
+                <Form onSubmit={this.onSubmit}>
+                  &nbsp;Product Image:<br></br>{" "}
+                  <Input
+                    type="file"
+                    encType="multipart/form-data"
+                    name="apiup"
+                    id="apiupform"
+                    onChange={this.onImageChange}
+                    alt="image"
+                  />
+                  <br />
+                  <br />
+                  <div>
+                    <Button
+                      style={{
+                        alignSelf: "center",
+                        display: "block",
+                        position: "relative",
+                        width: "100%",
+                      }}
+                      type="submit"
+                    >
+                      Send Image
+                    </Button>
+                  </div>
+                </Form>{" "}
+                <br />
+                <input
+                  type="number"
+                  onChange={() => this.handleInputChange2(event)}
+                  style={{ width: "50px" }}
+                ></input>{" "}
+                <MyMutationMutation />
+                <br />
+              </div>
+              {this.state.textVar}
             </div>
-          </Form>
-          <br />
-        </div>
+          </span>
+        </CardBody>
       </Fragment>
     );
   }

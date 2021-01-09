@@ -86,7 +86,6 @@ class EventManagerComponent extends Component {
             alert("Success!");
             document.getElementById("apiupform").hidden = false;
           }
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);

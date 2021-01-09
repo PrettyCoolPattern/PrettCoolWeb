@@ -1,4 +1,5 @@
 import React, { Component, Fragment, useEffect } from "react";
+import { compose, graphql } from "react-apollo";
 import { gql, useQuery } from "@apollo/client";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
@@ -36,12 +37,11 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-class NoteManagerComponent extends Component {
+class VideoManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
       noteVar: "",
-      textVar2: "Select an Instance ",
       deleteIDVar: "26",
     };
   }
@@ -61,10 +61,10 @@ class NoteManagerComponent extends Component {
     clearInterval(this.state.intervalId);
   }
   getData() {
-    console.log("Check Live Chat Data");
+    console.log("Check Chat Data");
     try {
       this.state.authVar = axios
-        .get(`https://api.microHawaii.com/live-chats`, {
+        .get(`https://api.microHawaii.com/chats`, {
           headers: {
             "content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -82,8 +82,12 @@ class NoteManagerComponent extends Component {
           ) {
             concData =
               concData +
-              "\r\n Available Instance #: " +
-              String(JSON.parse(JSON.stringify(res.data))[i].instance);
+              "\r\n ID#" +
+              String(JSON.parse(JSON.stringify(res.data))[i].id) +
+              "| " +
+              String(JSON.parse(JSON.stringify(res.data))[i].User) +
+              ": " +
+              String(JSON.parse(JSON.stringify(res.data))[i].Comment);
 
             this.state.textVar = concData
               .split("\n")
@@ -111,23 +115,22 @@ class NoteManagerComponent extends Component {
 
   onSubmit = () => {
     const formData = new FormData();
-    formData.Answers = this.state.noteVar;
+    formData.Comment = this.state.noteVar;
+    formData.User = localStorage.getItem("username");
+    console.log(formData);
 
     axios
-      .post(
-        `https://api.microhawaii.com/live-chats`,
-        JSON.stringify(formData),
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      )
+      .post(`https://api.microhawaii.com/chats`, JSON.stringify(formData), {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
       .then((res) => {
         if (res.err == null) {
           document.getElementById("apiupform").hidden = false;
         }
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -141,20 +144,17 @@ class NoteManagerComponent extends Component {
     console.log(formData);
 
     axios
-      .post(
-        `https://api.microhawaii.com/live-chats`,
-        JSON.stringify(formData),
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      )
+      .post(`https://api.microhawaii.com/chats`, JSON.stringify(formData), {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
       .then((res) => {
         if (res.err == null) {
           alert("Success!");
         }
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -174,9 +174,9 @@ class NoteManagerComponent extends Component {
     const { data } = this.state;
 
     const MY_MUTATION_MUTATION = gql`
-      mutation DeleteNote {
-        deleteSurvey(input: { where: { id: ${this.state.deleteIDVar} } }) {
-          survey {
+      mutation DeleteChat {
+        deleteChat(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          chat {
             id
           }
         }
@@ -204,7 +204,7 @@ class NoteManagerComponent extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Activate Chat #
+                  Delete Comment #
                 </button>
               );
             }}
@@ -215,50 +215,11 @@ class NoteManagerComponent extends Component {
 
     return (
       <Fragment>
-        <CardHeader> Live Chat Manager</CardHeader>
-        <CardBody>
-          <div
-            style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-            }}
-          >
-            <span>{this.state.textVar}</span>
-          </div>
-          <input
-            type="number"
-            onChange={() => this.handleInputChange2(event)}
-            style={{ width: "50px" }}
-          ></input>{" "}
-          &nbsp;
-          <MyMutationMutation />
-          <br />
-          <br />
-          <br />
-          <div
-            style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <p> {this.state.textVar2}</p>
-          </div>
-          <Input
-            value={this.state.noteVar}
-            name="NoteVar"
-            id="NoteVar"
-            onChange={() => this.handleInputChange(event)}
-            style={{ top: "15px", position: "relative" }}
-            type="textarea"
-          ></Input>{" "}
-          &nbsp;
-          <button onClick={() => this.onSubmit()}> Send</button> <br />
-        </CardBody>
+        <CardHeader> PCP Site Video Manager</CardHeader>
+        <CardBody>Setup Per Request. </CardBody>
         <br />
       </Fragment>
     );
   }
 }
-export default NoteManagerComponent;
+export default VideoManager;

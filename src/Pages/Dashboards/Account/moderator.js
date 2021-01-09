@@ -27,6 +27,8 @@ import NoteManagerComponent from "./NoteManagerComponent.js";
 import CommentManagerComponent from "./CommentManagerComponent.js";
 import SurveyManagerComponent from "./SurveyManagerComponent.js";
 import LiveChatManagerComponent from "./LiveChatManagerComponent.js";
+import DocumentationPage from "./Documentation.js";
+import VideoManager from "./VideoManager.js";
 
 import classnames from "classnames";
 
@@ -130,7 +132,6 @@ export default class ModeratorElements extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlePriceInputChange = this.handlePriceInputChange.bind(this);
-    this.getData = this.getData.bind(this);
     this.toggle = this.toggle.bind(this);
     this.toggle2 = this.toggle2.bind(this);
   }
@@ -188,7 +189,6 @@ export default class ModeratorElements extends Component {
             alert("Success!");
             document.getElementById("apiupform").hidden = false;
           }
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -219,39 +219,9 @@ export default class ModeratorElements extends Component {
       formName = document.getElementById("formName");
     }
   }
-  componentDidMount() {
-    {
-      fetch("https://api.microHawaii.com").then((response) => {
-        console.log(response);
-      });
-    }
-    this.setState({ cartItems: ["x"] });
-    this.getData();
-    setTimeout(() => this.getData(), 500);
-    setTimeout(() => this.getData(), 1500);
-    setTimeout(() => this.getData(), 2500);
-
-    this.intervalID2 = setInterval(() => {
-      this.getData();
-    }, 1000);
-  }
   componentWillUnmount() {
     clearInterval(this.intervalID2);
   }
-  getData() {
-    console.log("OmniPulse");
-    try {
-      let concData = "";
-      for (var i = 0; i < JSON.parse(respData).length; i++) {
-        concData =
-          concData + "\r\n A"[i] + JSON.stringify(JSON.parse(respData)[i]);
-        this.state.ponoMapDATA = concData;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   valueCheck() {
     if (!localStorage.getItem("localData3")) {
       localStorage.setItem("localData3", 0);
@@ -296,12 +266,14 @@ export default class ModeratorElements extends Component {
                   opacity: 100,
                 }}
               >
-                <i className="pe-7s-tools icon-gradient bg-plum-plate"></i>
-                <h2>Moderator Controls</h2>
+                <h2>
+                  <i className="pe-7s-tools icon-gradient bg-plum-plate"></i>
+                  Moderator Controls
+                </h2>
               </CardHeader>
               <CardHeader
                 style={{
-                  marginBottom: "-30px",
+                  marginBottom: "-35px",
                   justifyContent: "center",
                   backgroundColor: "transparent",
                   borderBottom: "none",
@@ -320,7 +292,7 @@ export default class ModeratorElements extends Component {
                     this.toggle("1");
                   }}
                 >
-                  Site
+                  Main Tools
                 </Button>
                 <Button
                   outline
@@ -349,6 +321,7 @@ export default class ModeratorElements extends Component {
                   Invoice
                 </Button>
               </CardHeader>
+              <br />
               <br />
               <TabPane
                 className="ponoTitle"
@@ -381,7 +354,81 @@ export default class ModeratorElements extends Component {
                     >
                       <h4>Main Website Tools:</h4>
                     </CardTitle>
-                    <span style={{ marginLeft: "10px", display: "block" }}>
+                    <span
+                      style={{
+                        marginLeft: "10px",
+                        marginTop: "5px",
+                        display: "block",
+                      }}
+                    >
+                      <button
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#009900",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                          marginTop: "5px",
+                        }}
+                        onClick={() => {
+                          this.toggle("Documentation");
+                        }}
+                      >
+                        {" "}
+                        Documentation{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#009999",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                          marginTop: "5px",
+                        }}
+                        onClick={() => {
+                          this.toggle("Content");
+                        }}
+                      >
+                        {" "}
+                        Content Editor{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#006699",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                          marginTop: "5px",
+                        }}
+                        onClick={() => {
+                          this.toggle("Video");
+                        }}
+                      >
+                        {" "}
+                        Video Manager{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#0033AA",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                          marginTop: "5px",
+                        }}
+                        onClick={() => {
+                          this.toggle("Users");
+                        }}
+                      >
+                        {" "}
+                        User Management{" "}
+                      </button>
+                      &nbsp;
                       <button
                         style={{
                           marginTop: "10px",
@@ -389,13 +436,14 @@ export default class ModeratorElements extends Component {
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
-                          this.toggle("Chat");
+                          this.toggle("Comments");
                         }}
                       >
                         {" "}
-                        Public Chat{" "}
+                        Comments{" "}
                       </button>
                       &nbsp;
                       <button
@@ -405,6 +453,7 @@ export default class ModeratorElements extends Component {
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
                           this.toggle("Products");
@@ -421,6 +470,7 @@ export default class ModeratorElements extends Component {
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
                           this.toggle("Events");
@@ -433,32 +483,17 @@ export default class ModeratorElements extends Component {
                       <button
                         style={{
                           marginTop: "10px",
-                          backgroundColor: "#9900CC",
-                          borderRadius: "16px",
-                          height: "35px",
-                          fontSize: "120%",
-                        }}
-                        onClick={() => {
-                          this.toggle("Content");
-                        }}
-                      >
-                        {" "}
-                        Content Editor{" "}
-                      </button>
-                      &nbsp;
-                      <button
-                        style={{
-                          marginTop: "10px",
                           backgroundColor: "#BB00CC",
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
                           this.toggle("Notes");
                         }}
                       >
-                        Notes
+                        Your Notes
                       </button>
                       &nbsp;
                       <button
@@ -467,6 +502,7 @@ export default class ModeratorElements extends Component {
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
                           this.toggle("Surveys");
@@ -482,6 +518,7 @@ export default class ModeratorElements extends Component {
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={() => {
                           this.toggle("Live");
@@ -493,11 +530,28 @@ export default class ModeratorElements extends Component {
                       &nbsp;
                       <button
                         style={{
+                          backgroundColor: "#BB0033",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                          marginTop: "5px",
+                        }}
+                        onClick={() => {
+                          this.toggle("Issue");
+                        }}
+                      >
+                        {" "}
+                        Report Issue{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
                           marginTop: "10px",
                           backgroundColor: "#FF0000",
                           borderRadius: "16px",
                           height: "35px",
                           fontSize: "120%",
+                          marginTop: "5px",
                         }}
                         onClick={(e) => {
                           e.preventDefault();
@@ -531,7 +585,7 @@ export default class ModeratorElements extends Component {
                         alignSelf: "center",
                       }}
                     >
-                      <h4>Site Data:</h4>
+                      <h4>Highlight Metrics:</h4>
                     </CardTitle>
                     <TabContent
                       activeTab={this.state.activeTab2}
@@ -543,64 +597,6 @@ export default class ModeratorElements extends Component {
                         width: "100%",
                       }}
                     >
-                      <CardHeader
-                        style={{
-                          justifyContent: "center",
-                          alignSelf: "center",
-                          backgroundColor: "transparent",
-                        }}
-                        className="ponoTitle "
-                      >
-                        {" "}
-                        <Button
-                          size="sm"
-                          outline
-                          color="alternate"
-                          className={
-                            "btn-pill btn-wide " +
-                            classnames({
-                              active: this.state.activeTab2 === "1",
-                            })
-                          }
-                          onClick={() => {
-                            this.toggle2("1");
-                          }}
-                        >
-                          Overview
-                        </Button>
-                        <Button
-                          size="sm"
-                          outline
-                          color="alternate"
-                          className={
-                            "btn-pill btn-wide " +
-                            classnames({
-                              active: this.state.activeTab2 === "2",
-                            })
-                          }
-                          onClick={() => {
-                            this.toggle2("2");
-                          }}
-                        >
-                          Users
-                        </Button>
-                        <Button
-                          size="sm"
-                          outline
-                          color="alternate"
-                          className={
-                            "btn-pill btn-wide " +
-                            classnames({
-                              active: this.state.activeTab2 === "3",
-                            })
-                          }
-                          onClick={() => {
-                            this.toggle2("3");
-                          }}
-                        >
-                          Comments
-                        </Button>
-                      </CardHeader>
                       <TabPane
                         className="ponoTitle"
                         tabId="1"
@@ -609,11 +605,7 @@ export default class ModeratorElements extends Component {
                           opacity: 100,
                         }}
                       >
-                        {" "}
                         <h4>
-                          <br />
-                          Highlight Metrics: <br />
-                          <br />
                           Users: 4
                           <br />
                           Comments: 2
@@ -624,36 +616,6 @@ export default class ModeratorElements extends Component {
                           <br />
                           Chat Live Now: 1
                         </h4>
-                        <FormQueryComponent />
-                        <br />
-                        <MyQueryCopyQuery />
-                      </TabPane>
-                      <TabPane
-                        className="ponoTitle"
-                        tabId="2"
-                        style={{
-                          height: "100%",
-                          opacity: 100,
-                        }}
-                      >
-                        <br />
-                        <UserQueryComponent />
-                        <br />
-                        <br />
-                      </TabPane>
-                      <TabPane
-                        className="ponoTitle"
-                        tabId="3"
-                        style={{
-                          height: "100%",
-                          opacity: 100,
-                        }}
-                      >
-                        {" "}
-                        <br />
-                        <CommentManagerComponent />
-                        <br />
-                        <MyQueryCopyQuery />
                       </TabPane>
                     </TabContent>
                   </Card>
@@ -774,7 +736,7 @@ export default class ModeratorElements extends Component {
                   </Card>
                 </Row>
               </TabPane>
-              <TabPane tabId="Chat">
+              <TabPane tabId="Comments">
                 <Row style={{ justifyContent: "center" }}>
                   {" "}
                   <Card
@@ -785,7 +747,7 @@ export default class ModeratorElements extends Component {
                       alignItems: "center",
                     }}
                   >
-                    <ChatManagerComponent />
+                    <CommentManagerComponent />
                   </Card>
                 </Row>
               </TabPane>
@@ -877,6 +839,64 @@ export default class ModeratorElements extends Component {
                   >
                     <LiveChatManagerComponent />
                   </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Documentation">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <DocumentationPage />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Video">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <VideoManager />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Users">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <UserQueryComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Issue">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  ></Card>
                 </Row>
               </TabPane>
             </TabContent>

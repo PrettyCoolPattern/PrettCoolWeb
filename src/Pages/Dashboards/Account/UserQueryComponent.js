@@ -2,6 +2,30 @@ import React, { Component, Fragment, useEffect } from "react";
 import { compose, graphql } from "react-apollo";
 
 import axios from "axios";
+import {
+  Row,
+  Col,
+  Button,
+  ListGroupItem,
+  Card,
+  CardBody,
+  Form,
+  FormGroup,
+  Label,
+  Container,
+  Input,
+  FormText,
+  CardHeader,
+  CardTitle,
+  CardLink,
+  CardImg,
+  NavLink,
+  TabContent,
+  TabPane,
+  Progress,
+  CardFooter,
+  ButtonGroup,
+} from "reactstrap";
 import { idText } from "typescript";
 import { toHtml } from "@fortawesome/fontawesome-svg-core";
 
@@ -41,7 +65,26 @@ class UserQueryComponent extends Component {
         console.log(err);
       });
 
-    return this.state.textVar;
+    return (
+      <Fragment>
+        <Card>
+          <CardBody>
+            <button onClick={() => alert("coming soon")}>Delete User</button>{" "}
+            &nbsp;
+            <button onClick={() => alert("coming soon")}>Email All</button>{" "}
+            &nbsp;
+            <button
+              style={{ marginTop: "5px" }}
+              onClick={() => alert("coming soon")}
+            >
+              Create Admin
+            </button>{" "}
+            &nbsp;
+          </CardBody>
+        </Card>
+        {this.state.textVar} <br />
+      </Fragment>
+    );
   }
 }
 export default UserQueryComponent;

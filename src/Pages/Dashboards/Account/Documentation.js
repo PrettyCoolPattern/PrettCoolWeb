@@ -36,7 +36,7 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-class NoteManagerComponent extends Component {
+class DocumentationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -215,50 +215,99 @@ class NoteManagerComponent extends Component {
 
     return (
       <Fragment>
-        <CardHeader> Live Chat Manager</CardHeader>
+        <CardHeader> Webtools Documentation </CardHeader>
         <CardBody>
           <div
             style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+              boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+              borderRadius: "5px",
             }}
           >
-            <span>{this.state.textVar}</span>
-          </div>
-          <input
-            type="number"
-            onChange={() => this.handleInputChange2(event)}
-            style={{ width: "50px" }}
-          ></input>{" "}
-          &nbsp;
-          <MyMutationMutation />
+            <strong>
+              ChangeLog Post<b> 1/19/21</b>
+            </strong>
+            <small> V1.1 </small>
+            <br />
+            <br />{" "}
+            <Row>
+              <Col>
+                <b>Content Editor</b>
+              </Col>
+              <Col>Used for changing parts of the website easily</Col>
+            </Row>{" "}
+            <br />
+            <br />
+            <Row>
+              <Col>
+                <b>Video Manager</b>
+              </Col>
+              <Col>Manages Custom Videos and Streaming.</Col>
+            </Row>{" "}
+            <br />
+            <br />
+            <Row>
+              <Col>
+                <b>User Management</b>
+              </Col>
+              <Col>Send Emails, Create Moderators, Ban Accounts</Col>
+            </Row>{" "}
+            <br />
+            <br />
+            <Row>
+              <Col>
+                <b>Comments</b>
+              </Col>
+              <Col>Manage Comment Submissions</Col>
+            </Row>{" "}
+            <br />
+            <Row>
+              <Col>
+                <b>Products</b>
+              </Col>
+              <Col>Add, Edit, or Delete Shop Products and Content</Col>
+            </Row>{" "}
+            <br />
+            <Row>
+              <Col>
+                <b>Events</b>
+              </Col>
+              <Col>Manage Event Calendar Data</Col>
+            </Row>{" "}
+            <br />
+            <Row>
+              <Col>
+                <b>Your Notes</b>
+              </Col>
+              <Col>Personal Notekeeping Tool</Col>
+            </Row>{" "}
+            <br />
+            <Row>
+              <Col>
+                <b>Surveys</b>
+              </Col>
+              <Col>Create, manage and view survey utilities.</Col>
+            </Row>{" "}
+            <br />
+            <Row>
+              <Col>
+                <b>Live Chat</b>
+              </Col>
+              <Col>Chat with users who are live on your website!</Col>
+            </Row>{" "}
+            <br />
+          </div>{" "}
           <br />
-          <br />
-          <br />
-          <div
-            style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
+          <br />{" "}
+          <a
+            href="https://github.com/PrettyCoolPattern/PrettCoolWeb/
+      "
           >
-            <p> {this.state.textVar2}</p>
-          </div>
-          <Input
-            value={this.state.noteVar}
-            name="NoteVar"
-            id="NoteVar"
-            onChange={() => this.handleInputChange(event)}
-            style={{ top: "15px", position: "relative" }}
-            type="textarea"
-          ></Input>{" "}
-          &nbsp;
-          <button onClick={() => this.onSubmit()}> Send</button> <br />
+            Source Code And Readme
+          </a>{" "}
+          <br />
         </CardBody>
-        <br />
       </Fragment>
     );
   }
 }
-export default NoteManagerComponent;
+export default DocumentationPage;

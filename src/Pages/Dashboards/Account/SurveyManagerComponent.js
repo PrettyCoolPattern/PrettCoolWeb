@@ -125,7 +125,6 @@ class NoteManagerComponent extends Component {
         if (res.err == null) {
           document.getElementById("apiupform").hidden = false;
         }
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -149,7 +148,6 @@ class NoteManagerComponent extends Component {
         if (res.err == null) {
           alert("Success!");
         }
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
