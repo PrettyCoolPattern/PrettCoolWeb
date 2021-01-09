@@ -85,24 +85,22 @@ export default class Account extends Component {
     }
     if (
       (localStorage.getItem("jwt") != null &&
-        localStorage.getItem("username") == "microAdmin") ||
+        localStorage.getItem("username") == "microAdmin2") ||
       window.location == "http://localhost:9999/#/dashboards/account"
     ) {
-      adminCardEle = (
-        <span width="100%">
-          <AdminElements /> <br></br>
-        </span>
-      );
+      adminCardEle = <AdminElements />;
     }
     if (
       localStorage.getItem("jwt") != null &&
-      localStorage.getItem("username") == "Kipahulu"
+      localStorage.getItem("username") == "microAdmin"
     ) {
       adminCardEle = (
         <span
           style={{
             backgroundColor: "transparent",
             width: "100%",
+            justifyContent: "center",
+            alignSelf: "center",
 
             opacity: 100,
           }}
@@ -111,19 +109,6 @@ export default class Account extends Component {
         </span>
       );
     }
-    return (
-      <Fragment>
-        <CSSTransitionGroup
-          component="div"
-          transitionName="TabsAnimation"
-          transitionAppear={true}
-          transitionAppearTimeout={0}
-          transitionEnter={false}
-          transitionLeave={false}
-        >
-          {adminCardEle}
-        </CSSTransitionGroup>
-      </Fragment>
-    );
+    return <Fragment>{adminCardEle}</Fragment>;
   }
 }

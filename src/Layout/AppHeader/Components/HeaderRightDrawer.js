@@ -25,23 +25,37 @@ class HeaderRightDrawer extends React.Component {
 
     return (
       <Fragment>
-        <Drawer right className="drawer-content-wrapper p-0" width={450} open={openRight}
-          onChange={(open) => this.setState({ openRight: open })} noTouchOpen={false} noTouchClose={false}>
+        <Drawer
+          right
+          className="drawer-content-wrapper p-0"
+          width={450}
+          open={openRight}
+          onChange={(open) => this.setState({ openRight: open })}
+          noTouchOpen={false}
+          noTouchClose={false}
+        >
           <PerfectScrollbar>
-            <div className="drawer-nav-btn">
-              <Elastic width={26} lineHeight={2} lineSpacing={5}
-                color="#6c757d" padding="5px" active={this.state.active}
+            <div className="drawer-nav-btn ">
+              <Elastic
+                width={26}
+                lineHeight={2}
+                lineSpacing={5}
+                color="#6c757d"
+                padding="5px"
+                active={this.state.active}
                 onClick={() =>
                   this.setState({
                     openRight: false,
                     openLeft: false,
                     active: !this.state.active,
                   })
-                }/>
+                }
+              />
             </div>
+            <br />
+            Test
           </PerfectScrollbar>
         </Drawer>
-    
       </Fragment>
     );
   }

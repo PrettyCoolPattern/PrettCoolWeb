@@ -199,66 +199,84 @@ export default class AdminElements extends Component {
     };
     return (
       <Fragment>
-        <Container fluid>
+        <Container
+          fluid
+          style={{
+            backgroundColor: "transparent",
+            width: "100%",
+            justifyContent: "center",
+          }}
+        >
           <ApolloProvider client={apolloClient}>
-            <Card className="main-card mb-3">
-              <CardHeader>
+            <Card
+              style={{
+                justifyContent: "center",
+                borderBottom: "none",
+                backgroundColor: "transparent",
+                alignSelf: "center",
+                marginLeft: "-25px",
+                marginRight: "-25px",
+                justifyContent: "center",
+                alignSelf: "center",
+              }}
+            >
+              <CardHeader
+                style={{
+                  marginBottom: "-20px",
+                  justifyContent: "center",
+                  borderBottom: "none",
+                  backgroundColor: "#FFFFFFDD",
+                  borderTopLeftRadius: "35px",
+                  borderTopRightRadius: "35px",
+                  alignSelf: "center",
+                }}
+              >
                 <i className="header-icon pe-7s-tools icon-gradient bg-plum-plate">
                   {" "}
                 </i>
-                Admin Omni-Panel{" "}
-              </CardHeader>
-              <CardHeader>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "60%",
+                <h2>Admin Controls</h2>
+                <Button
+                  size="sm"
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide " +
+                    classnames({ active: this.state.activeTab === "1" })
+                  }
+                  onClick={() => {
+                    this.toggle("1");
                   }}
                 >
-                  <Button
-                    size="sm"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide " +
-                      classnames({ active: this.state.activeTab === "1" })
-                    }
-                    onClick={() => {
-                      this.toggle("1");
-                    }}
-                  >
-                    Admin
-                  </Button>
-                  <Button
-                    size="sm"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide mr-1 ml-1 " +
-                      classnames({ active: this.state.activeTab === "2" })
-                    }
-                    onClick={() => {
-                      this.toggle("2");
-                    }}
-                  >
-                    Moderator
-                  </Button>
-                  <Button
-                    size="sm"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide " +
-                      classnames({ active: this.state.activeTab === "3" })
-                    }
-                    onClick={() => {
-                      this.toggle("3");
-                    }}
-                  >
-                    Registered
-                  </Button>
-                </div>
+                  Admin
+                </Button>
+                <Button
+                  size="sm"
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide mr-1 ml-1 " +
+                    classnames({ active: this.state.activeTab === "2" })
+                  }
+                  onClick={() => {
+                    this.toggle("2");
+                  }}
+                >
+                  Moderator
+                </Button>
+                <Button
+                  size="sm"
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide " +
+                    classnames({ active: this.state.activeTab === "3" })
+                  }
+                  onClick={() => {
+                    this.toggle("3");
+                  }}
+                >
+                  Registered
+                </Button>
               </CardHeader>
               <CardBody>
                 <TabContent activeTab={this.state.activeTab}>
@@ -298,7 +316,7 @@ export default class AdminElements extends Component {
                           File Upload:<br></br>{" "}
                           <Input
                             type="file"
-                            enctype="multipart/form-data"
+                            encType="multipart/form-data"
                             name="apiup"
                             id="apiupform"
                             onChange={this.onImageChange}

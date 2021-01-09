@@ -9,11 +9,11 @@ to your service.
     "react-apollo": "^2.5.5"
 */
 
-import gql from "graphql-tag";
 import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
+import gql from "graphql-tag";
 
 import classnames from "classnames";
 import {
@@ -62,7 +62,6 @@ const apolloClient = new ApolloClient({
 export default class AccountElements extends Component {
   constructor(props) {
     super(props);
-    this.submitContact = this.submitContact.bind(this);
     this.state = {
       formEmail: "",
       formName: [],
@@ -72,6 +71,7 @@ export default class AccountElements extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputChange2 = this.handleInputChange2.bind(this);
+    this.submitContact = this.submitContact.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 

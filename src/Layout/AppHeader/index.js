@@ -26,7 +26,7 @@ class Header extends React.Component {
     document.addEventListener("click", this.onClickGA.bind(this), false);
     ReactGA.initialize("UA-102481694-3");
   }
-  componentDidUnmount() {
+  componenWillUnmount() {
     document.removeEventListener("click", this.onClickGA.bind(this), false);
   }
 

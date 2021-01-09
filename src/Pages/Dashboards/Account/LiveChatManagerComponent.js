@@ -41,6 +41,7 @@ class NoteManagerComponent extends Component {
     super(props);
     this.state = {
       noteVar: "",
+      textVar2: "Select an Instance ",
       deleteIDVar: "26",
     };
   }
@@ -60,15 +61,17 @@ class NoteManagerComponent extends Component {
     clearInterval(this.state.intervalId);
   }
   getData() {
+    console.log("Check Survey Data");
     try {
       this.state.authVar = axios
-        .get(`https://api.microHawaii.com/notes`, {
+        .get(`https://api.microHawaii.com/live-chats`, {
           headers: {
             "content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
         })
         .then((res) => {
+          console.log(res);
           if (res.err == null) {
             this.setState({ textvar: JSON.stringify(res) });
           }
@@ -80,10 +83,8 @@ class NoteManagerComponent extends Component {
           ) {
             concData =
               concData +
-              "\r\n ID#" +
-              JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
-              " : " +
-              JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].Note);
+              "\r\n Available Instance #: " +
+              String(JSON.parse(JSON.stringify(res.data))[i].instance);
 
             this.state.textVar = concData
               .split("\n")
@@ -111,16 +112,19 @@ class NoteManagerComponent extends Component {
 
   onSubmit = () => {
     const formData = new FormData();
-    formData.Note = this.state.noteVar;
-    console.log(formData);
+    formData.Answers = this.state.noteVar;
 
     axios
-      .post(`https://api.microhawaii.com/notes`, JSON.stringify(formData), {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
+      .post(
+        `https://api.microhawaii.com/live-chats`,
+        JSON.stringify(formData),
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.err == null) {
           document.getElementById("apiupform").hidden = false;
@@ -139,12 +143,16 @@ class NoteManagerComponent extends Component {
     console.log(formData);
 
     axios
-      .post(`https://api.microhawaii.com/notes`, JSON.stringify(formData), {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
+      .post(
+        `https://api.microhawaii.com/live-chats`,
+        JSON.stringify(formData),
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.err == null) {
           alert("Success!");
@@ -170,8 +178,8 @@ class NoteManagerComponent extends Component {
 
     const MY_MUTATION_MUTATION = gql`
       mutation DeleteNote {
-        deleteNote(input: { where: { id: ${this.state.deleteIDVar} } }) {
-          note {
+        deleteSurvey(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          survey {
             id
           }
         }
@@ -199,7 +207,7 @@ class NoteManagerComponent extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Delete Note#
+                  Activate Chat #
                 </button>
               );
             }}
@@ -210,7 +218,7 @@ class NoteManagerComponent extends Component {
 
     return (
       <Fragment>
-        <CardHeader> PCP Private Note Manager</CardHeader>
+        <CardHeader> Live Chat Manager</CardHeader>
         <CardBody>
           <div
             style={{
@@ -227,6 +235,19 @@ class NoteManagerComponent extends Component {
           &nbsp;
           <MyMutationMutation />
           <br />
+          <br />
+          <br />
+          <div
+            style={{
+              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+          >
+            <p> {this.state.textVar2}</p>
+          </div>
           <Input
             value={this.state.noteVar}
             name="NoteVar"

@@ -233,6 +233,8 @@ div.card {
   animation-duration: 25s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+  user-select: none;
+  text-decoration: none;
 }
 @-webkit-keyframes fadeIn {
   0% {

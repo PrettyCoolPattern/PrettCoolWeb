@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
-import scriptLoader from 'react-async-script-loader';
+import scriptLoader from "react-async-script-loader";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import classnames from "classnames";
 import ReactTable from "react-table";
-import { Route } from 'react-router-dom';
+import { Route } from "react-router-dom";
 
 import {
   Row,
@@ -67,7 +67,6 @@ const CLIENT = {
   production: process.env.PAYPAL_CLIENT_ID_PRODUCTION,
 };
 
-
 const data55 = [
   { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
   { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
@@ -127,7 +126,6 @@ const data2 = [
   { name: "Page G", uv: 3490, pv: 4300, amt: 2100 },
   { name: "Page F", uv: 1390, pv: 3800, amt: 1500 },
 ];
-
 
 function boxMullerRandom() {
   let phase = true,
@@ -195,56 +193,69 @@ export default class MusicElements extends Component {
   }
 
   render() {
-
-
     const { data } = this.state;
 
     return (
-
-
       <Fragment>
-        <CSSTransitionGroup component="div" transitionName="TabsAnimation"
-          transitionAppear={true} transitionAppearTimeout={0} transitionEnter={false} transitionLeave={false}>
-
-
-
-
+        <CSSTransitionGroup
+          component="div"
+          transitionName="TabsAnimation"
+          transitionAppear={true}
+          transitionAppearTimeout={0}
+          transitionEnter={false}
+          transitionLeave={false}
+        >
           <Row>
-            <Col xs="4" sm="4" md="4" xl="3">
+            <Col  style={{ minWidth: "175px" }}> 
               <Card>
-                <CardBody> Over 40 PCP musical publishingings can be found on either YouTube or SoundCloud:
-    <br></br>  </CardBody>
-              </Card>  </Col>
-
+                <CardBody style={{ minWidth: "175px" }}>
+                  {" "}
+                  Over 40 PCP musical publishingings can be found on either
+                  YouTube or SoundCloud:
+                  <br></br>{" "}
+                </CardBody>
+              </Card>{" "}
+            </Col>
 
             <Col xs="6" sm="6" md="6" xl="3">
               <br></br>
               <Card>
-                <CardBody>SoundCloud Player:
-    <br></br>
-                                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/359400835&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-    
+                <CardBody>
+                  SoundCloud Player:
+                  <br></br>
+                  <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/359400835&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                  ></iframe>
                 </CardBody>
-              </Card>  </Col> 
-
+              </Card>{" "}
+            </Col>
 
             <Col xs="12" sm="12" md="8" xl="6">
-              <br></br><br></br>
+              <br></br>
+              <br></br>
               <Card>
                 <CardBody>
                   <center>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLWGSXq68FTb2TWN6m3PMvSD7oysOjknCV" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </center>
-</CardBody>
+                    <iframe
+                      width="100%"
+                      height="315"
+                      src="https://www.youtube.com/embed/videoseries?list=PLWGSXq68FTb2TWN6m3PMvSD7oysOjknCV"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </center>
+                </CardBody>
               </Card>
             </Col>
-
-
           </Row>
           <br></br>
-
         </CSSTransitionGroup>
-
       </Fragment>
     );
   }

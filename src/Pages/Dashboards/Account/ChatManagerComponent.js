@@ -91,7 +91,7 @@ class NoteManagerComponent extends Component {
 
             this.state.textVar = concData
               .split("\n")
-              .map((str) => <h5>{str}</h5>);
+              .map((str) => <h5 key={str}>{str}</h5>);
           }
         })
         .catch((err) => {
@@ -224,9 +224,9 @@ class NoteManagerComponent extends Component {
               marginRight: "-20px",
             }}
           >
-            <p style={{ marginLeft: "2px", marginRight: "2px" }}>
+            <span style={{ marginLeft: "2px", marginRight: "2px" }}>
               {this.state.textVar}
-            </p>
+            </span>
           </div>
           <input
             type="number"

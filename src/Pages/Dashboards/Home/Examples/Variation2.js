@@ -110,9 +110,73 @@ export default class CRMDashboard2 extends Component {
         >
           <center>
             <Row>
-              <Col mx-auto className=" opacity-9" style={{ width: "12rem" }}>
+              <Col
+                mx-auto="true"
+                className=" opacity-9"
+                style={{ width: "31rem" }}
+              >
                 <Card
-                  mx-auto
+                  className="mb-3 main-card"
+                  style={{
+                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                  }}
+                >
+                  <CardHeader
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center",
+                      fontSize: "160%",
+                    }}
+                    className="main-card dark card-header-tab"
+                  >
+                    <i className="pe-7s-rocket opacity-9"> </i> Welcome{" "}
+                    <small>
+                       
+                      {Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      }).format(Date.now())}{" "}
+                    </small>
+                  </CardHeader>
+                  <CardBody>
+                    <h4
+                      style={{
+                        marginLeft: "-15px",
+                        marginTop: "-15px",
+                        marginRight: "-15px",
+                        maxWidth: "750px",
+                      }}
+                    >
+                      PrettyCoolPattern.com is{" "}
+                      <a href="https://github.com/PrettyCoolPattern/PrettCoolWeb">
+                        open-source
+                      </a>
+                      , custom coded &amp; cross-platform. Showcasing the design
+                      and arts services of{" "}
+                      <a href="https://github.com/JasonHoku/">Jason Hoku.</a>
+                    </h4>
+                    <center>
+                      {" "}
+                      <img src={logo} alt="logo" width="100"></img>
+                    </center>
+                    <h4>
+                      <a href="/#/dashboards/contact">
+                        All inquiries are welcome.
+                      </a>
+                    </h4>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col
+                mx-auto="true"
+                className=" opacity-9"
+                style={{ width: "12rem" }}
+              >
+                <Card
+                  mx-auto="true"
                   style={{
                     width: "11rem",
                     boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
@@ -145,7 +209,7 @@ export default class CRMDashboard2 extends Component {
                 <br></br>
                 <a style={{ fontWeight: "bold" }} href="#/dashboards/gallery">
                   <Card
-                    mx-auto
+                    mx-auto="true"
                     style={{
                       width: "11rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
@@ -171,12 +235,12 @@ export default class CRMDashboard2 extends Component {
                 </a>{" "}
                 <br></br>
               </Col>
-              <Col mx-auto className=" opacity-9">
+              <Col mx-auto="true" className=" opacity-9">
                 <a style={{ fontWeight: "bold" }} href="#/dashboards/shop">
                   <Route path="#/dashboards/shop" />
 
                   <Card
-                    mx-auto
+                    mx-auto="true"
                     style={{
                       width: "11rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
@@ -231,11 +295,11 @@ export default class CRMDashboard2 extends Component {
                 </a>{" "}
                 <br></br>
               </Col>
-              <Col mx-auto className=" opacity-9">
+              <Col mx-auto="true" className=" opacity-9">
                 <a style={{ fontWeight: "bold" }} href="#/dashboards/services">
                   <Route path="#/dashboards/services" />
                   <Card
-                    mx-auto
+                    mx-auto="true"
                     style={{
                       width: "11rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
@@ -263,11 +327,11 @@ export default class CRMDashboard2 extends Component {
                 </a>{" "}
               </Col>
 
-              <Col mx-auto className=" opacity-9">
+              <Col mx-auto="true" className=" opacity-9">
                 {" "}
                 <a style={{ fontWeight: "bold" }} href="#/dashboards/music">
                   <Card
-                    mx-auto
+                    mx-auto="true"
                     className="main-card mb-3"
                     style={{
                       width: "11rem",
@@ -295,44 +359,6 @@ export default class CRMDashboard2 extends Component {
                   </Card>
                 </a>
               </Col>
-              <Col mx-auto className=" opacity-9" style={{ width: "31rem" }}>
-                <Card
-                  className="mb-3 main-card"
-                  style={{
-                    boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                  }}
-                >
-                  <CardHeader className="main-card dark card-header-tab">
-                    <div className="card-header-title">
-                      <i className=" lnr-rocket icon-gradient opacity-9"> </i>
-                      PrettyCoolBulletin
-                    </div>
-                  </CardHeader>{" "}
-                  <CardBody>
-                    {" "}
-                    <div>
-                      <small> 12/17/20 </small> <br></br> <br></br>
-                         I'd like to thank everyone who'se shown support through
-                      the goals and work, wouldn't have gotten here without you.
-                      <br></br> <br></br> This website is an{" "}
-                      <a href="https://github.com/JasonHoku/MicroHawaii">
-                        open-source{" "}
-                      </a>{" "}
-                      , custom, "React App", written in the NodeJS environment.
-                      Visit the about page to learn more, report issues and make
-                      contact.
-                      <br></br>
-                      <br></br> <br></br>{" "}
-                      <center>
-                        {" "}
-                        <img src={logo} alt="logo" width="100"></img>
-                      </center>
-                      <br></br>
-                      <br></br>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Col>
             </Row>
           </center>
           <Row></Row>
@@ -347,23 +373,13 @@ export default class CRMDashboard2 extends Component {
               >
                 <CardHeader className="card-header-tab" color="light">
                   <div className="card-header-title font-size-lg font-weight-normal">
-                    <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
+                    <i className="header-icon pe-7s-news-paper mr-3 text-muted opacity-6">
                       {" "}
                     </i>
-                    Recent Updates: 7/17/20
+                    Recent Updates: 11/17/20
                   </div>{" "}
-                  <div>
-                    {" "}
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                  </div>
                 </CardHeader>
                 <CardBody>
-                  Site updates are live! (Improved services page, upgraded
-                  layout, added spunk)
-                  <br></br>
-                  <br></br>
                   Find out what PCP is working on, get involved and learn more,
                   by visiting the new
                   <a
@@ -388,22 +404,19 @@ export default class CRMDashboard2 extends Component {
           >
             <CardHeader className="card-header-tab">
               <div className="card-header-title font-size-lg font-weight-normal">
-                <i className="header-icon lnr-dice mr-3 text-muted opacity-6">
+                <i className="header-icon pe-7s-news-paper mr-3 text-muted opacity-6">
                   {" "}
                 </i>
-                Recent Updates: 6/15/20
+                Recent Updates: 10/15/20
               </div>{" "}
               <div> </div>
             </CardHeader>
             <CardBody>
-              The PCP 3D Web-Game development is kicking off! Pre-Alpha 0.2 is
-              now available
+              Web-Game development is kicking off! Pre-Alpha is available{" "}
               <a style={{ fontWeight: "bold" }} href="../3D/">
-                {" "}
-                here{" "}
+                here
               </a>
-              .<br></br>
-              <br></br>
+              .
             </CardBody>
           </Card>
 

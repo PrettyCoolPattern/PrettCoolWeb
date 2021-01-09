@@ -24,6 +24,9 @@ import ChatManagerComponent from "./ChatManagerComponent.js";
 import ContentManagerComponent from "./ContentManagerComponent.js";
 import EventManagerComponent from "./EventManagerComponent.js";
 import NoteManagerComponent from "./NoteManagerComponent.js";
+import CommentManagerComponent from "./CommentManagerComponent.js";
+import SurveyManagerComponent from "./SurveyManagerComponent.js";
+import LiveChatManagerComponent from "./LiveChatManagerComponent.js";
 
 import classnames from "classnames";
 
@@ -96,7 +99,8 @@ const MyQueryCopyQuery = (props) => {
           <pre>
             {
               //JSON DATA
-              (respData = JSON.stringify(data.microComments, null, 1))
+              ((respData = JSON.stringify(data.microComments, null, 1)),
+              console.log("z microComment"))
             }
           </pre>;
 
@@ -120,7 +124,7 @@ export default class ModeratorElements extends Component {
       formMessage: "",
       intervalID2: "",
       activeTab: "1",
-      activeTab2: "2",
+      activeTab2: "1",
       cartItems: "x",
       cart: ["x", "y"],
     };
@@ -216,6 +220,11 @@ export default class ModeratorElements extends Component {
     }
   }
   componentDidMount() {
+    {
+      fetch("https://api.microHawaii.com").then((response) => {
+        console.log(response);
+      });
+    }
     this.setState({ cartItems: ["x"] });
     this.getData();
     setTimeout(() => this.getData(), 500);
@@ -223,14 +232,14 @@ export default class ModeratorElements extends Component {
     setTimeout(() => this.getData(), 2500);
 
     this.intervalID2 = setInterval(() => {
-      this.getData.bind(this);
+      this.getData();
     }, 1000);
   }
   componentWillUnmount() {
     clearInterval(this.intervalID2);
   }
   getData() {
-    console.log("x");
+    console.log("OmniPulse");
     try {
       let concData = "";
       for (var i = 0; i < JSON.parse(respData).length; i++) {
@@ -238,8 +247,6 @@ export default class ModeratorElements extends Component {
           concData + "\r\n A"[i] + JSON.stringify(JSON.parse(respData)[i]);
         this.state.ponoMapDATA = concData;
       }
-
-      this.setState({ ponoMapDATA: this.state.ponoMapDATA });
     } catch (error) {
       console.log(error);
     }
@@ -254,61 +261,14 @@ export default class ModeratorElements extends Component {
     let { formName, formEmail, formMessage } = this.state;
     const { data } = this.state;
 
-    const MY_MUTATION_MUTATION = gql`
-mutation MyMutation {
-  createPonoMap(
-    input: {
-      data: {
-        User: "${formName}"
-      }
-    }
-  ) {
-    ponoMap {
-      id
-      
-    }
-  }
-}
-`;
-
-    const MyMutationMutation = (props) => {
-      return (
-        <Mutation mutation={MY_MUTATION_MUTATION}>
-          {(MyMutation, { loading, error, data }) => {
-            if (loading) return <pre>Loading</pre>;
-            if (error) {
-              alert("That username is taken");
-            } else if (error)
-              return (
-                <pre>
-                  Error in MY_MUTATION_MUTATION
-                  {JSON.stringify(error, null, 2)}
-                </pre>
-              );
-
-            const dataEl = data ? (
-              <pre>{JSON.stringify(data, null, 2)}</pre>
-            ) : null;
-
-            return (
-              <span>
-                {dataEl}
-
-                <button onClick={() => MyMutation(this.state.formName)}>
-                  Add Comment Data
-                </button>
-              </span>
-            );
-          }}
-        </Mutation>
-      );
-    };
     return (
       <Fragment>
         <Container
           fluid
           style={{
             backgroundColor: "transparent",
+            backgroundColor: "#FFFFFFDD",
+            borderRadius: "55px",
             width: "100%",
             justifyContent: "center",
           }}
@@ -327,81 +287,68 @@ mutation MyMutation {
               <CardHeader
                 className="ponoTitle"
                 style={{
-                  backgroundColor: "transparent",
                   justifyContent: "center",
+                  backgroundColor: "transparent",
                   alignSelf: "center",
+                  borderBottom: "none",
+                  marginBottom: "-25px",
                   width: "100%",
-
                   opacity: 100,
                 }}
               >
-                <i className="header-icon pe-7s-tools icon-gradient bg-plum-plate"></i>
-                Moderator Control Panel
+                <i className="pe-7s-tools icon-gradient bg-plum-plate"></i>
+                <h2>Moderator Controls</h2>
               </CardHeader>
-              <div
+              <CardHeader
                 style={{
-                  width: "100%",
-                  alignItems: "center",
-                  backgroundColor: "transparent",
+                  marginBottom: "-30px",
                   justifyContent: "center",
+                  backgroundColor: "transparent",
+                  borderBottom: "none",
+                  alignSelf: "center",
                 }}
               >
-                <CardHeader
-                  className="ponoTitle"
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                    backgroundColor: "transparent",
-                    justifyContent: "center",
-                    alignSelf: "center",
-
-                    opacity: 100,
+                <Button
+                  size="sm"
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide " +
+                    classnames({ active: this.state.activeTab === "1" })
+                  }
+                  onClick={() => {
+                    this.toggle("1");
                   }}
                 >
-                  <Button
-                    size="sm"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide " +
-                      classnames({ active: this.state.activeTab === "1" })
-                    }
-                    onClick={() => {
-                      this.toggle("1");
-                    }}
-                  >
-                    Tools1
-                  </Button>
-                  <Button
-                    width="25px"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide mr-1 ml-1 " +
-                      classnames({ active: this.state.activeTab === "2" })
-                    }
-                    onClick={() => {
-                      this.toggle("2");
-                    }}
-                  >
-                    Tools2
-                  </Button>
-                  <Button
-                    width="25px"
-                    outline
-                    color="alternate"
-                    className={
-                      "btn-pill btn-wide mr-1 ml-1 " +
-                      classnames({ active: this.state.activeTab === "4" })
-                    }
-                    onClick={() => {
-                      this.toggle("4");
-                    }}
-                  >
-                    Invoice
-                  </Button>
-                </CardHeader>
-              </div>
+                  Site
+                </Button>
+                <Button
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide " +
+                    classnames({ active: this.state.activeTab === "2" })
+                  }
+                  onClick={() => {
+                    this.toggle("2");
+                  }}
+                >
+                  Team
+                </Button>
+                <Button
+                  outline
+                  color="alternate"
+                  className={
+                    "btn-pill btn-wide " +
+                    classnames({ active: this.state.activeTab === "4" })
+                  }
+                  onClick={() => {
+                    this.toggle("4");
+                  }}
+                >
+                  Invoice
+                </Button>
+              </CardHeader>
               <br />
               <TabPane
                 className="ponoTitle"
@@ -416,37 +363,49 @@ mutation MyMutation {
                 <Row style={{ justifyContent: "center" }}>
                   <Card
                     style={{
-                      width: "26rem",
+                      width: "24rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       alignContent: "center",
                       height: "100%",
-                      alignItems: "center",
-                      marginRight: "10px",
-                      marginLeft: "10px",
                       marginTop: "10px",
+                      marginBottom: "-20px",
+                      alignItems: "center",
                     }}
                   >
                     <CardTitle
                       style={{
                         justifyContent: "center",
                         alignSelf: "center",
+                        marginBottom: "-15px",
                       }}
                     >
-                      Main Website Tools:
+                      <h4>Main Website Tools:</h4>
                     </CardTitle>
                     <span style={{ marginLeft: "10px", display: "block" }}>
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#0000CC",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={() => {
                           this.toggle("Chat");
                         }}
                       >
                         {" "}
-                        Chat{" "}
+                        Public Chat{" "}
                       </button>
                       &nbsp;
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#3300CC",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={() => {
                           this.toggle("Products");
                         }}
@@ -456,7 +415,13 @@ mutation MyMutation {
                       </button>
                       &nbsp;
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#6600CC",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={() => {
                           this.toggle("Events");
                         }}
@@ -466,7 +431,13 @@ mutation MyMutation {
                       </button>
                       &nbsp;
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#9900CC",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={() => {
                           this.toggle("Content");
                         }}
@@ -476,17 +447,58 @@ mutation MyMutation {
                       </button>
                       &nbsp;
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#BB00CC",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={() => {
                           this.toggle("Notes");
                         }}
                       >
-                        {" "}
-                        Notes{" "}
+                        Notes
                       </button>
                       &nbsp;
                       <button
-                        style={{ marginTop: "10px", borderRadius: "10px" }}
+                        style={{
+                          backgroundColor: "#BB0099",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
+                        onClick={() => {
+                          this.toggle("Surveys");
+                        }}
+                      >
+                        {" "}
+                        Surveys{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
+                          backgroundColor: "#BB0066",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
+                        onClick={() => {
+                          this.toggle("Live");
+                        }}
+                      >
+                        {" "}
+                        Live Chat{" "}
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{
+                          marginTop: "10px",
+                          backgroundColor: "#FF0000",
+                          borderRadius: "16px",
+                          height: "35px",
+                          fontSize: "120%",
+                        }}
                         onClick={(e) => {
                           e.preventDefault();
                           localStorage.removeItem("jwt");
@@ -504,12 +516,13 @@ mutation MyMutation {
                   </Card>
                   <Card
                     style={{
-                      width: "26rem",
+                      width: "24rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                      backgroundColor: "transparent",
-                      marginLeft: "10px",
-                      marginRight: "10px",
-                      marginTop: "10px",
+                      alignContent: "center",
+                      height: "100%",
+                      marginTop: "12px",
+                      alignItems: "center",
+                      marginBottom: "25px",
                     }}
                   >
                     <CardTitle
@@ -518,7 +531,7 @@ mutation MyMutation {
                         alignSelf: "center",
                       }}
                     >
-                      Data Browser:
+                      <h4>Site Data:</h4>
                     </CardTitle>
                     <TabContent
                       activeTab={this.state.activeTab2}
@@ -553,7 +566,7 @@ mutation MyMutation {
                             this.toggle2("1");
                           }}
                         >
-                          Products
+                          Overview
                         </Button>
                         <Button
                           size="sm"
@@ -597,10 +610,21 @@ mutation MyMutation {
                         }}
                       >
                         {" "}
-                        <br />
+                        <h4>
+                          <br />
+                          Highlight Metrics: <br />
+                          <br />
+                          Users: 4
+                          <br />
+                          Comments: 2
+                          <br />
+                          Pubic Chat Messages: 4
+                          <br />
+                          Survey Responses: 0
+                          <br />
+                          Chat Live Now: 1
+                        </h4>
                         <FormQueryComponent />
-                        <br />
-                        <br />
                         <br />
                         <MyQueryCopyQuery />
                       </TabPane>
@@ -616,7 +640,6 @@ mutation MyMutation {
                         <UserQueryComponent />
                         <br />
                         <br />
-                        <MyQueryCopyQuery />
                       </TabPane>
                       <TabPane
                         className="ponoTitle"
@@ -628,9 +651,7 @@ mutation MyMutation {
                       >
                         {" "}
                         <br />
-                        {this.state.ponoMapDATA.split("\n").map((str) => (
-                          <h5>{str}</h5>
-                        ))}
+                        <CommentManagerComponent />
                         <br />
                         <MyQueryCopyQuery />
                       </TabPane>
@@ -668,7 +689,7 @@ mutation MyMutation {
                         File Upload:<br></br>{" "}
                         <Input
                           type="file"
-                          enctype="multipart/form-data"
+                          encType="multipart/form-data"
                           name="apiup"
                           id="apiupform"
                           onChange={this.onImageChange}
@@ -748,7 +769,9 @@ mutation MyMutation {
                       alignContent: "center",
                       alignItems: "center",
                     }}
-                  ></Card>
+                  >
+                    NYI
+                  </Card>
                 </Row>
               </TabPane>
               <TabPane tabId="Chat">
@@ -823,6 +846,36 @@ mutation MyMutation {
                     }}
                   >
                     <NoteManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Surveys">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <SurveyManagerComponent />
+                  </Card>
+                </Row>
+              </TabPane>
+              <TabPane tabId="Live">
+                <Row style={{ justifyContent: "center" }}>
+                  {" "}
+                  <Card
+                    style={{
+                      width: "26rem",
+                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <LiveChatManagerComponent />
                   </Card>
                 </Row>
               </TabPane>

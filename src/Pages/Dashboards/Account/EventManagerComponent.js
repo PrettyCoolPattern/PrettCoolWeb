@@ -1,5 +1,8 @@
 import React, { Component, Fragment, useState } from "react";
 import { compose, graphql } from "react-apollo";
+import { gql, useQuery } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import { Query, ApolloProvider, Mutation } from "react-apollo";
 
 import {
   Row,
@@ -28,6 +31,17 @@ import {
 import axios from "axios";
 import Calendar from "react-calendar";
 import "../../../assets/components/Calendar.css";
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: "https://api.microhawaii.com/graphql",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  }),
+});
+
 class EventManagerComponent extends Component {
   constructor(props) {
     super(props);
@@ -102,7 +116,7 @@ class EventManagerComponent extends Component {
     clearInterval(this.timerId);
   }
   componentDidMount() {}
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.stopTimer;
   }
   onImageChange = (event) => {
@@ -114,6 +128,49 @@ class EventManagerComponent extends Component {
   };
 
   render() {
+    let { formName, formDesc, formEmail, formMessage } = this.state;
+    const { data } = this.state;
+
+    const MY_MUTATION_MUTATION = gql`
+      mutation DeleteChat {
+        createEvents(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          chat {
+            id
+          }
+        }
+      }
+    `;
+
+    const MyMutationMutation = (props) => {
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+              ) : null;
+
+              return (
+                <button
+                  onClick={() =>
+                    MyMutation(formName + formDesc, Date().toString())
+                  }
+                >
+                  Add Event Data
+                </button>
+              );
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
+
     return (
       <Fragment>
         <Card
@@ -160,13 +217,15 @@ class EventManagerComponent extends Component {
               style={{ width: "100%", top: "15px", position: "relative" }}
               type="text"
             ></Input>{" "}
+            <br />
             <br /> Description:
             <Input
               style={{ top: "15px", position: "relative" }}
               type="textarea"
             ></Input>{" "}
-            &nbsp;
-            <button> Add</button> <br />
+            &nbsp; <br />
+            <br />
+            <MyMutationMutation />
           </CardBody>
         </Card>
         <br />

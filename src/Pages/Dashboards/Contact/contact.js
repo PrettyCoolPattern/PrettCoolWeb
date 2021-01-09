@@ -207,10 +207,6 @@ export default class ContactElements extends Component {
           transitionLeave={false}
         >
           <Container fluid>
-            {" "}
-            <br />
-            <br />
-            <br />
             <Row
               style={{
                 justifyContent: "center",

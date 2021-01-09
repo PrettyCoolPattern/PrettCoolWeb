@@ -110,7 +110,7 @@ class ProductManagerComponent extends Component {
             File Upload:<br></br>{" "}
             <Input
               type="file"
-              enctype="multipart/form-data"
+              encType="multipart/form-data"
               name="apiup"
               id="apiupform"
               onChange={this.onImageChange}

@@ -123,15 +123,13 @@ export default class ProjectElements extends Component {
                 <CardBody>
                   <h3>
                     With over fifteen years of software development experience,
-                    Jason Hoku, along-side the PrettyCoolPattern team are dedicated to
-                    a variety of powerful skillsets and networks.
+                    Jason Hoku, along-side the PrettyCoolPattern team are
+                    dedicated to a variety of powerful skillsets and networks.
                   </h3>
-                  <br /> <br />
                   <li>
                     OpenSource on &nbsp;
                     <a href="https://github.com/JasonHoku">
                       GitHub
-                      <br></br>
                     </a>
                   </li>
                   <li>
@@ -325,8 +323,8 @@ export default class ProjectElements extends Component {
             <Col xs="auto" sm="auto" md="auto" xl="auto">
               <Card>
                 <CardBody>
-                  For now you can find more about PrettyCoolPattern skillsets on the{" "}
-                  <a href="#/dashboards/services">services</a> page.
+                  For now you can find more about PrettyCoolPattern skillsets on
+                  the <a href="#/dashboards/services">services</a> page.
                   <br></br>
                 </CardBody>
               </Card>

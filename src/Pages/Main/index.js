@@ -8,15 +8,22 @@ import ResizeDetector from "react-resize-detector";
 import AppMain from "../../Layout/AppMain";
 
 import { IoIosChatbubbles } from "react-icons/io";
+import HeaderRightDrawer from "../Components/LiveChat/RightPopUpDrawer.js";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      closedSmallerSidebar: false,
+      closedSmallerSidebar: true,
+      RightDrawerActive: true,
+      active: true,
     };
+    this.openRightSidebar = this.openRightSidebar.bind(this);
   }
-
+  openRightSidebar() {
+    document.getElementById("ChatBlock").style.opacity = 1;
+    document.getElementById("ChatBlock").hidden = false;
+  }
   render() {
     let {
       colorScheme,
@@ -51,7 +58,11 @@ class Main extends React.Component {
               <AppMain />
             </div>
             <button
-              onClick={() => (window.location.hash = "/dashboards/contact")}
+              style={{
+                userSelect: "none",
+                textDecoration: "none",
+              }}
+              onClick={() => this.openRightSidebar()}
               className="chatNotify zoom"
             >
               <IoIosChatbubbles
@@ -65,6 +76,11 @@ class Main extends React.Component {
                 }}
               />
             </button>
+            <HeaderRightDrawer
+              openRightSidebar={this.openRightSidebar}
+              active={this.state.active}
+              RightDrawerActive={this.state.RightDrawerActive}
+            />
           </Fragment>
         )}
       />

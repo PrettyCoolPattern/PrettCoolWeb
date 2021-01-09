@@ -60,9 +60,10 @@ class NoteManagerComponent extends Component {
     clearInterval(this.state.intervalId);
   }
   getData() {
+    console.log("Check Survey Data");
     try {
       this.state.authVar = axios
-        .get(`https://api.microHawaii.com/notes`, {
+        .get(`https://api.microHawaii.com/surveys`, {
           headers: {
             "content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -83,7 +84,7 @@ class NoteManagerComponent extends Component {
               "\r\n ID#" +
               JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
               " : " +
-              JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].Note);
+              JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].Answers);
 
             this.state.textVar = concData
               .split("\n")
@@ -111,11 +112,10 @@ class NoteManagerComponent extends Component {
 
   onSubmit = () => {
     const formData = new FormData();
-    formData.Note = this.state.noteVar;
-    console.log(formData);
+    formData.Answers = this.state.noteVar;
 
     axios
-      .post(`https://api.microhawaii.com/notes`, JSON.stringify(formData), {
+      .post(`https://api.microhawaii.com/surveys`, JSON.stringify(formData), {
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -139,7 +139,7 @@ class NoteManagerComponent extends Component {
     console.log(formData);
 
     axios
-      .post(`https://api.microhawaii.com/notes`, JSON.stringify(formData), {
+      .post(`https://api.microhawaii.com/surveys`, JSON.stringify(formData), {
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -170,8 +170,8 @@ class NoteManagerComponent extends Component {
 
     const MY_MUTATION_MUTATION = gql`
       mutation DeleteNote {
-        deleteNote(input: { where: { id: ${this.state.deleteIDVar} } }) {
-          note {
+        deleteSurvey(input: { where: { id: ${this.state.deleteIDVar} } }) {
+          survey {
             id
           }
         }
@@ -199,7 +199,7 @@ class NoteManagerComponent extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Delete Note#
+                  Delete Answer #
                 </button>
               );
             }}
@@ -210,7 +210,7 @@ class NoteManagerComponent extends Component {
 
     return (
       <Fragment>
-        <CardHeader> PCP Private Note Manager</CardHeader>
+        <CardHeader>Survey Manager</CardHeader>
         <CardBody>
           <div
             style={{

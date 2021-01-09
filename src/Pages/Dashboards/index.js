@@ -6,12 +6,12 @@ import { Route } from "react-router-dom";
 import HomeDashboard from "./Home/";
 import Services from "./Services/";
 import ShopPage from "./Shop/";
-import GalleryPage from "./Gallery/"; 
-import Writing from "./Writing/"; 
-import Music from "./Music/"; 
-import Contact from "./Contact/"; 
-import CalendarPage from "./Calendar/"; 
-import Projects from "./Projects/"; 
+import GalleryPage from "./Gallery/";
+import Writing from "./Writing/";
+import Music from "./Music/";
+import Contact from "./Contact/";
+import CalendarPage from "./Calendar/";
+import Projects from "./Projects/";
 
 import AccountPage from "./Account/";
 
@@ -24,10 +24,8 @@ import AppFooter from "../../Layout/AppFooter/";
 // Theme Options
 import ThemeOptions from "../../Layout/ThemeOptions/";
 
-
 const Dashboards = ({ match }) => (
   <Fragment>
-    <ThemeOptions />
     <AppHeader />
     <div className="app-main">
       <AppSidebar />
