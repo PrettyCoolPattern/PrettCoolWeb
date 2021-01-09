@@ -74,6 +74,7 @@ class NoteManagerComponent extends Component {
           if (res.err == null) {
             this.setState({ textvar: JSON.stringify(res) });
           }
+
           let concData = "";
           for (
             var i = 0;

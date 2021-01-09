@@ -46,58 +46,6 @@ class DocumentationPage extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getData();
-    setTimeout(() => this.getData(), 500);
-    setTimeout(() => this.getData(), 1500);
-    setTimeout(() => this.getData(), 2500);
-
-    let intervalId = setInterval(() => {
-      this.getData();
-    }, 2000);
-    this.setState({ intervalId: intervalId });
-  }
-  componentWillUnmount() {
-    clearInterval(this.state.intervalId);
-  }
-  getData() {
-    console.log("Check Live Chat Data");
-    try {
-      this.state.authVar = axios
-        .get(`https://api.microHawaii.com/live-chats`, {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        })
-        .then((res) => {
-          if (res.err == null) {
-            this.setState({ textvar: JSON.stringify(res) });
-          }
-          let concData = "";
-          for (
-            var i = 0;
-            i < JSON.parse(JSON.stringify(res.data)).length;
-            i++
-          ) {
-            concData =
-              concData +
-              "\r\n Available Instance #: " +
-              String(JSON.parse(JSON.stringify(res.data))[i].instance);
-
-            this.state.textVar = concData
-              .split("\n")
-              .map((str) => <h5 key={str}>{str}</h5>);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   handleInputChange(event) {
     this.setState({
       noteVar: event.target.value,

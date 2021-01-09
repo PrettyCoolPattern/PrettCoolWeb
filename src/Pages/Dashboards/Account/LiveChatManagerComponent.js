@@ -74,6 +74,11 @@ class NoteManagerComponent extends Component {
           if (res.err == null) {
             this.setState({ textvar: JSON.stringify(res) });
           }
+          
+          localStorage.setItem(
+            "ActiveChatUserCount",
+            String(JSON.parse(JSON.stringify(res.data)).length)
+          );
           let concData = "";
           for (
             var i = 0;

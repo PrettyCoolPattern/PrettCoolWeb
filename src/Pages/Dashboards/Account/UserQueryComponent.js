@@ -48,6 +48,10 @@ class UserQueryComponent extends Component {
       .then((res) => {
         if (res.err == null) {
         }
+        localStorage.setItem(
+          "ActiveUserCount",
+          JSON.parse(JSON.stringify(res.data)).length 
+        );
         let concData = "";
         for (var i = 0; i < JSON.parse(JSON.stringify(res.data)).length; i++) {
           concData =

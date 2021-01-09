@@ -137,6 +137,36 @@ export default class ModeratorElements extends Component {
     this.toggle2 = this.toggle2.bind(this);
   }
 
+  componentDidMount() {
+    this.getMetrics();
+    setTimeout(() => this.getMetrics(), 500);
+    setTimeout(() => this.getMetrics(), 1500);
+    setTimeout(() => this.getMetrics(), 2500);
+
+    let intervalId = setInterval(() => {
+      this.getMetrics();
+    }, 2000);
+    this.setState({ intervalId: intervalId });
+  }
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+  getMetrics() {
+    console.log("Updating Metrics"),
+      this.setState({ userMetric: localStorage.getItem("ActiveUserCount") }),
+      this.setState({
+        chatMetric: localStorage.getItem("ActiveChatUserCount"),
+      });
+    this.setState({
+      issuesMetric: localStorage.getItem("ActiveIssueCount"),
+    });
+    this.setState({
+      commentsMetric: localStorage.getItem("CommentsCount"),
+    });
+    this.setState({
+      SurveyMetric: localStorage.getItem("NewSurveyCount"),
+    });
+  }
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({
@@ -607,15 +637,15 @@ export default class ModeratorElements extends Component {
                         }}
                       >
                         <h4>
-                          Users: 4
+                          Users: {this.state.userMetric}
                           <br />
-                          Comments: 2
+                          Chat Live: {this.state.chatMetric}
                           <br />
-                          Pubic Chat Messages: 4
+                          Comments: {this.state.commentsMetric}
                           <br />
-                          Survey Responses: 0
+                          Open Issues: {this.state.issuesMetric}
                           <br />
-                          Chat Live Now: 1
+                          Survey Responses: {this.state.SurveyMetric}
                         </h4>
                       </TabPane>
                     </TabContent>

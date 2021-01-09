@@ -62,7 +62,7 @@ class IssueManager extends Component {
     clearInterval(this.state.intervalId);
   }
   getData() {
-    console.log("Check Chat Data");
+    console.log("Check Issue Data");
     try {
       this.state.authVar = axios
         .get(`https://api.microHawaii.com/issues`, {
@@ -75,6 +75,10 @@ class IssueManager extends Component {
           if (res.err == null) {
             this.setState({ textvar: JSON.stringify(res) });
           }
+          localStorage.setItem(
+            "ActiveIssueCount",
+            String(JSON.parse(JSON.stringify(res.data)).length)
+          );
           let concData = "";
           for (
             var i = 0;
