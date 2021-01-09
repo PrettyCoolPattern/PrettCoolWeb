@@ -211,7 +211,7 @@ class HeaderRightDrawer extends React.Component {
                         }}
                       >
                         <FcLock style={{ position: "relative", top: "-5px" }} />
-                        Login
+                        <span style={{ position: "relative", top: "-2px" }}>Login</span>
                       </div>
                     </Button>
                   </a>{" "}
@@ -240,7 +240,7 @@ class HeaderRightDrawer extends React.Component {
                       <FcFeedback
                         style={{ position: "relative", top: "-5px" }}
                       />{" "}
-                      Feedback (Coming Soon){" "}
+                      <span style={{ position: "relative", top: "-2px" }}>Feedback (Coming Soon)</span>
                     </div>
                   </Button>
                 </div>
@@ -264,8 +264,9 @@ class HeaderRightDrawer extends React.Component {
                         }}
                       >
                         <FcIdea style={{ position: "relative", top: "-5px" }} />{" "}
-                        Learn About PrettCoolPattern
-                      </div>
+                        
+                      <span style={{ position: "relative", top: "-2px" }}>Learn About PrettCoolPattern</span>
+                     </div>
                     </Button>
                   </a>
                 </div>{" "}
@@ -291,8 +292,11 @@ class HeaderRightDrawer extends React.Component {
                         top: "-3px",
                       }}
                     >
-                      <FcUndo style={{ position: "relative", top: "-2px" }} />{" "}
-                      Continue Browsing{" "}
+                      <FcUndo style={{ position: "relative", top: "-5px" }} />{" "}
+                      <span style={{ position: "relative", top: "-2px" }}>
+                        {" "}
+                        Continue Browsing
+                      </span>
                     </div>
                   </Button>
                 </div>
