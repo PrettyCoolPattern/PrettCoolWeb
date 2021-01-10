@@ -4,6 +4,7 @@ import Loader from "react-loaders";
 
 import LandingPage from "../../Pages/home";
 import { ToastContainer } from "react-toastify";
+import { FcLeft } from "react-icons/fc";
 
 const UserPages = lazy(() => import("../../Pages/UserPages"));
 const Applications = lazy(() => import("../../Pages/Applications"));
@@ -171,6 +172,8 @@ const AppMain = () => {
                     transform: "scale(5.5)",
                     top: "-100px",
                     position: "relative",
+                    display: "center",
+                    left: "25px",
                   }}
                   type="ball-clip-rotate-multiple"
                 />

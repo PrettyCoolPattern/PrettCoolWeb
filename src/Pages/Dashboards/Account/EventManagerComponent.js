@@ -205,17 +205,19 @@ class EventManagerComponent extends Component {
             <span className="calendarVar">
               <Calendar
                 className="calendarVar"
-                onChange={(e) => this.setState({ set: e })}
+                onChange={(e) => this.setState({ setDate: e })}
               />
             </span>{" "}
             <br />
             Select Date then Add Data:
-            <Input
-              disabled
-              value={this.state.set}
-              style={{ width: "100%", top: "15px", position: "relative" }}
-              type="text"
-            ></Input>{" "}
+            <div
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+                width: "16rem",
+              }}
+            >
+              {String(this.state.setDate)}
+            </div>
             <br />
             <br /> Description:
             <Input
