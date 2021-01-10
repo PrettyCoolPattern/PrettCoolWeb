@@ -221,7 +221,7 @@ div.card {
   position: fixed;
   z-index: 85;
   bottom: 55px;
-  right: 25px;
+  right: 5px;
   width: 65px;
   height: 65px;
   background-color: #190624;
@@ -240,7 +240,7 @@ div.card {
   0% {
     opacity: 0;
   }
-  50% {
+  75% {
     opacity: 0;
   }
   100% {
