@@ -662,58 +662,6 @@ export default class ModeratorElements extends Component {
                     style={{
                       width: "26rem",
                       boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-                      alignContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <CardHeader>
-                      PrettyCoolPattern Large File Uploader
-                    </CardHeader>
-                    <CardBody>
-                      <p>
-                        For ease with numerous files, .zip archive them before
-                        uploading.
-                      </p>
-                      <p>
-                        Larger files or slow internet connections may take some
-                        time.
-                      </p>
-                    </CardBody>
-                    <div className="App">
-                      <br />
-                      <Form onSubmit={this.onSubmit}>
-                        File Upload:<br></br>{" "}
-                        <Input
-                          type="file"
-                          encType="multipart/form-data"
-                          name="apiup"
-                          id="apiupform"
-                          onChange={this.onImageChange}
-                          alt="image"
-                        />
-                        <br />
-                        <br />
-                        <div>
-                          <Button
-                            style={{
-                              alignSelf: "center",
-                              display: "block",
-                              position: "relative",
-                              width: "100%",
-                            }}
-                            type="submit"
-                          >
-                            Send
-                          </Button>
-                        </div>
-                      </Form>
-                      <br />
-                    </div>
-                  </Card>{" "}
-                  <Card
-                    style={{
-                      width: "26rem",
-                      boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
                       backgroundColor: "transparent",
                       alignContent: "center",
                       alignItems: "center",
@@ -736,9 +684,7 @@ export default class ModeratorElements extends Component {
                       alignContent: "center",
                       alignItems: "center",
                     }}
-                  >
-                    <ProductManagerComponent />
-                  </Card>
+                  ></Card>
                 </Row>
               </TabPane>
               <TabPane tabId="4">

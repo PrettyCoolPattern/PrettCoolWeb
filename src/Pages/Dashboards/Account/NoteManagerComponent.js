@@ -87,7 +87,7 @@ class NoteManagerComponent extends Component {
 
             this.state.textVar = concData
               .split("\n")
-              .map((str) => <h5 key={str}>{str}</h5>);
+              .map((str, index) => <h5 key={index}>{str}</h5>);
           }
         })
         .catch((err) => {

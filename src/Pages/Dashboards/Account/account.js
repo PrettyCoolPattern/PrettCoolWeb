@@ -244,7 +244,7 @@ export default class AccountElements extends Component {
                       this.toggle("2");
                     }}
                   >
-                    Public Chat
+                    Live Chat
                   </Button>
                   &nbsp;
                   <Button
@@ -275,7 +275,7 @@ export default class AccountElements extends Component {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <div> Thank you for signing up with PrettyCoolPattern!</div>{" "}
+                    <div> Thank you for signing up with MauiArtPrints!</div>{" "}
                     <br />
                     Additional site features are coming soon, for now you can
                     send a message directly to administaration here.
@@ -308,7 +308,7 @@ export default class AccountElements extends Component {
                   </CardBody>
                 </TabPane>
                 <TabPane tabId="2">
-                  <CardBody>Public Chat, Coming Soon.</CardBody>
+                  <CardBody>Live Chat, Coming Soon.</CardBody>
                 </TabPane>
                 <TabPane tabId="3">
                   <CardBody>

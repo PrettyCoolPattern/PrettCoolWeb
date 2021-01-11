@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect } from "react";
+import React, { Component, Fragment, useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
@@ -41,8 +41,11 @@ class NoteManagerComponent extends Component {
     super(props);
     this.state = {
       noteVar: "",
-      textVar2: "Select an Instance ",
+      textVar2: "Select an Instance To Begin",
+      statusVar: "Offline",
       deleteIDVar: "26",
+      loadedUserMessage: "",
+      loadedAdminMessage: "",
     };
   }
 
@@ -72,27 +75,32 @@ class NoteManagerComponent extends Component {
         })
         .then((res) => {
           if (res.err == null) {
-            this.setState({ textvar: JSON.stringify(res) });
-          }
-          
-          localStorage.setItem(
-            "ActiveChatUserCount",
-            String(JSON.parse(JSON.stringify(res.data)).length)
-          );
-          let concData = "";
-          for (
-            var i = 0;
-            i < JSON.parse(JSON.stringify(res.data)).length;
-            i++
-          ) {
-            concData =
-              concData +
-              "\r\n Available Instance #: " +
-              String(JSON.parse(JSON.stringify(res.data))[i].instance);
-
-            this.state.textVar = concData
-              .split("\n")
-              .map((str) => <h5 key={str}>{str}</h5>);
+            localStorage.setItem(
+              "ActiveChatUserCount",
+              String(JSON.parse(JSON.stringify(res.data)).length)
+            );
+            let concData = "";
+            for (
+              var i = 0;
+              i < JSON.parse(JSON.stringify(res.data)).length;
+              i++
+            ) {
+              concData =
+                concData +
+                "\r\n ID#" +
+                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
+                "\r\n Instance: " +
+                JSON.parse(JSON.stringify(res.data))[i].instance;
+              "\r\n Instance" +
+                JSON.parse(JSON.stringify(res.data))[i].created_at;
+              "\r\n Instance" +
+                JSON.parse(JSON.stringify(res.data))[i].MessageUser;
+              this.setState({
+                textVar: concData
+                  .split("\n")
+                  .map((str, index) => <h5 key={index}>{str}</h5>),
+              });
+            }
           }
         })
         .catch((err) => {
@@ -138,7 +146,55 @@ class NoteManagerComponent extends Component {
         console.log(err);
       });
   };
-
+  runGetLive() {
+    try {
+      this.state.authVar = axios
+        .get(`https://api.microHawaii.com/live-chats`, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+        .then((res) => {
+          if (res.err == null) {
+            for (
+              var i = 0;
+              i < JSON.parse(JSON.stringify(res.data)).length;
+              i++
+            )
+              if (
+                String(JSON.parse(JSON.stringify(res.data))[i].id) ===
+                this.state.deleteIDVar
+              ) {
+                this.setState({ EZID: i });
+              }
+            this.setState({
+              statusVar: "On ID#" + this.state.deleteIDVar,
+            });
+            this.setState({
+              textVar2: "On ID#" + this.state.deleteIDVar,
+            });
+            this.setState({
+              loadedAdminMessage: String(
+                JSON.parse(JSON.stringify(res.data))[this.state.EZID]
+                  .messageAdmin
+              ),
+            });
+            this.setState({
+              loadedUserMessage: String(
+                JSON.parse(JSON.stringify(res.data))[this.state.EZID]
+                  .messageUser
+              ),
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   onSubmitDelete = () => {
     const formData = new FormData();
     formData.Note = this.state.noteVar;
@@ -179,13 +235,13 @@ class NoteManagerComponent extends Component {
     const { data } = this.state;
 
     const MY_MUTATION_MUTATION = gql`
-      mutation DeleteNote {
-        deleteSurvey(input: { where: { id: ${this.state.deleteIDVar} } }) {
-          survey {
-            id
-          }
+    mutation DeletelLiveChat {
+      deleteLiveChat(input: { where: { id: ${this.state.deleteIDVar} } }) {
+        liveChat {
+          id
         }
       }
+    }
     `;
 
     const MyMutationMutation = (props) => {
@@ -209,7 +265,7 @@ class NoteManagerComponent extends Component {
                     MyMutation(formName + formDesc, Date().toString())
                   }
                 >
-                  Activate Chat #
+                  Start Chat From ID
                 </button>
               );
             }}
@@ -218,27 +274,85 @@ class NoteManagerComponent extends Component {
       } catch (error) {}
     };
 
+    const MY_MUTATION_MUTATION3 = gql`
+      mutation UpdateChat {
+        updateLiveChat(
+          input: { where: { id: ${this.state.deleteIDVar} }, data: { messageAdmin: "Live Chat Available" } }
+        ) {
+          liveChat {
+            messageAdmin
+          }
+        }
+      }
+    `;
+
+    const MyMutationMutation3 = (props) => {
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION3}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+              ) : null;
+              if (data) {
+                this.setState({
+                  textVar2: "Initializing",
+                });
+
+                this.setState({
+                  loadedAdminMessage: "Initializing",
+                });
+                this.runGetLive();
+              }
+
+              return (
+                <button
+                  onClick={() =>
+                    MyMutation(formName + formDesc, Date().toString())
+                  }
+                >
+                  Initialize
+                </button>
+              );
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
     return (
       <Fragment>
-        <CardHeader> Live Chat Manager</CardHeader>
-        <CardBody>
-          <div
-            style={{
-              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-            }}
-          >
-            <span>{this.state.textVar}</span>
-          </div>
-          <input
-            type="number"
-            onChange={() => this.handleInputChange2(event)}
-            style={{ width: "50px" }}
-          ></input>{" "}
+        <CardHeader
+          style={{
+            marginBottom: "-10px",
+            backgroundColor: "transparent",
+          }}
+        >
+          {" "}
+          <h2>Live&nbsp;Chat&nbsp;Manager</h2> <br />
+        </CardHeader>
+        <h2>Status:&nbsp;{this.state.statusVar}</h2>
+        <CardHeader
+          style={{
+            marginBottom: "-25px",
+            backgroundColor: "transparent",
+          }}
+        >
+          <Button color="primary" onClick={() => alert("coming soon")}>
+            Go Online
+          </Button>
           &nbsp;
-          <MyMutationMutation />
-          <br />
-          <br />
-          <br />
+          <Button color="primary" onClick={() => alert("coming soon")}>
+            Go Offline
+          </Button>
+          &nbsp;
+        </CardHeader>
+        <CardBody>
           <div
             style={{
               boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
@@ -248,8 +362,30 @@ class NoteManagerComponent extends Component {
               textAlign: "center",
             }}
           >
-            <p> {this.state.textVar2}</p>
+            <p> {this.state.textVar2}</p> <br />
+            <Row>
+              <Col style={{ width: "50%" }}>{this.state.loadedUserMessage}</Col>
+              <Col style={{ width: "50%" }}>
+                {this.state.loadedAdminMessage}
+              </Col>
+              <Row style={{ width: "100%" }}></Row>
+              <Col>
+                <b>User</b>:
+              </Col>{" "}
+              <Col>
+                <b>Admin</b>
+              </Col>
+            </Row>
           </div>
+          <br />
+          <input
+            type="number"
+            onChange={() => this.handleInputChange2(event)}
+            style={{ width: "75px" }}
+          ></input>{" "}
+          &nbsp;
+          <MyMutationMutation3 />
+          <br />
           <Input
             value={this.state.noteVar}
             name="NoteVar"
@@ -260,6 +396,14 @@ class NoteManagerComponent extends Component {
           ></Input>{" "}
           &nbsp;
           <button onClick={() => this.onSubmit()}> Send</button> <br />
+          <br />{" "}
+          <div
+            style={{
+              boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+            }}
+          >
+            {this.state.textVar}
+          </div>
         </CardBody>
         <br />
       </Fragment>

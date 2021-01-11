@@ -4,6 +4,8 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import ContactElements from "../../Dashboards/Contact/contact";
 import { FcIdea, FcFeedback, FcUndo, FcLock } from "react-icons/fc";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import HeaderRightAuth from "./auth";
+
 import {
   Row,
   Col,
@@ -34,6 +36,8 @@ import { Link } from "react-router-dom";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
 import gql from "graphql-tag";
+
+import { v4 as uuidv4 } from "uuid";
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -360,11 +364,11 @@ class HeaderRightDrawer extends React.Component {
                   </span>{" "}
                   <br />
                   <img src="/images/PCP-Site-Logo.gif"></img>{" "}
-                </div>
+                  <HeaderRightAuth /> </div>
               </div>
             </div>
           </PerfectScrollbar>
-        </div>
+        </div> 
       </Fragment>
     );
   }

@@ -175,7 +175,7 @@ class ProductManagerComponent extends Component {
             String(JSON.parse(JSON.stringify(res.data))[i].Image[0].url);
           this.state.textVar = concData
             .split("\n")
-            .map((str) => <span key={str}>{str}</span>);
+            .map((str, index) => <h5 key={index}>{str}</h5>);
         }
       })
       .catch((err) => {
@@ -212,7 +212,7 @@ class ProductManagerComponent extends Component {
                     type="file"
                     encType="multipart/form-data"
                     name="apiup"
-                    id="apiupform"
+                    id="apiupform4"
                     onChange={this.onImageChange}
                     alt="image"
                   />
