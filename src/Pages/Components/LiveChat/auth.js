@@ -63,14 +63,24 @@ class HeaderRightAuth extends React.Component {
     createLiveChat(
       input: {
         data: {
-          instance: "${String(uuidv4())}"
+          instance: "${localStorage.getItem("localUUID")}"
           messageUser: ""
+          timestamp: "${String(
+            Intl.DateTimeFormat("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            }).format(Date.now())
+          )}"
         }
       }
     ) {
       liveChat {
         instance
         messageUser
+        timestamp
         
       }
     }
@@ -113,11 +123,21 @@ class HeaderRightAuth extends React.Component {
     };
   }
   componentDidMount() {
+    localStorage.setItem("localUUID", String(uuidv4()));
     this.onSubmit();
   }
   onSubmit = () => {
     const formData = new FormData();
-    formData.instance = String(uuidv4());
+    formData.instance = localStorage.getItem("localUUID");
+    formData.timestamp = String(
+      Intl.DateTimeFormat("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(Date.now())
+    );
 
     axios
       .post(
@@ -132,9 +152,7 @@ class HeaderRightAuth extends React.Component {
       )
       .then((res) => {
         if (res.err == null) {
-          document.getElementById("apiupform").hidden = false;
         }
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

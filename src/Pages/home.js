@@ -30,7 +30,7 @@ class LandingPage extends React.Component {
               style={{
                 position: "absolute",
 
-                top: "5px",
+                top: "50px",
                 zIndex: 125,
                 textAlign: "center",
               }}
@@ -41,7 +41,7 @@ class LandingPage extends React.Component {
             <span
               style={{
                 position: "absolute",
-                bottom: "255px",
+                bottom: "225px",
                 zIndex: 125,
               }}
             >
@@ -53,8 +53,8 @@ class LandingPage extends React.Component {
                 width: window.innerWidth * 0.35,
                 alignContent: "center",
                 position: "absolute",
-                maxWidth: "600px",
-                maxHeight: "600px",
+                maxWidth: "250px",
+                maxHeight: "250px",
               }}
               src="/images/Mandala1kSeriesX.gif"
             ></img>

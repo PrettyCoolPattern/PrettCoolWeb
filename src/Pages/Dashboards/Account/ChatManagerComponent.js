@@ -64,7 +64,7 @@ class NoteManagerComponent extends Component {
     console.log("Check Chat Data");
     try {
       this.state.authVar = axios
-        .get(`https://api.microHawaii.com/chats`, {
+        .get(`https://api.microHawaii.com/live-chats`, {
           headers: {
             "content-type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -72,27 +72,48 @@ class NoteManagerComponent extends Component {
         })
         .then((res) => {
           if (res.err == null) {
-            this.setState({ textvar: JSON.stringify(res) });
-          }
+            localStorage.setItem(
+              "ActiveChatUserCount",
+              String(JSON.parse(JSON.stringify(res.data)).length)
+            );
+            let concData = "";
+            let concData2 = "";
+            let concData3 = "";
+            this.state.getOldTimestamp = [];
+            this.state.getDataEZID = [];
+            for (
+              var i = 0;
+              i < JSON.parse(JSON.stringify(res.data)).length;
+              i++
+            ) {
+              concData2 = this.state.getOldTimestamp.concat([
+                JSON.parse(JSON.stringify(res.data))[i].timestamp,
+              ]);
+              this.setState({
+                getOldTimestamp: concData2,
+              });
+              concData3 = this.state.getDataEZID.concat([
+                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id),
+              ]);
+              this.setState({
+                getDataEZID: concData3,
+              });
 
-          let concData = "";
-          for (
-            var i = 0;
-            i < JSON.parse(JSON.stringify(res.data)).length;
-            i++
-          ) {
-            concData =
-              concData +
-              "\r\n ID#" +
-              String(JSON.parse(JSON.stringify(res.data))[i].id) +
-              "| " +
-              String(JSON.parse(JSON.stringify(res.data))[i].User) +
-              ": " +
-              String(JSON.parse(JSON.stringify(res.data))[i].Comment);
-
-            this.state.textVar = concData
-              .split("\n")
-              .map((str, index) => <h5 key={index}>{str}</h5>);
+              concData =
+                concData +
+                "\r\n ID#" +
+                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
+                "\r\n Instance: " +
+                JSON.parse(JSON.stringify(res.data))[i].instance +
+                "\r\n Created At: " +
+                JSON.parse(JSON.stringify(res.data))[i].timestamp +
+                "\r\n . ";
+              this.setState({
+                textVar: concData
+                  .split("\n")
+                  .map((str, index) => <h5 key={index}>{str}</h5>),
+              });
+            }
           }
         })
         .catch((err) => {

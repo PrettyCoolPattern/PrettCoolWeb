@@ -25,6 +25,8 @@ import {
   TabPane,
 } from "reactstrap";
 import axios from "axios";
+import { toInteger } from "lodash";
+import { JsxEmit } from "typescript";
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
@@ -43,10 +45,15 @@ class NoteManagerComponent extends Component {
       noteVar: "",
       textVar2: "Select an Instance To Begin",
       statusVar: "Offline",
-      deleteIDVar: "26",
+      onlineButton: "Go Online",
+      purgeButton: "Clear Old Instances",
+      deleteIDVar: "0",
       loadedUserMessage: "",
       loadedAdminMessage: "",
+      getDataEZID: "",
     };
+    this.runGetLive = this.runGetLive.bind(this);
+    this.getData = this.getData.bind(this)
   }
 
   componentDidMount() {
@@ -80,25 +87,42 @@ class NoteManagerComponent extends Component {
               String(JSON.parse(JSON.stringify(res.data)).length)
             );
             let concData = "";
+            let concData2 = "";
+            let concData3 = "";
+            this.state.getOldTimestamp = [];
+            this.state.getDataEZID = [];
             for (
               var i = 0;
               i < JSON.parse(JSON.stringify(res.data)).length;
               i++
             ) {
+              concData2 = this.state.getOldTimestamp.concat([
+                JSON.parse(JSON.stringify(res.data))[i].timestamp,
+              ]);
+              this.setState({
+                getOldTimestamp: concData2,
+              });
+              concData3 = this.state.getDataEZID.concat([
+                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id),
+              ]);
+              this.setState({
+                getDataEZID: concData3,
+              });
+
               concData =
                 concData +
                 "\r\n ID#" +
                 JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
                 "\r\n Instance: " +
-                JSON.parse(JSON.stringify(res.data))[i].instance;
-              "\r\n Instance" +
-                JSON.parse(JSON.stringify(res.data))[i].created_at;
-              "\r\n Instance" +
-                JSON.parse(JSON.stringify(res.data))[i].MessageUser;
+                JSON.parse(JSON.stringify(res.data))[i].instance +
+                "\r\n Created At: " +
+                JSON.parse(JSON.stringify(res.data))[i].timestamp +
+                "\r\n . ";
               this.setState({
                 textVar: concData
                   .split("\n")
-                  .map((str, index) => <h5 key={index}>{str}</h5>),
+                  .map((str, index) => <h5 key={index}>{str}</h5>)
+                  .reverse(),
               });
             }
           }
@@ -109,11 +133,12 @@ class NoteManagerComponent extends Component {
     } catch (error) {
       console.log(error);
     }
+    this.runGetLive();
   }
 
   handleInputChange(event) {
     this.setState({
-      noteVar: event.target.value,
+      noteVar: String(event.target.value).replace(/(\r\n|\n|\r)/gm, ""),
     });
   }
   handleInputChange2(event) {
@@ -122,14 +147,83 @@ class NoteManagerComponent extends Component {
     });
   }
 
-  onSubmit = () => {
-    const formData = new FormData();
-    formData.Answers = this.state.noteVar;
+  purgeOldChats() {
+    var myLine = this.state.getOldTimestamp;
 
+    var nowTime = Intl.DateTimeFormat("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(Date.now());
+
+    var nowTimeCon1 = Intl.DateTimeFormat("en-US", {
+      hour: "2-digit",
+    }).format(Date.now());
+
+    var nowTimeCon2 = Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(Date.now());
+
+    let recentMinute = [
+      toInteger(
+        Intl.DateTimeFormat("en-US", {
+          minute: "2-digit",
+        }).format(Date.now())
+      ),
+    ];
+    let gotDates = new Date();
+    var MS_PER_MINUTE = 60000;
+    var myStartDate = new Date(gotDates - 5 * MS_PER_MINUTE);
+    // for each date : compare to time now and get true/false and ID for greater than 5 minutes
+    console.log("XXX" + myStartDate);
+
+    var parts = "2021-01-13T17:21:41.696Z";
+    for (var i = 0; i < this.state.getOldTimestamp.length; i++) {
+      console.log(i);
+      // Steps ??? Declare dates of all instances
+      console.log(new Date(this.state.getOldTimestamp[i]));
+      var d = new Date();
+      var n = d.toISOString();
+      console.log(n);
+      console.log(new Date(parts));
+      console.log(this.state.getDataEZID[i]);
+      if (new Date(this.state.getOldTimestamp[i]) < myStartDate) {
+        axios
+          .delete(
+            `https://api.microhawaii.com/live-chats/${this.state.getDataEZID[i]}`,
+
+            {
+              headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              },
+            }
+          )
+
+          .then((res) => {
+            if (res.err == null) {
+              console.log(res);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log("YYYZZ");
+      }
+      // Compare dates to recent time
+      // Delete old dates
+    }
+  }
+
+  purgeByID = () => {
     axios
-      .post(
-        `https://api.microhawaii.com/live-chats`,
-        JSON.stringify(formData),
+      .delete(
+        `https://api.microhawaii.com/live-chats/${this.state.deleteIDVar}`,
+
         {
           headers: {
             "content-type": "application/json",
@@ -137,15 +231,51 @@ class NoteManagerComponent extends Component {
           },
         }
       )
+
       .then((res) => {
         if (res.err == null) {
-          document.getElementById("apiupform").hidden = false;
+          console.log(res);
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  onSubmit = () => {
+    const MY_MUTATION_MUTATION3 = gql`
+      mutation UpdateChat {
+        updateLiveChat(
+          input: { where: { id: ${this.state.deleteIDVar} }, data: { messageAdmin: "Test" } }
+        ) {
+          liveChat {
+            messageAdmin
+          }
+        }
+      }
+    `;
+    try {
+      <Mutation mutation={MY_MUTATION_MUTATION3}>
+        {(MyMutation, { loading, error, data }) => {
+          try {
+            if (loading) return <pre>Loading</pre>;
+
+            if (error) {
+            }
+          } catch (error) {}
+          const dataEl = data ? (
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          ) : null;
+          if (data) {
+            this.runGetLive();
+            console.log(data);
+          }
+
+          return MyMutation(formName + formDesc, Date().toString());
+        }}
+      </Mutation>;
+    } catch (error) {}
+  };
+
   runGetLive() {
     try {
       this.state.authVar = axios
@@ -231,61 +361,18 @@ class NoteManagerComponent extends Component {
   };
 
   render() {
-    let { formName, formDesc, formEmail, formMessage } = this.state;
-    const { data } = this.state;
-
-    const MY_MUTATION_MUTATION = gql`
-    mutation DeletelLiveChat {
-      deleteLiveChat(input: { where: { id: ${this.state.deleteIDVar} } }) {
-        liveChat {
-          id
-        }
-      }
-    }
-    `;
-
-    const MyMutationMutation = (props) => {
-      try {
-        return (
-          <Mutation mutation={MY_MUTATION_MUTATION}>
-            {(MyMutation, { loading, error, data }) => {
-              try {
-                if (loading) return <pre>Loading</pre>;
-
-                if (error) {
-                }
-              } catch (error) {}
-              const dataEl = data ? (
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-              ) : null;
-
-              return (
-                <button
-                  onClick={() =>
-                    MyMutation(formName + formDesc, Date().toString())
-                  }
-                >
-                  Start Chat From ID
-                </button>
-              );
-            }}
-          </Mutation>
-        );
-      } catch (error) {}
-    };
-
     const MY_MUTATION_MUTATION3 = gql`
       mutation UpdateChat {
         updateLiveChat(
-          input: { where: { id: ${this.state.deleteIDVar} }, data: { messageAdmin: "Live Chat Available" } }
+          input: { where: { id: ${this.state.deleteIDVar} }, data: { messageAdmin: "Welcome!" ,messageUser: " " } }
         ) {
           liveChat {
             messageAdmin
+            messageUser
           }
         }
       }
     `;
-
     const MyMutationMutation3 = (props) => {
       try {
         return (
@@ -301,25 +388,50 @@ class NoteManagerComponent extends Component {
                 <pre>{JSON.stringify(data, null, 2)}</pre>
               ) : null;
               if (data) {
-                this.setState({
-                  textVar2: "Initializing",
-                });
-
-                this.setState({
-                  loadedAdminMessage: "Initializing",
-                });
                 this.runGetLive();
               }
 
-              return (
-                <button
-                  onClick={() =>
-                    MyMutation(formName + formDesc, Date().toString())
-                  }
-                >
-                  Initialize
-                </button>
-              );
+              return <button onClick={() => MyMutation()}>Initialize</button>;
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
+    const MY_MUTATION_MUTATION2 = gql`
+      mutation UpdateChat {
+        updateLiveChat(
+          input: { where: { id: ${
+            this.state.deleteIDVar
+          } }, data: { messageAdmin: "${
+      String(this.state.loadedAdminMessage) + " xyzVar " + this.state.noteVar
+    }" } }
+        ) {
+          liveChat {
+            messageAdmin
+          }
+        }
+      }
+    `;
+
+    const MyMutationMutation2 = (props) => {
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION2}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+              ) : null;
+              if (data) {
+                this.runGetLive();
+              }
+
+              return <button onClick={() => MyMutation()}>Send</button>;
             }}
           </Mutation>
         );
@@ -343,12 +455,20 @@ class NoteManagerComponent extends Component {
             backgroundColor: "transparent",
           }}
         >
-          <Button color="primary" onClick={() => alert("coming soon")}>
-            Go Online
+          <Button
+            color="primary"
+            onClick={() =>
+              this.setState({
+                statusVar: "Online Set",
+                onlineButton: "Return Offline",
+              })
+            }
+          >
+            {this.state.onlineButton}
           </Button>
           &nbsp;
-          <Button color="primary" onClick={() => alert("coming soon")}>
-            Go Offline
+          <Button color="primary" onClick={() => this.purgeOldChats()}>
+            {this.state.purgeButton}
           </Button>
           &nbsp;
         </CardHeader>
@@ -364,9 +484,21 @@ class NoteManagerComponent extends Component {
           >
             <p> {this.state.textVar2}</p> <br />
             <Row>
-              <Col style={{ width: "50%" }}>{this.state.loadedUserMessage}</Col>
               <Col style={{ width: "50%" }}>
-                {this.state.loadedAdminMessage}
+                {this.state.loadedUserMessage
+                  .replace(/xyzVar/g, "\r\n")
+                  .split("\r\n")
+                  .map((str, index) => (
+                    <h5 key={index}>{str}</h5>
+                  ))}
+              </Col>
+              <Col style={{ width: "50%" }}>
+                {this.state.loadedAdminMessage
+                  .replace(/xyzVar/g, "\r\n")
+                  .split("\r\n")
+                  .map((str, index) => (
+                    <h5 key={index}>{str}</h5>
+                  ))}
               </Col>
               <Row style={{ width: "100%" }}></Row>
               <Col>
@@ -395,7 +527,7 @@ class NoteManagerComponent extends Component {
             type="textarea"
           ></Input>{" "}
           &nbsp;
-          <button onClick={() => this.onSubmit()}> Send</button> <br />
+          <MyMutationMutation2 /> <br />
           <br />{" "}
           <div
             style={{

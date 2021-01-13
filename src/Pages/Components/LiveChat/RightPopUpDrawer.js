@@ -5,6 +5,7 @@ import ContactElements from "../../Dashboards/Contact/contact";
 import { FcIdea, FcFeedback, FcUndo, FcLock } from "react-icons/fc";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import HeaderRightAuth from "./auth";
+import axios from "axios";
 
 import {
   Row,
@@ -37,8 +38,6 @@ import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
-import { v4 as uuidv4 } from "uuid";
-
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
@@ -60,14 +59,21 @@ class HeaderRightDrawer extends React.Component {
       width: 450,
       noTouchOpen: false,
       noTouchClose: false,
+      messageReceived: false,
       formName: [],
+      loadedAdminMessage: "",
+      loadedUserMessage: "",
+      loadedHelpTitle: "Or send us a message directly:",
+      textVar2:
+        "Live Chat Currently Offline: Messages will be sent to staff inbox.",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.openRightSidebar = this.openRightSidebar.bind(this);
   }
 
   handleInputChange(event) {
     this.setState({
-      formName: event.target.value,
+      formName: String(event.target.value).replace(/(\r\n|\n|\r)/gm, ""),
     });
   }
   closeRightSidebar() {
@@ -75,6 +81,103 @@ class HeaderRightDrawer extends React.Component {
     document.getElementById("ChatBlock").hidden = true;
   }
 
+  openRightSidebar() {
+    document.getElementById("ChatBlock").style.opacity = 1;
+    document.getElementById("ChatBlock").hidden = false;
+    document.getElementById("adminChat").hidden = false;
+  }
+  stopAdminChat() {
+    document.getElementById("ChatBlock").style.opacity = 1;
+    document.getElementById("ChatBlock").hidden = false;
+    document.getElementById("adminChat").hidden = true;
+    this.setState({ messageReceived: false });
+  }
+
+  componentDidMount() {
+    this.getLiveChatData();
+    setTimeout(() => this.getLiveChatData(), 500);
+    setTimeout(() => this.getLiveChatData(), 1500);
+    setTimeout(() => this.getLiveChatData(), 2500);
+
+    let intervalId = setInterval(() => {
+      this.getLiveChatData();
+    }, 2000);
+    this.setState({ intervalId: intervalId });
+  }
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+  getLiveChatData() {
+    try {
+      let concInstanceList = [];
+      let localUUID = localStorage.getItem("localUUID");
+      axios
+        .get(`https://api.microHawaii.com/live-chats/`, {
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res.err == null) {
+            for (
+              var i = 0;
+              i < JSON.parse(JSON.stringify(res.data)).length;
+              i++
+            ) {
+              if (
+                String(JSON.parse(JSON.stringify(res.data))[i].instance) ===
+                localStorage.getItem("localUUID")
+              ) {
+                this.setState({
+                  localChatID: JSON.parse(JSON.stringify(res.data))[i].id,
+                });
+                if (
+                  JSON.parse(JSON.stringify(res.data))[i].messageAdmin !== null
+                ) {
+                  if (!this.state.messageReceived) {
+                    this.openRightSidebar();
+                  }
+                  this.setState({ messageReceived: true });
+                  this.setState({ textVar2: "Live Chat Active!" });
+                }
+              }
+
+              concInstanceList =
+                concInstanceList +
+                " " +
+                String(JSON.parse(JSON.stringify(res.data))[i].instance);
+              this.setState({
+                instanceUUIDList: concInstanceList,
+              });
+
+              this.setState({ EZID: i });
+              if (
+                String(JSON.parse(JSON.stringify(res.data))[i].instance) ===
+                localStorage.getItem("localUUID")
+              ) {
+                this.setState({
+                  loadedAdminMessage: String(
+                    JSON.parse(JSON.stringify(res.data))[this.state.EZID]
+                      .messageAdmin
+                  ),
+                });
+                this.setState({
+                  loadedUserMessage: String(
+                    JSON.parse(JSON.stringify(res.data))[this.state.EZID]
+                      .messageUser
+                  ),
+                });
+              }
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   render() {
     let { formName, formDesc, formEmail, formMessage } = this.state;
     const { data } = this.state;
@@ -133,6 +236,102 @@ class HeaderRightDrawer extends React.Component {
         );
       } catch (error) {}
     };
+    const MY_MUTATION_MUTATION2 = gql`
+    mutation MyMutation {
+      createMicroComment(
+        input: {
+          data: {
+            name: "${Date().toString()}"
+            comment: "${this.state.formName}"
+            user: "${localStorage.getItem("username")}"
+          }
+        }
+      ) {
+        microComment {
+          name
+          comment
+          user
+          
+        }
+      }
+    }
+    
+    `;
+
+    const MyMutationMutation2 = (props) => {
+      this.state.sendButton = "Send";
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION2}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data
+                ? ((<pre>{JSON.stringify(null, null, 2)}</pre>),
+                  (this.state.sendButton = "Success!"))
+                : null;
+              return (
+                <span style={{ alignContent: "center" }}>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button
+                    id="apiupform2"
+                    onClick={() => MyMutation(formName, Date().toString())}
+                  >
+                    {this.state.sendButton}
+                  </button>
+                </span>
+              );
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
+
+    const MY_MUTATION_MUTATION3 = gql`
+      mutation UpdateChat {
+        updateLiveChat(
+          input: { where: { id: ${
+            this.state.localChatID
+          } }, data: { messageUser: "${
+      String(this.state.loadedUserMessage) +
+      " xyzVar " +
+      String(this.state.formName)
+    }" } }
+        ) {
+          liveChat {
+            messageUser
+          }
+        }
+      }
+    `;
+
+    const MyMutationMutation3 = (props) => {
+      try {
+        return (
+          <Mutation mutation={MY_MUTATION_MUTATION3}>
+            {(MyMutation, { loading, error, data }) => {
+              try {
+                if (loading) return <pre>Loading</pre>;
+
+                if (error) {
+                }
+              } catch (error) {}
+              const dataEl = data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+              ) : null;
+              if (data) {
+              }
+
+              return <button onClick={() => MyMutation()}>Send2</button>;
+            }}
+          </Mutation>
+        );
+      } catch (error) {}
+    };
     return (
       <Fragment>
         <div
@@ -144,11 +343,12 @@ class HeaderRightDrawer extends React.Component {
             opacity: 0,
             bottom: "25px",
             zIndex: "998",
-            height: "88%",
             width: "94%",
             right: "10px",
             boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
             borderRadius: "5px",
+            maxWidth: "400px",
+            maxHeight: "fit",
           }}
         >
           <PerfectScrollbar>
@@ -156,8 +356,6 @@ class HeaderRightDrawer extends React.Component {
               style={{
                 textAlign: "right",
                 marginBottom: "-45px",
-                zIndex: "1001",
-                position: "relative",
               }}
             >
               <button onClick={this.closeRightSidebar}>X</button>
@@ -329,7 +527,7 @@ class HeaderRightDrawer extends React.Component {
                   marginLeft: "-75px",
                 }}
               >
-                Or send us a message directly:
+                {this.state.loadedHelpTitle}
               </div>{" "}
               <br />
               <div
@@ -341,34 +539,82 @@ class HeaderRightDrawer extends React.Component {
               >
                 <div
                   className="helpFooter"
-                  style={{ position: "bottom", marginLeft: "25px" }}
+                  style={{
+                    position: "bottom",
+                    marginLeft: "-55px",
+                  }}
                 >
-                  <Input
-                    disabled
-                    type="textarea"
-                    placeholder="Live Chat Currently Offline: This form will send messages directly to admin."
-                    style={{ width: "190px", height: "125px" }}
-                  ></Input>{" "}
+                  <div
+                    style={{
+                      boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
+                      alignContent: "center",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      maxWidth: "300px",
+                      textAlign: "center",
+                    }}
+                  >
+                    <p> {this.state.textVar2}</p> <br />
+                    <Row id="adminChat" hidden>
+                      <Col style={{ width: "50%" }}>
+                        {" "}
+                        {this.state.loadedUserMessage
+                          .replace(/xyzVar/g, "\r\n")
+                          .split("\r\n")
+                          .map((str, index) => (
+                            <h5 key={index}>{str}</h5>
+                          ))}
+                      </Col>
+                      <Col style={{ width: "50%" }}>
+                        {this.state.loadedAdminMessage
+                          .replace(/xyzVar/g, "\r\n")
+                          .split("\r\n")
+                          .map((str, index) => (
+                            <h5 key={index}>{str}</h5>
+                          ))}
+                      </Col>
+                      <Row style={{ width: "100%" }}></Row>
+                      <Col>
+                        <b>User</b>:
+                      </Col>{" "}
+                      <Col>
+                        <b>Admin</b>
+                      </Col>
+                    </Row>
+                  </div>{" "}
                   <br />
                   <Input
                     onChange={this.handleInputChange}
                     name="formName"
-                    value={this.state.formName}
+                    value={String(this.state.formName).replace(
+                      /(\r\n|\n|\r)/gm,
+                      ""
+                    )}
                     type="textarea"
                     style={{ width: "190px" }}
                   ></Input>
                   <span style={{ position: "relative", top: "-15px" }}>
                     <ApolloProvider client={apolloClient}>
-                      <MyMutationMutation />
+                      <span hidden={this.state.messageReceived}>
+                        <MyMutationMutation />{" "}
+                      </span>
+                      <span
+                        id="liveChatSendButton"
+                        hidden={!this.state.messageReceived}
+                      >
+                        {" "}
+                        <MyMutationMutation3 />
+                      </span>
                     </ApolloProvider>
                   </span>{" "}
                   <br />
                   <img src="/images/PCP-Site-Logo.gif"></img>{" "}
-                  <HeaderRightAuth /> </div>
+                  <HeaderRightAuth />{" "}
+                </div>
               </div>
             </div>
           </PerfectScrollbar>
-        </div> 
+        </div>
       </Fragment>
     );
   }
