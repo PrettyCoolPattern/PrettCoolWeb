@@ -275,7 +275,7 @@ export default class AccountElements extends Component {
                       backgroundColor: "transparent",
                     }}
                   >
-                    <div> Thank you for signing up with MauiArtPrints!</div>{" "}
+                    <div> Thank you for signing up with PrettyCoolPattern!</div>{" "}
                     <br />
                     Additional site features are coming soon, for now you can
                     send a message directly to administaration here.

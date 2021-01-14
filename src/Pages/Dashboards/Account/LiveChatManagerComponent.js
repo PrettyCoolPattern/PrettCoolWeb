@@ -53,7 +53,7 @@ class NoteManagerComponent extends Component {
       getDataEZID: "",
     };
     this.runGetLive = this.runGetLive.bind(this);
-    this.getData = this.getData.bind(this)
+    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -177,7 +177,9 @@ class NoteManagerComponent extends Component {
     ];
     let gotDates = new Date();
     var MS_PER_MINUTE = 60000;
-    var myStartDate = new Date(gotDates - 5 * MS_PER_MINUTE);
+    var d2 = new Date();
+    var n2 = d2.toISOString();
+    var myStartDate = new Date(d2 - 5 * MS_PER_MINUTE);
     // for each date : compare to time now and get true/false and ID for greater than 5 minutes
     console.log("XXX" + myStartDate);
 
@@ -429,6 +431,7 @@ class NoteManagerComponent extends Component {
               ) : null;
               if (data) {
                 this.runGetLive();
+                this.setState({ noteVar: "" });
               }
 
               return <button onClick={() => MyMutation()}>Send</button>;

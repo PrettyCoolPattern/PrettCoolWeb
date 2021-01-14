@@ -127,18 +127,12 @@ class HeaderRightAuth extends React.Component {
     this.onSubmit();
   }
   onSubmit = () => {
+    var d = new Date();
+    var n = d.toISOString();
     const formData = new FormData();
     formData.instance = localStorage.getItem("localUUID");
-    formData.timestamp = String(
-      Intl.DateTimeFormat("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }).format(Date.now())
-    );
-
+    formData.timestamp = String(n);
+    console.log(n);
     axios
       .post(
         `https://api.microhawaii.com/live-chats`,
@@ -146,7 +140,6 @@ class HeaderRightAuth extends React.Component {
         {
           headers: {
             "content-type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
         }
       )

@@ -134,6 +134,9 @@ class HeaderRightDrawer extends React.Component {
                 if (
                   JSON.parse(JSON.stringify(res.data))[i].messageAdmin !== null
                 ) {
+                  this.setState({
+                    loadedHelpTitle: "A site moderator is reaching out to you!",
+                  });
                   if (!this.state.messageReceived) {
                     this.openRightSidebar();
                   }
@@ -324,9 +327,10 @@ class HeaderRightDrawer extends React.Component {
                 <pre>{JSON.stringify(data, null, 2)}</pre>
               ) : null;
               if (data) {
+                this.setState({ formName: "" });
               }
 
-              return <button onClick={() => MyMutation()}>Send2</button>;
+              return <button onClick={() => MyMutation()}>Send</button>;
             }}
           </Mutation>
         );
@@ -517,7 +521,6 @@ class HeaderRightDrawer extends React.Component {
                 </div>
               </div>{" "}
               <br />
-              <br />
               <div
                 style={{
                   position: "center",
@@ -527,7 +530,7 @@ class HeaderRightDrawer extends React.Component {
                   marginLeft: "-75px",
                 }}
               >
-                {this.state.loadedHelpTitle}
+                <b> {this.state.loadedHelpTitle}</b>
               </div>{" "}
               <br />
               <div
@@ -609,7 +612,9 @@ class HeaderRightDrawer extends React.Component {
                   </span>{" "}
                   <br />
                   <img src="/images/PCP-Site-Logo.gif"></img>{" "}
+                    <ApolloProvider client={apolloClient}>
                   <HeaderRightAuth />{" "}
+                    </ApolloProvider>
                 </div>
               </div>
             </div>
