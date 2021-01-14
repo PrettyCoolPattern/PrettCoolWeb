@@ -108,15 +108,15 @@ class NoteManagerComponent extends Component {
               this.setState({
                 getDataEZID: concData3,
               });
-
+//text array is reversed
               concData =
                 concData +
-                "\r\n ID#" +
-                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
-                "\r\n Instance: " +
-                JSON.parse(JSON.stringify(res.data))[i].instance +
                 "\r\n Created At: " +
                 JSON.parse(JSON.stringify(res.data))[i].timestamp +
+                "\r\n Instance: " +
+                JSON.parse(JSON.stringify(res.data))[i].instance +
+                "\r\n ID#" +
+                JSON.stringify(JSON.parse(JSON.stringify(res.data))[i].id) +
                 "\r\n . ";
               this.setState({
                 textVar: concData
