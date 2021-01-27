@@ -30,7 +30,7 @@ class LandingPage extends React.Component {
               style={{
                 position: "absolute",
 
-                top: "50px",
+                top: "150px",
                 zIndex: 125,
                 textAlign: "center",
               }}
@@ -53,10 +53,10 @@ class LandingPage extends React.Component {
                 width: window.innerWidth * 0.35,
                 alignContent: "center",
                 position: "absolute",
-                maxWidth: "250px",
-                maxHeight: "250px",
+                maxWidth: "150px",
+                maxHeight: "150px",
               }}
-              src="/images/Mandala1kSeriesX.gif"
+              src="/images/logogif.gif"
             ></img>
           </span>
         </CSSTransitionGroup>

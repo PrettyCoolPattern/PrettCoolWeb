@@ -101,7 +101,6 @@ export default class Account extends Component {
             width: "100%",
             justifyContent: "center",
             alignSelf: "center",
-
             opacity: 100,
           }}
         >

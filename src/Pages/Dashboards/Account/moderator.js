@@ -383,23 +383,6 @@ export default class ModeratorElements extends Component {
                       <button
                         style={{
                           marginTop: "10px",
-                          backgroundColor: "#009900",
-                          borderRadius: "16px",
-                          height: "35px",
-                          fontSize: "120%",
-                          marginTop: "5px",
-                        }}
-                        onClick={() => {
-                          this.toggle("Documentation");
-                        }}
-                      >
-                        {" "}
-                        Documentation{" "}
-                      </button>
-                      &nbsp;
-                      <button
-                        style={{
-                          marginTop: "10px",
                           backgroundColor: "#009999",
                           borderRadius: "16px",
                           height: "35px",

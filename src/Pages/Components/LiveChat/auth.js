@@ -41,7 +41,7 @@ import { v4 as uuidv4 } from "uuid";
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: "https://api.microhawaii.com/graphql",
+    uri: "https://api.mauiartprints.com/graphql",
     headers: {
       "content-type": "application/json",
     },

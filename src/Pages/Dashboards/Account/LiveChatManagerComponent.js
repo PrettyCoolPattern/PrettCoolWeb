@@ -108,7 +108,7 @@ class NoteManagerComponent extends Component {
               this.setState({
                 getDataEZID: concData3,
               });
-//text array is reversed
+              //text array is reversed
               concData =
                 concData +
                 "\r\n Created At: " +

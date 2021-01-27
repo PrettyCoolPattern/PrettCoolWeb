@@ -178,7 +178,7 @@ export default class LoginPageElements extends Component {
                 }}
               >
                 <h5>
-                  Register with MauiArtPrints to get access to additional
+                  Register with PrettyCoolPattern to get access to additional
                   features.
                 </h5>
                 <p>Please sign in to become authenticated.</p>

@@ -20,6 +20,16 @@ class Main extends React.Component {
     };
     this.openRightSidebar = this.openRightSidebar.bind(this);
   }
+  componentDidMount() {
+    window.addEventListener("hashchange", this.toggle1, false);
+  }
+
+  componentDidUnmount() {
+    document.removeEventListener("hashchange", this.toggle1.bind(this), false);
+  }
+  toggle1() {
+    window.scrollTo(0, 0);
+  }
   openRightSidebar() {
     document.getElementById("ChatBlock").style.opacity = 1;
     document.getElementById("ChatBlock").hidden = false;

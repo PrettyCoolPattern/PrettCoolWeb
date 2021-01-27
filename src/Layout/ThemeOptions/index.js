@@ -1,221 +1,226 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import cx from 'classnames';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import cx from "classnames";
 
 import {
-    Button, ListGroup, ListGroupItem, ButtonGroup,
-    UncontrolledTooltip
-} from 'reactstrap';
+  Button,
+  ListGroup,
+  ListGroupItem,
+  ButtonGroup,
+  UncontrolledTooltip,
+} from "reactstrap";
 
 import {
-    setBackgroundColor,
-    setColorScheme,
-    setBackgroundImage,
-    setBackgroundImageOpacity,
-    setEnableBackgroundImage,
-    setEnableFixedHeader,
-    setEnableHeaderShadow,
-    setEnableSidebarShadow,
-    setEnableFixedSidebar,
-    setEnableFixedFooter,
-    setHeaderBackgroundColor,
-    setEnablePageTitleSubheading,
-    setEnablePageTabsAlt,
-    setEnablePageTitleIcon,
-} from '../../reducers/ThemeOptions';
+  setBackgroundColor,
+  setColorScheme,
+  setBackgroundImage,
+  setBackgroundImageOpacity,
+  setEnableBackgroundImage,
+  setEnableFixedHeader,
+  setEnableHeaderShadow,
+  setEnableSidebarShadow,
+  setEnableFixedSidebar,
+  setEnableFixedFooter,
+  setHeaderBackgroundColor,
+  setEnablePageTitleSubheading,
+  setEnablePageTabsAlt,
+  setEnablePageTitleIcon,
+} from "../../reducers/ThemeOptions";
 
-import sideBar1 from '../../assets/utils/images/sidebar/abstract1.jpg';
-import sideBar2 from '../../assets/utils/images/sidebar/abstract2.jpg';
-import sideBar3 from '../../assets/utils/images/sidebar/abstract3.jpg';
-import sideBar4 from '../../assets/utils/images/sidebar/abstract4.jpg';
-import sideBar5 from '../../assets/utils/images/sidebar/abstract5.jpg';
+import sideBar1 from "../../assets/utils/images/sidebar/abstract1.jpg";
+import sideBar2 from "../../assets/utils/images/sidebar/abstract2.jpg";
+import sideBar3 from "../../assets/utils/images/sidebar/abstract3.jpg";
+import sideBar4 from "../../assets/utils/images/sidebar/abstract4.jpg";
+import sideBar5 from "../../assets/utils/images/sidebar/abstract5.jpg";
 
-import sideBar6 from '../../assets/utils/images/sidebar/city1.jpg';
-import sideBar7 from '../../assets/utils/images/sidebar/city2.jpg';
-import sideBar8 from '../../assets/utils/images/sidebar/city3.jpg';
-import sideBar9 from '../../assets/utils/images/sidebar/city4.jpg';
-import sideBar10 from '../../assets/utils/images/sidebar/city5.jpg';
+import sideBar6 from "../../assets/utils/images/sidebar/city1.jpg";
+import sideBar7 from "../../assets/utils/images/sidebar/city2.jpg";
+import sideBar8 from "../../assets/utils/images/sidebar/city3.jpg";
+import sideBar9 from "../../assets/utils/images/sidebar/city4.jpg";
+import sideBar10 from "../../assets/utils/images/sidebar/city5.jpg";
 
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-    faCog,
-    faCheck
-} from '@fortawesome/free-solid-svg-icons'
+import { faCog, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 class ThemeOptions extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            activeTab: '1'
-        };
-
-    }
-
-    
-
-    toggle(tab) {
-        if (this.state.activeTab !== tab) {
-            this.setState({
-                activeTab: tab
-            });
-        }
-    }
-
-    state = {
-        showing: false
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: "1",
     };
+  }
 
-    toggleEnableBackgroundImage = () => {
-        let {enableBackgroundImage, setEnableBackgroundImage} = this.props;
-        setEnableBackgroundImage(!enableBackgroundImage);
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
     }
+  }
 
-    toggleEnableFixedHeader = () => {
-        let {enableFixedHeader, setEnableFixedHeader} = this.props;
-        setEnableFixedHeader(!enableFixedHeader);
-    }
+  state = {
+    showing: false,
+  };
 
-    toggleEnableHeaderShadow = () => {
-        let {enableHeaderShadow, setEnableHeaderShadow} = this.props;
-        setEnableHeaderShadow(!enableHeaderShadow);
-    }
+  toggleEnableBackgroundImage = () => {
+    let { enableBackgroundImage, setEnableBackgroundImage } = this.props;
+    setEnableBackgroundImage(!enableBackgroundImage);
+  };
 
-    toggleEnableSidebarShadow = () => {
-        let {enableSidebarShadow, setEnableSidebarShadow} = this.props;
-        setEnableSidebarShadow(!enableSidebarShadow);
-    }
+  toggleEnableFixedHeader = () => {
+    let { enableFixedHeader, setEnableFixedHeader } = this.props;
+    setEnableFixedHeader(!enableFixedHeader);
+  };
 
-    toggleEnableFixedSidebar = () => {
-        let {enableFixedSidebar, setEnableFixedSidebar} = this.props;
-        setEnableFixedSidebar(!enableFixedSidebar);
-    }
+  toggleEnableHeaderShadow = () => {
+    let { enableHeaderShadow, setEnableHeaderShadow } = this.props;
+    setEnableHeaderShadow(!enableHeaderShadow);
+  };
 
-    toggleEnablePageTitleIcon = () => {
-        let {enablePageTitleIcon, setEnablePageTitleIcon} = this.props;
-        setEnablePageTitleIcon(!enablePageTitleIcon);
-    }
+  toggleEnableSidebarShadow = () => {
+    let { enableSidebarShadow, setEnableSidebarShadow } = this.props;
+    setEnableSidebarShadow(!enableSidebarShadow);
+  };
 
-    toggleEnablePageTitleSubheading = () => {
-        let {enablePageTitleSubheading, setEnablePageTitleSubheading} = this.props;
-        setEnablePageTitleSubheading(!enablePageTitleSubheading);
-    }
+  toggleEnableFixedSidebar = () => {
+    let { enableFixedSidebar, setEnableFixedSidebar } = this.props;
+    setEnableFixedSidebar(!enableFixedSidebar);
+  };
 
-    toggleEnablePageTabsAlt = () => {
-        let {enablePageTabsAlt, setEnablePageTabsAlt} = this.props;
-        setEnablePageTabsAlt(!enablePageTabsAlt);
-    }
+  toggleEnablePageTitleIcon = () => {
+    let { enablePageTitleIcon, setEnablePageTitleIcon } = this.props;
+    setEnablePageTitleIcon(!enablePageTitleIcon);
+  };
 
-    toggleEnableFixedFooter = () => {
-        let {enableFixedFooter, setEnableFixedFooter} = this.props;
-        setEnableFixedFooter(!enableFixedFooter);
-    }
+  toggleEnablePageTitleSubheading = () => {
+    let {
+      enablePageTitleSubheading,
+      setEnablePageTitleSubheading,
+    } = this.props;
+    setEnablePageTitleSubheading(!enablePageTitleSubheading);
+  };
 
-    render() {
-        let {
-            backgroundColor,
-            setBackgroundColor,
+  toggleEnablePageTabsAlt = () => {
+    let { enablePageTabsAlt, setEnablePageTabsAlt } = this.props;
+    setEnablePageTabsAlt(!enablePageTabsAlt);
+  };
 
-            headerBackgroundColor,
-            setHeaderBackgroundColor,
+  toggleEnableFixedFooter = () => {
+    let { enableFixedFooter, setEnableFixedFooter } = this.props;
+    setEnableFixedFooter(!enableFixedFooter);
+  };
 
-            colorScheme,
-            setColorScheme,
+  render() {
+    let {
+      backgroundColor,
+      setBackgroundColor,
 
-            backgroundImageOpacity,
-            setBackgroundImageOpacity,
+      headerBackgroundColor,
+      setHeaderBackgroundColor,
 
-            enableFixedHeader,
-            enableHeaderShadow,
-            enableSidebarShadow,
-            enableFixedSidebar,
-            enableFixedFooter,
+      colorScheme,
+      setColorScheme,
 
-            enablePageTitleIcon,
-            enablePageTitleSubheading,
-            enablePageTabsAlt,
+      backgroundImageOpacity,
+      setBackgroundImageOpacity,
 
-            enableBackgroundImage,
-            backgroundImage,
-            setBackgroundImage,
+      enableFixedHeader,
+      enableHeaderShadow,
+      enableSidebarShadow,
+      enableFixedSidebar,
+      enableFixedFooter,
 
-        } = this.props;
+      enablePageTitleIcon,
+      enablePageTitleSubheading,
+      enablePageTabsAlt,
 
-        const {showing} = this.state;
+      enableBackgroundImage,
+      backgroundImage,
+      setBackgroundImage,
+    } = this.props;
 
-        return (
-            <div className={"ui-theme-settings " + (showing ? 'settings-open' : '')}>
-                <Button className="btn-open-options" disabled id="TooltipDemo" color="transparent" onClick={() => this.setState({showing: !showing})}>
-                    <FontAwesomeIcon spin  color="#573a04" fixedWidth={false} size="2x"/>
-                </Button>
-                <UncontrolledTooltip placement="left" target={'TooltipDemo'}>
-                    Open Layout Configurator
-                </UncontrolledTooltip>
-                <div className="theme-settings__inner">
-                    <PerfectScrollbar>
-                        <div className="theme-settings__options-wrapper">
-                            <h3 className="themeoptions-heading"> Layout Options</h3>
-                            <div className="p-3">
-                                        
-                            </div>
-                        </div>
-                    </PerfectScrollbar>
-                </div>
+    const { showing } = this.state;
+
+    return (
+      <div className={"ui-theme-settings " + (showing ? "settings-open" : "")}>
+        <Button
+          className="btn-open-options"
+          disabled
+          id="TooltipDemo"
+          color="transparent"
+          onClick={() => this.setState({ showing: !showing })}
+        >
+          <FontAwesomeIcon spin color="#573a04" fixedWidth={false} size="2x" />
+        </Button>
+        <UncontrolledTooltip placement="left" target={"TooltipDemo"}>
+          Open Layout Configurator
+        </UncontrolledTooltip>
+        <div className="theme-settings__inner">
+          <PerfectScrollbar>
+            <div className="theme-settings__options-wrapper">
+              <h3 className="themeoptions-heading"> Layout Options</h3>
+              <div className="p-3"></div>
             </div>
-        );
-    }
+          </PerfectScrollbar>
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-    backgroundColor: state.ThemeOptions.backgroundColor,
-    headerBackgroundColor: state.ThemeOptions.headerBackgroundColor,
+const mapStateToProps = (state) => ({
+  backgroundColor: state.ThemeOptions.backgroundColor,
+  headerBackgroundColor: state.ThemeOptions.headerBackgroundColor,
 
-    colorScheme: state.ThemeOptions.colorScheme,
+  colorScheme: state.ThemeOptions.colorScheme,
 
-    enableFixedHeader: state.ThemeOptions.enableFixedHeader,
-    enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,
-    enableSidebarShadow: state.ThemeOptions.enableSidebarShadow,
-    enableFixedSidebar: state.ThemeOptions.enableFixedSidebar,
-    enableFixedFooter: state.ThemeOptions.enableFixedFooter,
+  enableFixedHeader: state.ThemeOptions.enableFixedHeader,
+  enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,
+  enableSidebarShadow: state.ThemeOptions.enableSidebarShadow,
+  enableFixedSidebar: state.ThemeOptions.enableFixedSidebar,
+  enableFixedFooter: state.ThemeOptions.enableFixedFooter,
 
+  enablePageTitleIcon: state.ThemeOptions.enablePageTitleIcon,
+  enablePageTitleSubheading: state.ThemeOptions.enablePageTitleSubheading,
+  enablePageTabsAlt: state.ThemeOptions.enablePageTabsAlt,
 
-    enablePageTitleIcon: state.ThemeOptions.enablePageTitleIcon,
-    enablePageTitleSubheading: state.ThemeOptions.enablePageTitleSubheading,
-    enablePageTabsAlt: state.ThemeOptions.enablePageTabsAlt,
+  enableBackgroundImage: state.ThemeOptions.enableBackgroundImage,
+  backgroundImage: state.ThemeOptions.backgroundImage,
 
-    enableBackgroundImage: state.ThemeOptions.enableBackgroundImage,
-    backgroundImage: state.ThemeOptions.backgroundImage,
-
-    backgroundImageOpacity: state.ThemeOptions.backgroundImageOpacity
+  backgroundImageOpacity: state.ThemeOptions.backgroundImageOpacity,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setEnableBackgroundImage: enable => dispatch(setEnableBackgroundImage(enable)),
+const mapDispatchToProps = (dispatch) => ({
+  setEnableBackgroundImage: (enable) =>
+    dispatch(setEnableBackgroundImage(enable)),
 
-    setEnableFixedHeader: enable => dispatch(setEnableFixedHeader(enable)),
-    setEnableHeaderShadow: enable => dispatch(setEnableHeaderShadow(enable)),
-    setEnableSidebarShadow: enable => dispatch(setEnableSidebarShadow(enable)),
-    setEnableFixedFooter: enable => dispatch(setEnableFixedFooter(enable)),
-    setEnableFixedSidebar: enable => dispatch(setEnableFixedSidebar(enable)),
+  setEnableFixedHeader: (enable) => dispatch(setEnableFixedHeader(enable)),
+  setEnableHeaderShadow: (enable) => dispatch(setEnableHeaderShadow(enable)),
+  setEnableSidebarShadow: (enable) => dispatch(setEnableSidebarShadow(enable)),
+  setEnableFixedFooter: (enable) => dispatch(setEnableFixedFooter(enable)),
+  setEnableFixedSidebar: (enable) => dispatch(setEnableFixedSidebar(enable)),
 
-    setEnablePageTitleIcon: enable => dispatch(setEnablePageTitleIcon(enable)),
-    setEnablePageTitleSubheading: enable => dispatch(setEnablePageTitleSubheading(enable)),
-    setEnablePageTabsAlt: enable => dispatch(setEnablePageTabsAlt(enable)),
+  setEnablePageTitleIcon: (enable) => dispatch(setEnablePageTitleIcon(enable)),
+  setEnablePageTitleSubheading: (enable) =>
+    dispatch(setEnablePageTitleSubheading(enable)),
+  setEnablePageTabsAlt: (enable) => dispatch(setEnablePageTabsAlt(enable)),
 
-    setBackgroundImage: image => dispatch(setBackgroundImage(image)),
+  setBackgroundImage: (image) => dispatch(setBackgroundImage(image)),
 
-    setColorScheme: color => dispatch(setColorScheme(color)),
+  setColorScheme: (color) => dispatch(setColorScheme(color)),
 
-    setBackgroundColor: color => dispatch(setBackgroundColor(color)),
+  setBackgroundColor: (color) => dispatch(setBackgroundColor(color)),
 
-    setHeaderBackgroundColor: color => dispatch(setHeaderBackgroundColor(color)),
+  setHeaderBackgroundColor: (color) =>
+    dispatch(setHeaderBackgroundColor(color)),
 
-    setBackgroundImageOpacity: color => dispatch(setBackgroundImageOpacity(color))
+  setBackgroundImageOpacity: (color) =>
+    dispatch(setBackgroundImageOpacity(color)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemeOptions);
