@@ -12,6 +12,7 @@ import Music from "./Music/";
 import Contact from "./Contact/";
 import CalendarPage from "./Calendar/";
 import Projects from "./Projects/";
+import Privacy from "./PrivacyPolicy/";
 
 import AccountPage from "./Account/";
 
@@ -41,6 +42,7 @@ const Dashboards = ({ match }) => (
           <Route path={`${match.url}/account`} component={AccountPage} />
           <Route path={`${match.url}/projects`} component={Projects} />
           <Route path={`${match.url}/calendar`} component={CalendarPage} />
+          <Route path={`${match.url}/privacy`} component={Privacy} />
         </div>
         <AppFooter />
       </div>
