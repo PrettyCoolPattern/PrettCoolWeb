@@ -35,6 +35,30 @@ class HeaderLogo extends React.Component {
     noTouchClose: false,
   };
 
+  handleClickOutside(event) {
+    if (String(event.target.className).includes("Burger")) {
+    } else {
+      if (this.state.active === true) {
+        this.toggleEnableClosedSidebar();
+      }
+    }
+    this.setState({ active: false });
+  }
+
+  componentDidMount() {
+    document.addEventListener(
+      "click",
+      this.handleClickOutside.bind(this),
+      true
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "click",
+      this.handleClickOutside.bind(this),
+      false
+    );
+  }
   render() {
     return (
       <Fragment>

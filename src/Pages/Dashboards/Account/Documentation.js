@@ -25,16 +25,6 @@ import {
   TabPane,
 } from "reactstrap";
 import axios from "axios";
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "https://api.microhawaii.com/graphql",
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-  }),
-});
 
 class DocumentationPage extends Component {
   constructor(props) {

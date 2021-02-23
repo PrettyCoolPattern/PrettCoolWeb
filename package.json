@@ -1,15 +1,17 @@
 {
   "name": "prettycoolpattern-site",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.6",
+    "@firebase/firestore": "^2.1.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@koa/cors": "^3.1.0",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@react-firebase/auth": "^0.2.10",
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.0.4",
     "@testing-library/user-event": "^12.5.0",
@@ -49,6 +51,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "feed": "^2.0.2",
     "file-loader": "^1.1.11",
+    "firebase": "^8.2.3",
+    "firebaseui": "^4.7.3",
     "font-awesome": "^4.7.0",
     "google-map-react": "^2.1.9",
     "graphql": "^0.11.7",
@@ -100,11 +104,13 @@
     "react-cropper": "^1.3.0",
     "react-custom-scrollbars": "^4.1.1",
     "react-dom": "^16.8.6",
+    "react-firebase-hooks": "^2.2.0",
     "react-flagkit": "^1.0.2",
     "react-ga": "^3.3.0",
     "react-icons": "^3.8.0",
     "react-input-mask": "^2.0.4",
     "react-ladda": "^6.0.0",
+    "react-lazy-load": "^3.1.13",
     "react-loader-advanced": "^1.7.1",
     "react-loaders": "^3.0.1",
     "react-loading-overlay": "^1.0.1",
@@ -124,6 +130,7 @@
     "react-scripts": "^4.0.1",
     "react-select": "^2.4.4",
     "react-slick": "^0.26.1",
+    "react-slideshow-image": "^3.4.3",
     "react-sortable-tree": "^2.6.2",
     "react-sparklines": "^1.7.0",
     "react-sticky-el": "^1.0.20",
@@ -154,14 +161,15 @@
     "typescript": "^4.1.3",
     "url-loader": "^1.0.1",
     "uuid": "^8.3.2",
+    "uuidv4": "^6.2.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "fb:build": "npm run build",
     "fb:firebase": "firebase deploy",
     "fb": "npm-run-all --sequential --print-label fb:*",
-    "start": "react-scripts start --max-old-space-size=8000",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "build:production": "SET REACT_APP_ENV=production & npm run build",
     "start-prod": "SET NODE_ENV=production & npm start",
     "test": "CI=true react-scripts test",
@@ -182,7 +190,8 @@
       "dead",
       "ie 9-11",
       "op_mini all",
-      "last 1 ie version"
+      "last 1 ie version",
+      "ie 11"
     ],
     "development": [
       "ie 9-11",
@@ -194,7 +203,8 @@
       "last 1 firefox version",
       "last 1 safari version",
       "op_mini all",
-      "last 1 ie version"
+      "last 1 ie version",
+      "ie 11"
     ]
   }
 }

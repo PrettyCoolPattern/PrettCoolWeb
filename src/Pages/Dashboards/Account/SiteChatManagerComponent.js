@@ -85,10 +85,10 @@ function handleInputChangeEvent(event) {
 
 function ChatRoom() {
   const dummy = useRef();
-  const snapshotRef = firestore.collection("Notes");
-  const query = snapshotRef.orderBy("id").limit(25);
+  const messagesRef = firestore.collection("messages");
+  const query = messagesRef.orderBy("createdAt").limit(25);
 
-  const [snapshot] = useCollectionData(query, { id: "id" });
+  const [messages] = useCollectionData(query, { idField: "id" });
 
   const [formValue, setFormValue] = useState("");
 
@@ -97,7 +97,7 @@ function ChatRoom() {
 
     const { uid, photoURL } = auth.currentUser;
 
-    await snapshotRef.add({
+    await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
@@ -111,8 +111,8 @@ function ChatRoom() {
   return (
     <>
       <main>
-        {snapshot &&
-          snapshot.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+        {messages &&
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
         <span ref={dummy}></span>
       </main>
@@ -137,16 +137,19 @@ function ChatRoom() {
   );
 }
 function ChatMessage(props) {
-  const { Note, id, uid, photoURL } = props.message;
+  const { text, uid, photoURL } = props.message;
 
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
   return (
     <>
       <div className={`message ${messageClass}`}>
-        {id}
+        <img
+          className="imgchat"
+          src={photoURL || "./images/smallsquare3.png"}
+        />
         <p style={{ fontSize: "22px" }} className="pchat">
-          {Note}
+          {text}
         </p>
       </div>
     </>

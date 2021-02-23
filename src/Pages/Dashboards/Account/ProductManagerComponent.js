@@ -26,22 +26,11 @@ import {
   ButtonGroup,
 } from "reactstrap";
 import axios from "axios";
-import { idText } from "typescript";
-import { toHtml } from "@fortawesome/fontawesome-svg-core";
 
 import { gql, useQuery } from "@apollo/client";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { Query, ApolloProvider, Mutation } from "react-apollo";
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "https://api.microhawaii.com/graphql",
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-  }),
-});
+
 
 class ProductManagerComponent extends Component {
   constructor(props) {

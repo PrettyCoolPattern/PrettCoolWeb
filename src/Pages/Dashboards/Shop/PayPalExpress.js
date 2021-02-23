@@ -43,24 +43,24 @@ class PaypalButton extends Component {
   }
 
   createOrder = (data, actions) => {
-    if (this.props.total <= 0){
-  
-
-setTimeout(function() {    alert("Your Cart Is Empty");},250);
-
+    if (this.props.total <= 0) {
+      setTimeout(function () {
+        alert("Your Cart Is Empty");
+      }, 250);
     } else {
-    return actions.order.create({
-      purchase_units: [
-        {
-          description: +this.props.totalItems,
-          amount: {
-            currency_code: "USD",
-            value: this.props.total,
+      return actions.order.create({
+        purchase_units: [
+          {
+            description: +this.props.totalItems,
+            amount: {
+              currency_code: "USD",
+              value: this.props.total,
+            },
           },
-        },
-      ],
-    });
-  };}
+        ],
+      });
+    }
+  };
   handleCart(e) {
     e.preventDefault();
     this.setState({
@@ -79,15 +79,14 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
 
   componentDidMount() {
     this.setState({ isLoading: true });
- 
-    fetch("https://api.ipify.org") 
-      .then(response => response.text())
-      .then((response) => {
-          CLIIP = response 
-      })
-  .then(function(parsedData) {
-  }) .catch(error => this.setState({ error, isLoading: false }));
 
+    fetch("https://api.ipify.org")
+      .then((response) => response.text())
+      .then((response) => {
+        CLIIP = response;
+      })
+      .then(function (parsedData) {})
+      .catch((error) => this.setState({ error, isLoading: false }));
   }
   componentWillReceiveProps(nextProps) {
     const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
@@ -107,7 +106,6 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
   }
 
   updateCostClick() {
-
     var objectHTMLCollection = document.getElementsByClassName("product-price"),
       x = [].map
         .call(objectHTMLCollection, function (node) {
@@ -134,11 +132,34 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
       document.write(x[i].tagName + "<br>");
     }
 
+    this.state.infoCLI = JSON.stringify({
+      timeOpened: new Date(),
+      timezone: new Date().getTimezoneOffset() / 60,
+      pageon: window.location.pathname,
+      referrer: document.referrer,
+      previousSites: window.history.length,
+      browserName: window.navigator.appName,
+      browserEngine: window.navigator.product,
+      browserVersion1a: window.navigator.appVersion,
+      browserVersion1b: navigator.userAgent,
+      browserLanguage: navigator.language,
+      browserOnline: navigator.onLine,
+      browserPlatform: navigator.platform,
+      sizeScreenW: window.screen.width,
+      sizeScreenH: window.screen.height,
+      sizeInW: window.innerWidth,
+      sizeInH: window.innerHeight,
+      sizeAvailW: window.screen.availWidth,
+      sizeAvailH: window.screen.availHeight,
+      latitude,
+      longitude,
+    })
+      .split(",")
+      .map((str) => "    |||    " + `  \r\n \n ` + str);
     var templateParams = {
       name: "Jason Hoku Levien",
       message: string,
-      message2: CLIIP,
-      
+      message2: `ClientInfo: ${CLIIP} :: ${this.state.infoCLI}`,
     };
     emailjs.send(EJSSERVICE, EJSTEMPLATE, templateParams).then(
       function (response) {
@@ -218,11 +239,7 @@ setTimeout(function() {    alert("Your Cart Is Empty");},250);
                 </div>
 
                 <PayPalButton
-
-
-                  onClick={
-                    
-                    this.updateCostClick.bind(this)}
+                  onClick={this.updateCostClick.bind(this)}
                   createOrder={(data, actions) =>
                     this.createOrder(data, actions)
                   }

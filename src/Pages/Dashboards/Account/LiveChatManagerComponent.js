@@ -26,17 +26,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import { toInteger } from "lodash";
-import { JsxEmit } from "typescript";
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "https://api.microhawaii.com/graphql",
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-  }),
-});
+
 
 class NoteManagerComponent extends Component {
   constructor(props) {

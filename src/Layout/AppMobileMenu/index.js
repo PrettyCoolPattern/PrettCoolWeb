@@ -24,8 +24,46 @@ class AppMobileMenu extends React.Component {
       mobile: false,
       activeSecondaryMenuMobile: false,
     };
+    this.toggleMobileSidebar = this.toggleMobileSidebar.bind(this);
+    this.hashChangeEvent = this.hashChangeEvent.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  handleClickOutside(event) {
+    if (String(event.target.className).includes("Burger")) {
+    } else {
+      this.setState({ active: false });
+      this.toggleMobileSidebar;
+      this.toggleMobileSmall;
+    }
+  }
+
+  hashChangeEvent() {
+    this.setState({ active: false });
+    this.toggleMobileSidebar;
+    this.toggleMobileSmall;
+  }
+
+  componentDidMount() {
+    window.addEventListener("hashchange", this.hashChangeEvent, true);
+    document.addEventListener(
+      "click",
+      this.handleClickOutside.bind(this),
+      true
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "click",
+      this.handleClickOutside.bind(this),
+      false
+    );
+    document.removeEventListener(
+      "hashchange",
+      this.hashChangeEvent.bind(this),
+      false
+    );
+  }
   toggleMobileSidebar = () => {
     let { enableMobileMenu, setEnableMobileMenu } = this.props;
     setEnableMobileMenu(!enableMobileMenu);
@@ -50,13 +88,21 @@ class AppMobileMenu extends React.Component {
       <Fragment>
         <div className="app-header__mobile-menu">
           <div onClick={this.toggleMobileSidebar}>
-            <Slider width={26} lineHeight={2} lineSpacing={5} color="#6c757d" 
-              active={this.state.active} onClick={() => this.setState({ active: !this.state.active })}/>
+            <Slider
+              width={26}
+              lineHeight={2}
+              lineSpacing={5}
+              color="#6c757d"
+              active={this.state.active}
+              onClick={() => this.setState({ active: !this.state.active })}
+            />
           </div>
         </div>
         <div className="app-header__menu">
           <span onClick={this.toggleMobileSmall}>
-            <Button size="sm" className={cx("btn-icon btn-icon-only", {
+            <Button
+              size="sm"
+              className={cx("btn-icon btn-icon-only", {
                 active: this.state.activeSecondaryMenuMobile,
               })}
               color="primary"
@@ -65,7 +111,8 @@ class AppMobileMenu extends React.Component {
                   activeSecondaryMenuMobile: !this.state
                     .activeSecondaryMenuMobile,
                 })
-              }>
+              }
+            >
               <div className="btn-icon-wrapper">
                 <FontAwesomeIcon icon={faEllipsisV} />
               </div>

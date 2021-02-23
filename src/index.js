@@ -8,7 +8,7 @@ import ReactDOM from "react-dom";
 import { Router, Switch, Route } from "react-router-dom";
 
 import { HashRouter } from "react-router-dom";
-import "./App.scss"; 
+import "./App.scss";
 import "./App.js";
 import Main from "./Pages/Main";
 import configureStore from "./config/configureStore";

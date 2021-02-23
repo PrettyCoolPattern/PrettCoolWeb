@@ -75,7 +75,7 @@ const LoginAct = (props) => {
   let text;
 
   if (isLogged) {
-    text = `Welcome ${localStorage.getItem("username")}, you are connected!`;
+    text = ` `;
   } else {
     text = [];
   }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment, useState, useEffect, useRef } from "react";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 import ContactElements from "../../Dashboards/Contact/contact";
@@ -31,83 +31,216 @@ import {
   CardFooter,
   ButtonGroup,
 } from "reactstrap";
-import ButtonsSquareGradients from "../../Elements/Button/Square/Examples/Gradients";
-import { Link } from "react-router-dom";
 
-import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
-import { Query, ApolloProvider, Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
+import "firebase/firestore";
 
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "https://api.microhawaii.com/graphql",
-    headers: {
-      "content-type": "application/json",
-    },
-  }),
-});
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE,
+  authDomain: "prettycoolpattern.firebaseapp.com",
+  databaseURL: "https://prettycoolpattern-default-rtdb.firebaseio.com",
+  projectId: "prettycoolpattern",
+  storageBucket: "prettycoolpattern.appspot.com",
+  messagingSenderId: "23872046630",
+  appId: "1:23872046630:web:eb70291014179f1d3248e7",
+  measurementId: "G-9XKT9B5ZVP",
+};
+function HeaderRightDrawer() {
+  const [textVar2, settextVar2] = useState(
+    "Live Chat Currently Offline: Messages will be sent to staff inbox."
+  );
 
-class HeaderRightDrawer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: this.props.active,
-      openRight: this.props.RightDrawerActive,
-      openLeft: false,
-      relativeWidth: false,
-      width: 450,
-      noTouchOpen: false,
-      noTouchClose: false,
-      messageReceived: false,
-      formName: [],
-      loadedAdminMessage: "",
-      loadedUserMessage: "",
-      loadedHelpTitle: "Or send us a message directly:",
-      textVar2:
-        "Live Chat Currently Offline: Messages will be sent to staff inbox.",
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.openRightSidebar = this.openRightSidebar.bind(this);
-  }
+  const [active, setactive] = useState(false);
+  const [openRight, setopenRight] = useState(false);
 
-  handleInputChange(event) {
-    this.setState({
+  const [width, setwidth] = useState(450);
+  const [formName, setformName] = useState([]);
+  const [loadStage, setloadStage] = useState("1");
+  const [loadedAdminMessage, setloadedAdminMessage] = useState("");
+  const [loadedUserMessage, setloadedUserMessage] = useState("");
+  const [activeProURL, setactiveProURL] = useState("");
+  const [deleteIDVar, setdeleteIDVar] = useState(0);
+  const [loadedEzID, setloadedEzID] = useState("1");
+  const [loadedTitle, setloadedTitle] = useState("0");
+  const [loadedSizes, setloadedSizes] = useState("0");
+  const [loadedShop, setloadedShop] = useState("0");
+  const [loadedPrice, setloadedPrice] = useState("0");
+  const [loadedImageURLtoImg, setloadedImageURLtoImg] = useState("");
+  const [readyTitle, setreadyTitle] = useState("0");
+  const [readySizes, setreadySizes] = useState("0");
+  const [readyShop, setreadyShop] = useState("0");
+  const [readyPrice, setreadyPrice] = useState("0");
+  const [readyImgURL, setreadyImgURL] = useState("0");
+  const [loadedTotalIDs, setloadedTotalIDs] = useState("0");
+  const [proStatusText, setproStatusText] = useState("Loading...");
+  const [loadedHelpTitle, setloadedHelpTitle] = useState(
+    "Or send us a message directly:"
+  );
+
+  const isInitialMount = useRef(true);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("X" + loadStage);
+      if (isInitialMount.current) {
+        if (loadStage === "2") {
+          if (loadedPrice != "0") {
+            setloadStage("3");
+          }
+          return () => clearInterval(interval);
+        }
+        if (loadStage === "1") {
+          if (loadedTotalIDs != "0") {
+            setloadStage("2");
+          }
+          return () => clearInterval(interval);
+        }
+        if (loadStage === "3") {
+          if (localStorage.getItem("gotDownloadURL")) {
+            setloadStage("4");
+          }
+          return () => clearInterval(interval);
+        }
+        if (loadStage === "4") {
+          setproStatusText("Ready: " + loadedEzID + " / " + loadedTotalIDs);
+          if (localStorage.getItem("gotDownloadURL")) {
+            setreadyImgURL(localStorage.getItem("gotDownloadURL"));
+          }
+          return () => clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+      } else {
+        isInitialMount.current = false;
+        return () => clearInterval(interval);
+      }
+    }, 500);
+    return () => clearInterval(interval);
+  });
+
+  function handleInputChange(event) {
+    setState({
       formName: String(event.target.value).replace(/(\r\n|\n|\r)/gm, ""),
     });
   }
-  closeRightSidebar() {
+  function formResetter() {
+    document.getElementById("commentFormInput").value = "";
+    setformName("");
+    try {
+      document.forms[0].reset();
+      document.forms[1].reset();
+      document.forms[2].reset();
+      document.forms[3].reset();
+      document.forms[4].reset();
+      document.forms[5].reset();
+    } catch (error) {}
+  }
+
+  function closeRightSidebar() {
     document.getElementById("ChatBlock").style.opacity = 0;
     document.getElementById("ChatBlock").hidden = true;
   }
 
-  openRightSidebar() {
+  const auth = firebase.auth();
+  const firestore = firebase.firestore();
+
+  function ChatRoom() {
+    const dummy = useRef();
+    const snapshotRef = firestore.collection("LiveChat");
+    const query = snapshotRef.orderBy("createdAt").limit(3);
+
+    const [snapshot] = useCollectionData(query, { id: "id" });
+
+    const [formValue, setFormValue] = useState("");
+
+    const sendMessage = async (e) => {
+      e.preventDefault();
+      alert("Message Sent!")
+
+      const { uid, photoURL } = auth.currentUser;
+
+      await snapshotRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL,
+      });
+
+      setFormValue("");
+      dummy.current.scrollIntoView({ behavior: "smooth" });
+    };
+
+    return (
+      <>
+        <main>
+          {snapshot &&
+            snapshot.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+
+          <span ref={dummy}></span>
+        </main>
+        <span style={{ width: "100%", textAlign: "center" }}>
+          <form className="formchat" onSubmit={sendMessage}>
+            <Input
+              style={{
+                textAlign: "center",
+                position: "relative",
+                bottom: "0px",
+              }}
+              className="inputchat"
+              value={formValue}
+              type="text"
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="Send Message"
+            />
+            <button
+              style={{
+                textAlign: "center",
+                position: "relative",
+                bottom: "2px",
+              }}
+              className="buttonchat"
+              type="submit"
+              disabled={!formValue}
+            >
+              🕊️
+            </button>
+          </form>
+        </span>
+      </>
+    );
+  }
+  function ChatMessage(props) {
+    const { text, id, uid, photoURL } = props.message;
+
+    const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+
+    return <></>;
+  }
+
+  function openRightSidebar() {
     document.getElementById("ChatBlock").style.opacity = 1;
     document.getElementById("ChatBlock").hidden = false;
     document.getElementById("adminChat").hidden = false;
   }
-  stopAdminChat() {
+  function stopAdminChat() {
     document.getElementById("ChatBlock").style.opacity = 1;
     document.getElementById("ChatBlock").hidden = false;
     document.getElementById("adminChat").hidden = true;
-    this.setState({ messageReceived: false });
+    setState({ messageReceived: false });
   }
 
-  componentDidMount() {
-    this.getLiveChatData();
-    setTimeout(() => this.getLiveChatData(), 500);
-    setTimeout(() => this.getLiveChatData(), 1500);
-    setTimeout(() => this.getLiveChatData(), 2500);
-
-    let intervalId = setInterval(() => {
-      this.getLiveChatData();
-    }, 2000);
-    this.setState({ intervalId: intervalId });
+  function componentDidMount() {
+    getLiveChatData();
+    setTimeout(() => getLiveChatData(), 500);
+    setTimeout(() => getLiveChatData(), 1500);
+    setTimeout(() => getLiveChatData(), 2500);
   }
-  componentWillUnmount() {
-    clearInterval(this.state.intervalId);
+  function componentWillUnmount() {
+    clearInterval(intervalId);
   }
-  getLiveChatData() {
+  function getLiveChatData() {
     try {
       let concInstanceList = [];
       let localUUID = localStorage.getItem("localUUID");
@@ -128,20 +261,20 @@ class HeaderRightDrawer extends React.Component {
                 String(JSON.parse(JSON.stringify(res.data))[i].instance) ===
                 localStorage.getItem("localUUID")
               ) {
-                this.setState({
+                setState({
                   localChatID: JSON.parse(JSON.stringify(res.data))[i].id,
                 });
                 if (
                   JSON.parse(JSON.stringify(res.data))[i].messageAdmin !== null
                 ) {
-                  this.setState({
+                  setState({
                     loadedHelpTitle: "A site moderator is reaching out to you!",
                   });
-                  if (!this.state.messageReceived) {
-                    this.openRightSidebar();
+                  if (!messageReceived) {
+                    openRightSidebar();
                   }
-                  this.setState({ messageReceived: true });
-                  this.setState({ textVar2: "Live Chat Active!" });
+                  setState({ messageReceived: true });
+                  setState({ textVar2: "Live Chat Active!" });
                 }
               }
 
@@ -149,25 +282,23 @@ class HeaderRightDrawer extends React.Component {
                 concInstanceList +
                 " " +
                 String(JSON.parse(JSON.stringify(res.data))[i].instance);
-              this.setState({
+              setState({
                 instanceUUIDList: concInstanceList,
               });
 
-              this.setState({ EZID: i });
+              setState({ EZID: i });
               if (
                 String(JSON.parse(JSON.stringify(res.data))[i].instance) ===
                 localStorage.getItem("localUUID")
               ) {
-                this.setState({
+                setState({
                   loadedAdminMessage: String(
-                    JSON.parse(JSON.stringify(res.data))[this.state.EZID]
-                      .messageAdmin
+                    JSON.parse(JSON.stringify(res.data))[EZID].messageAdmin
                   ),
                 });
-                this.setState({
+                setState({
                   loadedUserMessage: String(
-                    JSON.parse(JSON.stringify(res.data))[this.state.EZID]
-                      .messageUser
+                    JSON.parse(JSON.stringify(res.data))[EZID].messageUser
                   ),
                 });
               }
@@ -181,326 +312,80 @@ class HeaderRightDrawer extends React.Component {
       console.log(error);
     }
   }
-  render() {
-    let { formName, formDesc, formEmail, formMessage } = this.state;
-    const { data } = this.state;
-
-    const MY_MUTATION_MUTATION = gql`
-    mutation MyMutation {
-      createMicroComment(
-        input: {
-          data: {
-            name: "${Date().toString()}"
-            comment: "${this.state.formName}"
-            user: "${localStorage.getItem("username")}"
-          }
-        }
-      ) {
-        microComment {
-          name
-          comment
-          user
-          
-        }
-      }
-    }
-    
-    `;
-
-    const MyMutationMutation = (props) => {
-      this.state.sendButton = "Send";
-      try {
-        return (
-          <Mutation mutation={MY_MUTATION_MUTATION}>
-            {(MyMutation, { loading, error, data }) => {
-              try {
-                if (loading) return <pre>Loading</pre>;
-
-                if (error) {
-                }
-              } catch (error) {}
-              const dataEl = data
-                ? ((<pre>{JSON.stringify(null, null, 2)}</pre>),
-                  (this.state.sendButton = "Success!"))
-                : null;
-              return (
-                <span style={{ alignContent: "center" }}>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <button
-                    id="apiupform2"
-                    onClick={() => MyMutation(formName, Date().toString())}
-                  >
-                    {this.state.sendButton}
-                  </button>
-                </span>
-              );
+  return (
+    <Fragment>
+      <div
+        hidden
+        id="ChatBlock"
+        style={{
+          position: "fixed",
+          backgroundColor: "white",
+          opacity: 0,
+          bottom: "25px",
+          zIndex: "998",
+          width: "94%",
+          right: "10px",
+          boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
+          borderRadius: "5px",
+          maxWidth: "400px",
+          maxHeight: "fit",
+        }}
+      >
+        <PerfectScrollbar>
+          <div
+            style={{
+              textAlign: "right",
+              marginBottom: "-45px",
             }}
-          </Mutation>
-        );
-      } catch (error) {}
-    };
-    const MY_MUTATION_MUTATION2 = gql`
-    mutation MyMutation {
-      createMicroComment(
-        input: {
-          data: {
-            name: "${Date().toString()}"
-            comment: "${this.state.formName}"
-            user: "${localStorage.getItem("username")}"
-          }
-        }
-      ) {
-        microComment {
-          name
-          comment
-          user
-          
-        }
-      }
-    }
-    
-    `;
-
-    const MyMutationMutation2 = (props) => {
-      this.state.sendButton = "Send";
-      try {
-        return (
-          <Mutation mutation={MY_MUTATION_MUTATION2}>
-            {(MyMutation, { loading, error, data }) => {
-              try {
-                if (loading) return <pre>Loading</pre>;
-
-                if (error) {
-                }
-              } catch (error) {}
-              const dataEl = data
-                ? ((<pre>{JSON.stringify(null, null, 2)}</pre>),
-                  (this.state.sendButton = "Success!"))
-                : null;
-              return (
-                <span style={{ alignContent: "center" }}>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <button
-                    id="apiupform2"
-                    onClick={() => MyMutation(formName, Date().toString())}
-                  >
-                    {this.state.sendButton}
-                  </button>
-                </span>
-              );
+          >
+            <button onClick={closeRightSidebar}>X</button>
+          </div>
+          &nbsp; &nbsp; &nbsp;{" "}
+          <h3
+            style={{
+              textAlign: "center",
+              fontWeight: "700",
+              marginBottom: "-5px",
+              marginTop: "-5px",
             }}
-          </Mutation>
-        );
-      } catch (error) {}
-    };
-
-    const MY_MUTATION_MUTATION3 = gql`
-      mutation UpdateChat {
-        updateLiveChat(
-          input: { where: { id: ${
-            this.state.localChatID
-          } }, data: { messageUser: "${
-      String(this.state.loadedUserMessage) +
-      " xyzVar " +
-      String(this.state.formName)
-    }" } }
-        ) {
-          liveChat {
-            messageUser
-          }
-        }
-      }
-    `;
-
-    const MyMutationMutation3 = (props) => {
-      try {
-        return (
-          <Mutation mutation={MY_MUTATION_MUTATION3}>
-            {(MyMutation, { loading, error, data }) => {
-              try {
-                if (loading) return <pre>Loading</pre>;
-
-                if (error) {
-                }
-              } catch (error) {}
-              const dataEl = data ? (
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-              ) : null;
-              if (data) {
-                this.setState({ formName: "" });
-              }
-
-              return <button onClick={() => MyMutation()}>Send</button>;
+          >
+            Quick-Help
+          </h3>
+          <div
+            className="helpPopup"
+            style={{
+              height: "100%",
+              marginLeft: "25px",
+              fontSize: "125%",
+              position: "center",
+              alignContent: "center",
+              alignSelf: "center",
+              justifyItems: "center",
+              justifySelf: "center",
             }}
-          </Mutation>
-        );
-      } catch (error) {}
-    };
-    return (
-      <Fragment>
-        <div
-          hidden
-          id="ChatBlock"
-          style={{
-            position: "fixed",
-            backgroundColor: "white",
-            opacity: 0,
-            bottom: "25px",
-            zIndex: "998",
-            width: "94%",
-            right: "10px",
-            boxShadow: "0px 0px 0px 5px rgba(50,50,50, .8)",
-            borderRadius: "5px",
-            maxWidth: "400px",
-            maxHeight: "fit",
-          }}
-        >
-          <PerfectScrollbar>
-            <div
-              style={{
-                textAlign: "right",
-                marginBottom: "-45px",
-              }}
-            >
-              <button onClick={this.closeRightSidebar}>X</button>
-            </div>
-            &nbsp; &nbsp; &nbsp;{" "}
-            <h3
+          >
+            <h4
               style={{
                 textAlign: "center",
-                fontWeight: "700",
-                marginBottom: "-5px",
-                marginTop: "-5px",
+                left: "-15px",
+                position: "relative",
               }}
             >
-              Quick-Help
-            </h3>
+              How may I help you?
+            </h4>
+            <br />
             <div
-              className="helpPopup"
               style={{
-                height: "100%",
-                marginLeft: "25px",
-                fontSize: "125%",
                 position: "center",
-                alignContent: "center",
-                alignSelf: "center",
-                justifyItems: "center",
-                justifySelf: "center",
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "left",
               }}
             >
-              <h4
-                style={{
-                  textAlign: "center",
-                  left: "-15px",
-                  position: "relative",
-                }}
-              >
-                How may I help you?
-              </h4>
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  textAlign: "left",
-                }}
-              >
-                <div style={{ width: "350px" }}>
-                  <a href="/#/dashboards/Account">
-                    <Button
-                      onClick={this.closeRightSidebar}
-                      size="large"
-                      style={{ fontSize: "120%" }}
-                    >
-                      <div
-                        style={{
-                          position: "relative",
-                          left: "-5px",
-                          top: "-3px",
-                        }}
-                      >
-                        <FcLock style={{ position: "relative", top: "-5px" }} />
-                        <span style={{ position: "relative", top: "-2px" }}>
-                          Login
-                        </span>
-                      </div>
-                    </Button>
-                  </a>{" "}
-                </div>
-              </div>{" "}
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  textAlign: "left",
-                }}
-              >
-                {" "}
-                <div style={{ width: "350px" }}>
-                  {" "}
-                  <Button disabled size="large" style={{ fontSize: "120%" }}>
-                    <div
-                      style={{
-                        position: "relative",
-                        left: "-5px",
-                        top: "-3px",
-                      }}
-                    >
-                      <FcFeedback
-                        style={{ position: "relative", top: "-5px" }}
-                      />{" "}
-                      <span style={{ position: "relative", top: "-2px" }}>
-                        Feedback (Coming Soon)
-                      </span>
-                    </div>
-                  </Button>
-                </div>
-              </div>{" "}
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                <div style={{ width: "350px" }}>
-                  <a href="/#/dashboards/services">
-                    <Button
-                      onClick={this.closeRightSidebar}
-                      size="large"
-                      style={{ fontSize: "120%" }}
-                    >
-                      <div
-                        style={{
-                          position: "relative",
-                          left: "-5px",
-                          top: "-3px",
-                        }}
-                      >
-                        <FcIdea style={{ position: "relative", top: "-5px" }} />{" "}
-                        <span style={{ position: "relative", top: "-2px" }}>
-                          Learn About PrettCoolPattern
-                        </span>
-                      </div>
-                    </Button>
-                  </a>
-                </div>{" "}
-              </div>
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                <div style={{ width: "350px" }}>
+              <div style={{ width: "350px" }}>
+                <a href="/#/dashboards/Account">
                   <Button
-                    onClick={this.closeRightSidebar}
+                    onClick={closeRightSidebar}
                     size="large"
                     style={{ fontSize: "120%" }}
                   >
@@ -511,118 +396,140 @@ class HeaderRightDrawer extends React.Component {
                         top: "-3px",
                       }}
                     >
-                      <FcUndo style={{ position: "relative", top: "-5px" }} />{" "}
+                      <FcLock style={{ position: "relative", top: "-5px" }} />
                       <span style={{ position: "relative", top: "-2px" }}>
-                        {" "}
-                        Continue Browsing
+                        Login
                       </span>
                     </div>
                   </Button>
-                </div>
+                </a>{" "}
+              </div>
+            </div>{" "}
+            <br />
+            <div
+              style={{
+                position: "center",
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "left",
+              }}
+            >
+              {" "}
+              <div style={{ width: "350px" }}>
+                {" "}
+                <Button disabled size="large" style={{ fontSize: "120%" }}>
+                  <div
+                    style={{
+                      position: "relative",
+                      left: "-5px",
+                      top: "-3px",
+                    }}
+                  >
+                    <FcFeedback style={{ position: "relative", top: "-5px" }} />{" "}
+                    <span style={{ position: "relative", top: "-2px" }}>
+                      Feedback (Coming Soon)
+                    </span>
+                  </div>
+                </Button>
+              </div>
+            </div>{" "}
+            <br />
+            <div
+              style={{
+                position: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <div style={{ width: "350px" }}>
+                <a href="/#/dashboards/services">
+                  <Button
+                    onClick={closeRightSidebar}
+                    size="large"
+                    style={{ fontSize: "120%" }}
+                  >
+                    <div
+                      style={{
+                        position: "relative",
+                        left: "-5px",
+                        top: "-3px",
+                      }}
+                    >
+                      <FcIdea style={{ position: "relative", top: "-5px" }} />{" "}
+                      <span style={{ position: "relative", top: "-2px" }}>
+                        About PrettCoolPattern
+                      </span>
+                    </div>
+                  </Button>
+                </a>
               </div>{" "}
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  textAlign: "left",
-                  marginLeft: "-75px",
-                }}
-              >
-                <b> {this.state.loadedHelpTitle}</b>
-              </div>{" "}
-              <br />
-              <div
-                style={{
-                  position: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                <div
-                  className="helpFooter"
-                  style={{
-                    position: "bottom",
-                    marginLeft: "-55px",
-                  }}
+            </div>
+            <br />
+            <div
+              style={{
+                position: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <div style={{ width: "350px" }}>
+                <Button
+                  onClick={closeRightSidebar}
+                  size="large"
+                  style={{ fontSize: "120%" }}
                 >
                   <div
                     style={{
-                      boxShadow: "0px 0px 0px 2px rgba(50,50,50, .8)",
-                      alignContent: "center",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      maxWidth: "300px",
-                      textAlign: "center",
+                      position: "relative",
+                      left: "-5px",
+                      top: "-3px",
                     }}
                   >
-                    <p> {this.state.textVar2}</p> <br />
-                    <Row id="adminChat" hidden>
-                      <Col style={{ width: "50%" }}>
-                        {" "}
-                        {this.state.loadedUserMessage
-                          .replace(/xyzVar/g, "\r\n")
-                          .split("\r\n")
-                          .map((str, index) => (
-                            <h5 key={index}>{str}</h5>
-                          ))}
-                      </Col>
-                      <Col style={{ width: "50%" }}>
-                        {this.state.loadedAdminMessage
-                          .replace(/xyzVar/g, "\r\n")
-                          .split("\r\n")
-                          .map((str, index) => (
-                            <h5 key={index}>{str}</h5>
-                          ))}
-                      </Col>
-                      <Row style={{ width: "100%" }}></Row>
-                      <Col>
-                        <b>User</b>:
-                      </Col>{" "}
-                      <Col>
-                        <b>Admin</b>
-                      </Col>
-                    </Row>
-                  </div>{" "}
-                  <br />
-                  <Input
-                    onChange={this.handleInputChange}
-                    name="formName"
-                    value={String(this.state.formName).replace(
-                      /(\r\n|\n|\r)/gm,
-                      ""
-                    )}
-                    type="textarea"
-                    style={{ width: "190px" }}
-                  ></Input>
-                  <span style={{ position: "relative", top: "-15px" }}>
-                    <ApolloProvider client={apolloClient}>
-                      <span hidden={this.state.messageReceived}>
-                        <MyMutationMutation />{" "}
-                      </span>
-                      <span
-                        id="liveChatSendButton"
-                        hidden={!this.state.messageReceived}
-                      >
-                        {" "}
-                        <MyMutationMutation3 />
-                      </span>
-                    </ApolloProvider>
-                  </span>{" "}
-                  <br />
-                  <img src="/images/PCP-Site-Logo.gif"></img>{" "}
-                    <ApolloProvider client={apolloClient}>
-                  <HeaderRightAuth />{" "}
-                    </ApolloProvider>
-                </div>
+                    <FcUndo style={{ position: "relative", top: "-5px" }} />{" "}
+                    <span style={{ position: "relative", top: "-2px" }}>
+                      {" "}
+                      Continue Browsing
+                    </span>
+                  </div>
+                </Button>
+              </div>
+            </div>{" "}
+            <br />
+            <div
+              style={{
+                position: "center",
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "left",
+                marginLeft: "-75px",
+              }}
+            >
+              <b> {loadedHelpTitle}</b>
+            </div>{" "}
+            <br />
+            <div
+              style={{
+                position: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <div
+                className="helpFooter"
+                style={{
+                  position: "bottom",
+                  marginLeft: "-55px",
+                }}
+              >
+                <section>{<ChatRoom />}</section>
+                <img src="/images/PCP-Site-Logo.gif"></img>{" "}
               </div>
             </div>
-          </PerfectScrollbar>
-        </div>
-      </Fragment>
-    );
-  }
+          </div>
+        </PerfectScrollbar>
+      </div>
+    </Fragment>
+  );
 }
 
 export default HeaderRightDrawer;

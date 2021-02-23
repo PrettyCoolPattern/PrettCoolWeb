@@ -26,8 +26,6 @@ import {
   CardFooter,
   ButtonGroup,
 } from "reactstrap";
-import { idText } from "typescript";
-import { toHtml } from "@fortawesome/fontawesome-svg-core";
 
 class UserQueryComponent extends Component {
   constructor(props) {

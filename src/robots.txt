@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /#/dashboards/home
+Allow: /#/dashboards/gallery
+Allow: /#/dashboards/services
+Allow: /#/dashboards/projects
+Allow: /#/dashboards/shop
+Allow: /#/dashboards/about
+Sitemap: https://www.PrettyCoolPattern.com/sitemap.xml

@@ -56,15 +56,7 @@ import AccountElements from "./account";
 import LoginPageElements from "./loginPage";
 
 // This setup is only needed once per application;
-const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "https://api.PrettyCoolPattern.com/graphql",
-    headers: {
-      "content-type": "application/json",
-    },
-  }),
-});
+
 
 export default class AdminElements extends Component {
   constructor(props) {
@@ -206,7 +198,6 @@ export default class AdminElements extends Component {
             justifyContent: "center",
           }}
         >
-          <ApolloProvider client={apolloClient}>
             <Card
               style={{
                 justifyContent: "center",
@@ -350,7 +341,6 @@ export default class AdminElements extends Component {
                 </TabContent>
               </CardBody>
             </Card>
-          </ApolloProvider>
         </Container>
       </Fragment>
     );

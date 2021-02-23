@@ -1,6 +1,18 @@
-import React, { Component, Fragment } from "react";
+import React, {
+  Component,
+  useContext,
+  Fragment,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
+import AppAuth from "../../../Layout/AppAuth/index.js";
+
+import "firebase/auth";
+import "firebase/storage";
+import "firebase/firestore";
 import {
   Row,
   Col,
@@ -10,6 +22,7 @@ import {
   FormGroup,
   Label,
   Container,
+  CardTitle,
   Input,
   FormText,
   CardHeader,
@@ -21,37 +34,48 @@ import {
   ButtonGroup,
 } from "reactstrap";
 
-import Tabs, { TabPane } from "rc-tabs";
-import TabContent from "rc-tabs/lib/SwipeableTabContent";
-import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
+import firebase from "firebase/app";
+import "firebase/auth";
 
-// Examples
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
-import AccountElements from "./account";
-import AdminElements from "./admin";
-import ModeratorElements from "./moderator";
-import LoginPageElements from "./loginPage";
-//
+import packageJson from "../../../meta.json";
+
+var appVersion = packageJson.version;
 
 var CLIIP;
 
-export default class Account extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: "1",
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+function AccountPage() {
+  const isInitialMount = useRef(true);
 
-  toggle(tab) {
+  const UserContext = React.createContext({});
+  const user = useContext(UserContext);
+  const UserProvider = UserContext.Provider;
+  const UserConsumer = UserContext.Consumer;
+
+  const [elementAuth, setelementAuth] = useState(null);
+  const [loadStage, setloadStage] = useState("1");
+  const [loadElements, setloadElements] = useState(null);
+  const [loadedSnapshotData, setloadedSnapshotData] = useState("");
+  const [loadedSnapshotDataIDs, setloadedSnapshotDataIDs] = useState("");
+  const [loadedOnce, setloadedOnce] = useState(1);
+
+  useEffect(() => {
+    let concData = [];
+    let concData2 = [];
+    console.log(isInitialMount);
+    console.log("Load: " + loadStage);
+  }, [isInitialMount]);
+
+  function toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab,
       });
     }
   }
-  componentDidMount() {
+  function componentDidMount() {
     this.setState({ isLoading: true });
 
     fetch("https://api.ipify.org")
@@ -63,51 +87,159 @@ export default class Account extends Component {
       .catch((error) => this.setState({ error, isLoading: false }));
   }
 
-  render() {
-    let adminCardEle;
-    if (localStorage.getItem("jwt") == null) {
-      {
-        adminCardEle = (
-          <Col>
-            <LoginPageElements />
-          </Col>
+  let adminCardEle;
+
+  adminCardEle = (
+    <Card
+      style={{
+        backgroundColor: "#CCCCCCC",
+        boxShadow: "0px 0px 0px 5px rgba(50,50,50, .9)",
+        borderRadius: "10px",
+        opacity: 100,
+        justifyContent: "center",
+        marginLeft: "-5px",
+        marginRight: "-5px",
+        color: "black",
+        background:
+          "linear-gradient(0.25turn, #103066FF, #FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD, #103066FF)",
+      }}
+    >
+      <CardBody>
+        <CardTitle
+          style={{
+            borderRadius: "25px",
+            backgroundColor: "transparent",
+            textAlign: "left",
+            justifyContent: "center",
+            border: "none",
+            alignSelf: "left",
+            opacity: 100,
+            justifySelf: "left",
+          }}
+        >
+          <h2
+            style={{
+              color: "black",
+              paddingLeft: "5px",
+              marginTop: "-25px",
+              marginBottom: "-10px",
+            }}
+          >
+            <br />
+            <center>PonoMap&nbsp;Tools</center>
+          </h2>
+        </CardTitle>
+        <div
+          id="NotLoggedInElement"
+          style={{
+            paddingLeft: "15px",
+            paddingRight: "25px",
+          }}
+        >
+          <h3
+            style={{
+              color: "black",
+            }}
+          >
+            <b> An account with PonoMap is required to:</b>
+          </h3>
+          <br />
+          <div style={{ textAlign: "left" }}>
+            <h4
+              style={{
+                color: "black",
+                textAlign: "left",
+              }}
+            >
+              <li>Add &amp; Manage Listings</li> <br />
+              <li>Subscribe to Updates</li>
+              <br />
+              <li>Get Help Creating Your Listing</li>
+              <br />
+              <li>Chat Amongst the Community</li>
+              <br />
+            </h4>
+          </div>
+        </div>
+        <AppAuth />
+      </CardBody>
+      <br />
+    </Card>
+  );
+
+  return (
+    <Fragment>
+      <Card
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          marginRight: "-35px",
+          paddingRight: "-55px",
+          paddingLeft: "-55px",
+          justifySelf: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          borderRadius: "35px",
+          background:
+            "linear-gradient(0.25turn, #10306655, #FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD,#FFFFFFDD, #10306655)",
+        }}
+      >
+        <CardBody
+          style={{
+            backgroundColor: "transparent",
+            paddingRight: "-55px",
+            paddingLeft: "-55px",
+          }}
+        >
+          <CardHeader
+            style={{
+              backgroundColor: "transparent",
+              paddingRight: "-25px",
+              paddingLeft: "-25px",
+            }}
+          >
+            <h2>Account Tools</h2>
+          </CardHeader>
+          <AppAuth />
+          <VersionCheck />
+        </CardBody>
+      </Card>
+    </Fragment>
+  );
+}
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+function handleInputChangeEvent(event) {
+  setState({
+    [event.target.name]: event.target.value,
+  });
+}
+
+function VersionCheck() {
+  const dummy = useRef();
+  const messagesRef = firestore.collection("version");
+  const query = messagesRef.limit(25);
+
+  const [messages] = useCollectionData(query);
+  if (messages) {
+    let concData = JSON.parse(JSON.stringify(messages[0])).version;
+    if (!localStorage.getItem("appVersion")) {
+      localStorage.setItem("appVersion", concData);
+    } else if (localStorage.getItem("appVersion") != concData) {
+      if (caches) {
+        caches.keys().then(function (names) {
+          for (let name of names) caches.delete(name);
+        });
+        localStorage.setItem("appVersion", concData);
+        alert(
+          "A new version of this website is available, please reload after saving any work to load new website content."
         );
       }
     }
-    if (localStorage.getItem("jwt") != null) {
-      adminCardEle = (
-        <Row>
-          <Col>
-            <AccountElements />
-          </Col>
-        </Row>
-      );
-    }
-    if (
-      (localStorage.getItem("jwt") != null &&
-        localStorage.getItem("username") == "microAdmin2") ||
-      window.location == "http://localhost:9999/#/dashboards/account"
-    ) {
-      adminCardEle = <AdminElements />;
-    }
-    if (
-      localStorage.getItem("jwt") != null &&
-      localStorage.getItem("username") == "microAdmin"
-    ) {
-      adminCardEle = (
-        <span
-          style={{
-            backgroundColor: "transparent",
-            width: "100%",
-            justifyContent: "center",
-            alignSelf: "center",
-            opacity: 100,
-          }}
-        >
-          <ModeratorElements />
-        </span>
-      );
-    }
-    return <Fragment>{adminCardEle}</Fragment>;
   }
+  console.log("X");
+  return null;
 }
+export default AccountPage;
